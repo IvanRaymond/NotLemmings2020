@@ -15,16 +15,14 @@ import l3.lemmings.view.Views;
  *
  */
 public class Listener extends MouseAdapter {
-	
-	private Models model;
+
 	private Views view;
 	private UIcontroller uiController;
 	private boolean actionFlag = false;
 	Action action;
 			
 	
-	public Listener(Models model, Views view) {
-		this.model = model;
+	public Listener(Views view) {
 		this.view = view;
 		uiController = new UIcontroller(view);
 	}
@@ -58,7 +56,7 @@ public class Listener extends MouseAdapter {
 		super.mouseMoved(e);
 	}
 
-	public void setActionCall(){
+	public void setActionFlag(){
 		actionFlag = true;
 	}
 	

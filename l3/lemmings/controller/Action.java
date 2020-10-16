@@ -15,12 +15,12 @@ public class Action {
     }
 
     public void doAction(){
-        if (immediateAction(clicked) == false) {
-            l.setActionCall();
+        if (!gameAction(clicked)) {
+            l.setActionFlag();
         }
     }
 
-    // Expects false return to set actionFlag faster
+    // Expects false return to set actionFlag faster (Change to true if want to keep action "armed")
     public boolean setAction(Lemming lemming){
         switch (clicked) {
             case CLIMBER:
@@ -58,7 +58,7 @@ public class Action {
         return true;
     }
 
-    private boolean immediateAction(Button clicked){
+    private boolean gameAction(Button clicked){
         switch (clicked) {
             case DECREASE:
                 return decrease();
