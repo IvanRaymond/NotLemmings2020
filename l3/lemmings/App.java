@@ -4,7 +4,6 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 
 import l3.lemmings.model.Game;
-import l3.lemmings.model.Level;
 import l3.lemmings.view.Views;
 
 public class App {

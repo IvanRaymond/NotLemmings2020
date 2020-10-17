@@ -120,6 +120,7 @@ public class Views extends JComponent{
 
 	public void update() {
 		int gg=0;
+		level.update();
 		for(Lemming l : lemmings)
 		{
 			boolean[][] surrounding = new boolean[3][3];

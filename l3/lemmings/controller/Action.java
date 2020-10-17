@@ -94,7 +94,7 @@ public class Action {
     }
 
     private boolean nuke(){
-
+        game.getLevel().killAll();
         return true;
     }
 

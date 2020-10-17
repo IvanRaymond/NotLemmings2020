@@ -57,6 +57,21 @@ public class Level {
         return null;
     }
 
+    public void killAll(){
+        for (int i=0; i<lemmings.size(); i++) {
+            lemmings.remove(i);
+        }
+    }
+
+    // Add destroyed blocks removal
+    public void update(){
+        for (int i=0; i<lemmings.size(); i++) {
+            if(!lemmings.get(i).alive()) {
+                lemmings.remove(i);
+            }
+        }
+    }
+
     public ArrayList<Lemming> getLemmings() {
         return lemmings;
     }

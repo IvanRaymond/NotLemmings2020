@@ -13,6 +13,8 @@ public class Lemming {
 		MINER,
 		DIGGER
 	}
+
+	private boolean alive = true;
 	
 	private LemmingState state = LemmingState.NORMAL;
 
@@ -32,6 +34,14 @@ public class Lemming {
 	public void move() {
 		x += directionAxisX;
 		y += directionAxisY;
+	}
+
+	public void kill(){
+		alive = false;
+	}
+
+	public boolean alive(){
+		return alive;
 	}
 	
 	public LemmingState getState() {
