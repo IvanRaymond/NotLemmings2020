@@ -18,6 +18,7 @@ public class Level {
 
     private ArrayList<Lemming> lemmings = new ArrayList<>();
     private ArrayList<Block> blocks = new ArrayList<>();
+    private Entrance entrance;
 
     public Level(){
         // Could be placed in the Model in a class Level.
@@ -32,7 +33,7 @@ public class Level {
         blocks.add(new Block(19,13));
         blocks.add(new Block(24,14));
         blocks.add(new Block(24,15));
-        lemmings.add(new Lemming(10,15));
+        entrance = new Entrance(this, 3, 11, 16);
     }
 
     public boolean lemmingPresent(Point cell) {
@@ -86,5 +87,9 @@ public class Level {
 
     public void setBlocks(ArrayList<Block> blocks) {
         this.blocks = blocks;
+    }
+
+    public Entrance getEntrance(){
+        return entrance;
     }
 }
