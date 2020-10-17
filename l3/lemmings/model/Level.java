@@ -65,6 +65,11 @@ public class Level {
 
     // Add destroyed blocks removal
     public void update(){
+        for (int i=0; i<blocks.size(); i++) {
+            if(blocks.get(i).destroyed()) {
+                blocks.remove(i);
+            }
+        }
         for (int i=0; i<lemmings.size(); i++) {
             if(!lemmings.get(i).alive()) {
                 lemmings.remove(i);

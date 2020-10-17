@@ -4,6 +4,7 @@ public class Block {
 	
 	private int x;
 	private int y;
+	private boolean destroyed = false;
 	
 	public Block(int x, int y)
 	{
@@ -27,4 +28,11 @@ public class Block {
 		this.y = y;
 	}
 
+	public void destroy(){
+		destroyed = true;
+	}
+
+	public boolean destroyed() {
+		return destroyed;
+	}
 }
