@@ -45,7 +45,7 @@ public class Views extends JComponent{
 
 		this.w = w;
 		this.h = h;
-		MouseAdapter ma = new Listener(game, this);
+		MouseAdapter ma = new Listener(this);
 		addMouseListener(ma);
 
 		this.lemmings = l;
@@ -78,9 +78,7 @@ public class Views extends JComponent{
 		g.setColor(Color.BLACK);
 		for(Block b : blocks)
 			g.fillRect(b.getX() * blockWidth,b.getY() * blockHeight, blockWidth, blockHeight);
-		
-		
-		
+
 		for(Lemming l : lemmings) {
 			g.setColor(lemmingAnimation(l));
 			g.fillRect(l.getX() * blockWidth, l.getY() * blockHeight, blockWidth, blockHeight);

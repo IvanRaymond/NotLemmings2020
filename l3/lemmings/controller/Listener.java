@@ -15,14 +15,14 @@ import l3.lemmings.view.Views;
  *
  */
 public class Listener extends MouseAdapter {
-	
-	private Models model;
+
 	private Views view;
 	private UIcontroller uiController;
+	private boolean actionFlag = false;
+	Action action;
 			
 	
-	public Listener(Models model, Views view) {
-		this.model = model;
+	public Listener(Views view) {
 		this.view = view;
 		uiController = new UIcontroller(view);
 	}
@@ -38,13 +38,12 @@ public class Listener extends MouseAdapter {
 			
 			if(uiController.isButton(cell)) {
 				Button clicked = uiController.getButton(cell);
-
-				// Call model to do an action by passing the button
+				action = new Action(clicked, this);
+				action.doAction();
 			}
 			if(uiController.isCellPlayable(cell)) {
-
-				if (view.lemmingPresent(cell)) {
-					view.getLemming(cell).setState(LemmingState.DIGGER);
+				if (view.lemmingPresent(cell) && actionFlag) {
+					actionFlag = action.setAction(view.getLemming(cell));
 				}
 			}
 		}
@@ -55,6 +54,10 @@ public class Listener extends MouseAdapter {
 	public void mouseMoved(MouseEvent e) {
 		
 		super.mouseMoved(e);
+	}
+
+	public void setActionFlag(){
+		actionFlag = true;
 	}
 	
 }
