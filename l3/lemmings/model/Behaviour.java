@@ -1,4 +1,4 @@
-package l3.lemmings.controller;
+package l3.lemmings.model;
 
 import l3.lemmings.model.Game;
 import l3.lemmings.model.Lemming;
