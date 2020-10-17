@@ -28,17 +28,10 @@ public class Views extends JComponent{
 	private ArrayList<Lemming> lemmings;
 	private ArrayList<Block> blocks;
 
-	private int numCaseX;
-	private int numCaseY;
-
+	private int numCaseX,numCaseY;
 	private int w,h;
-
-	private int blockWidth;
-	private int blockHeight;
+	private int blockWidth,blockHeight;
 	private Level level;
-
-	private int flowCounter=0;
-
 
 	public Views(Game game, int w, int h, int x, int y) {
 		level = game.getLevel();
@@ -120,79 +113,7 @@ public class Views extends JComponent{
 		return Color.PINK;
 	}
 
-	public void update() {
-		int gg=0;
-		level.update();
 
-		// Needs to be here as only update() knows about game time passing
-		if(flowCounter == 0){
-			level.getEntrance().addLemming();
-			flowCounter = level.getEntrance().getFlow();
-		}
-		flowCounter--;
-
-		for(Lemming l : lemmings)
-		{
-			boolean[][] surrounding = new boolean[3][3];
-			for(Block b : blocks)
-			{
-				if(l.getY() == b.getY())
-				{	if(l.getX() == b.getX())
-					surrounding[1][1] = true;
-				else if(l.getX() - 1 == b.getX() )
-					surrounding[0][1] = true;
-				else if(l.getX() + 1 == b.getX())
-					surrounding[2][1] = true;}
-				else if(l.getY() - 1 == b.getY())
-				{
-					if(l.getX() == b.getX())
-						surrounding[1][0] = true;
-					else if(l.getX() - 1 == b.getX())
-						surrounding[0][0] = true;
-					else if(l.getX() + 1 == b.getX())
-						surrounding[2][0] = true;
-				}
-				else if(l.getY() + 1 == b.getY())
-				{
-					if(l.getX() == b.getX())
-						surrounding[1][2] = true;
-					else if(l.getX() - 1 == b.getX())
-						surrounding[0][2] = true;
-					else if(l.getX() + 1 == b.getX())
-						surrounding[2][2] = true;
-				}
-			}
-			if(surrounding[0][0] && surrounding[0][1] && l.getDirectionAxisX() == -1 || surrounding[2][0] && surrounding[2][1] && l.getDirectionAxisX() == 1)
-			{
-				l.setDirectionAxisX(l.getDirectionAxisX()*-1);
-			}
-
-			if(!surrounding[1][2])
-			{
-				l.setDirectionAxisY(1);
-			}
-
-			if(surrounding[1][2]){
-				l.setDirectionAxisY(0);
-			}
-
-			if(surrounding[2][1] && !surrounding[2][0] && l.getDirectionAxisX() == 1 || surrounding[0][1] && !surrounding[0][0] && l.getDirectionAxisX() == -1)
-			{
-				l.setDirectionAxisY(-1);
-			}
-
-
-			for(int i =0;i<3;i++)
-			{
-				for(int j =0;j<3;j++)
-					System.out.print(" "+surrounding[i][j]);
-				System.out.println();
-			}
-			System.out.println();
-			l.move();
-		}
-
-	}
 
 	public int getNumCaseX() {
 		return numCaseX;

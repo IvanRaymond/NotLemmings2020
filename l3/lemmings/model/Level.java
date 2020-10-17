@@ -63,7 +63,9 @@ public class Level {
         lemmings.clear();
     }
 
-    // Add destroyed blocks removal
+    /**
+     * Removes destroyed blocks and dead lemmings from lists.
+     */
     public void update(){
         for (int i=0; i<blocks.size(); i++) {
             if(blocks.get(i).destroyed()) {

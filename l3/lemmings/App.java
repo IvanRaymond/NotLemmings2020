@@ -33,9 +33,9 @@ public class App {
 
 		while (true) {
 			if (!game.pause()) {
-				view.update();
+				game.update();
 				view.repaint();
-				Thread.sleep(900);
+				Thread.sleep(700);
 			}
 			// Necessary to make pause work.
 			else {
