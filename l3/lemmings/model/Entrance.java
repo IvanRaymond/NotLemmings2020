@@ -9,8 +9,7 @@ public class Entrance {
 
     // Number of frames between addition of a lemming.
     private int flow = 2;
-    private int x;
-    private int y;
+    private int x, y;
     private Level level;
     private int numberOfLemmings;
 

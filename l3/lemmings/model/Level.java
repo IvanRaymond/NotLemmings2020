@@ -16,6 +16,7 @@ import org.json.simple.parser.*;
  */
 public class Level {
 
+    private boolean levelCompleted = false;
     private ArrayList<Lemming> lemmings = new ArrayList<>();
     private ArrayList<Block> blocks = new ArrayList<>();
     private Entrance entrance;

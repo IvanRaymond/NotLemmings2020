@@ -124,7 +124,7 @@ public class Views extends JComponent{
 		int gg=0;
 		level.update();
 
-		// The addition of lemmings needs to be here as only update knows about game time passing (aka frames)
+		// Needs to be here as only update() knows about game time passing
 		if(flowCounter == 0){
 			level.getEntrance().addLemming();
 			flowCounter = level.getEntrance().getFlow();
