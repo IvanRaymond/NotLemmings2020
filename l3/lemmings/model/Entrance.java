@@ -30,14 +30,14 @@ public class Entrance {
     }
 
     public void increaseFlow(){
-        if (flow < 5){
-            flow++;
+        if (flow > 1){
+            flow--;
         }
     }
 
     public void decreaseFlow(){
-        if (flow > 1){
-            flow--;
+        if (flow < 5){
+            flow++;
         }
     }
 

@@ -34,7 +34,7 @@ public class Level {
         blocks.add(new Block(19,13));
         blocks.add(new Block(24,14));
         blocks.add(new Block(24,15));
-        entrance = new Entrance(this, 3, 11, 16);
+        entrance = new Entrance(this, 20, 11, 16);
     }
 
     public boolean lemmingPresent(Point cell) {
@@ -60,9 +60,7 @@ public class Level {
     }
 
     public void killAll(){
-        for (int i=0; i<lemmings.size(); i++) {
-            lemmings.remove(i);
-        }
+        lemmings.clear();
     }
 
     // Add destroyed blocks removal
