@@ -14,12 +14,12 @@ public class Lemming {
 		DIGGER
 	}
 	
-	LemmingState state = LemmingState.NORMAL;
+	private LemmingState state = LemmingState.NORMAL;
 
-	int directionAxisX;
-	int directionAxisY;
-	int x;
-	int y;
+	private int directionAxisX;
+	private int directionAxisY;
+	private int x;
+	private int y;
 	
 	public Lemming(int x, int y)
 	{

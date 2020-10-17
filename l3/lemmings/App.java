@@ -3,6 +3,7 @@ package l3.lemmings;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 
+import l3.lemmings.model.Game;
 import l3.lemmings.model.Level;
 import l3.lemmings.view.Views;
 
@@ -20,8 +21,9 @@ public class App {
 
 		int numCaseX = 40;
 		int numCaseY = 24;
+		Game game = new Game();
 
-		Views view = new Views(new Level(),WIDTH-200, HEIGHT-100, numCaseX, numCaseY);
+		Views view = new Views(game,WIDTH-200, HEIGHT-100, numCaseX, numCaseY);
 		JFrame frame = new JFrame("Lemmingway");
 		frame.add(view);
 		frame.setSize(view.getSize());
@@ -31,9 +33,15 @@ public class App {
 		frame.setVisible(true);
 
 		while (true) {
-			view.update();
-			view.repaint();
-			Thread.sleep(900);
+			if (!game.pause()) {
+				view.update();
+				view.repaint();
+				Thread.sleep(900);
+			}
+			// Necessary to make pause work.
+			else {
+				Thread.sleep(50);
+			}
 		}
 	}
 

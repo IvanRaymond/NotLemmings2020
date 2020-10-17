@@ -7,6 +7,7 @@ import javax.swing.JComponent;
 
 import l3.lemmings.controller.Listener;
 import l3.lemmings.model.Block;
+import l3.lemmings.model.Game;
 import l3.lemmings.model.Lemming;
 import l3.lemmings.model.Level;
 import l3.lemmings.model.Lemming.LemmingState;
@@ -24,8 +25,8 @@ public class Views extends JComponent{
 		  game
 	}
 
-	ArrayList<Lemming> lemmings;
-	ArrayList<Block> blocks;
+	private ArrayList<Lemming> lemmings;
+	private ArrayList<Block> blocks;
 
 	private int numCaseX;
 	private int numCaseY;
@@ -34,16 +35,18 @@ public class Views extends JComponent{
 
 	private int blockWidth;
 	private int blockHeight;
+	private Level level;
 
 
-	public Views(Level level, int w, int h, int x, int y) {
+	public Views(Game game, int w, int h, int x, int y) {
+		level = game.getLevel();
 		this.lemmings = level.getLemmings();
 		this.blocks = level.getBlocks();
 		numCaseX = x;
 		numCaseY = y;
 		this.w = w;
 		this.h = h;
-		MouseAdapter ma = new Listener(this, level);
+		MouseAdapter ma = new Listener(this, game);
 		addMouseListener(ma);
 		setOpaque(true);
 		setSize(w, h);

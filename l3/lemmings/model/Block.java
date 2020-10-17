@@ -2,8 +2,8 @@ package l3.lemmings.model;
 
 public class Block {
 	
-	int x;
-	int y;
+	private int x;
+	private int y;
 	
 	public Block(int x, int y)
 	{

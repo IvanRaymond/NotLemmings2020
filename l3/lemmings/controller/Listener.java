@@ -5,9 +5,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import l3.lemmings.controller.UIcontroller.Button;
-import l3.lemmings.model.Lemming.LemmingState;
+import l3.lemmings.model.Game;
 import l3.lemmings.model.Level;
-import l3.lemmings.model.Models;
 import l3.lemmings.view.Views;
 
 /**
@@ -21,12 +20,13 @@ public class Listener extends MouseAdapter {
 	private Level level;
 	private UIcontroller uiController;
 	private boolean actionFlag = false;
-	Action action;
-			
+	private Action action;
+	private Game game;
 	
-	public Listener(Views view, Level level) {
-		this.level = level;
+	public Listener(Views view, Game game) {
+		this.level = game.getLevel();
 		this.view = view;
+		this.game = game;
 		uiController = new UIcontroller(view);
 	}
 
@@ -43,7 +43,7 @@ public class Listener extends MouseAdapter {
 			
 			if(uiController.isButton(cell)) {
 				Button clicked = uiController.getButton(cell);
-				action = new Action(clicked, this);
+				action = new Action(clicked, this, game);
 				action.doAction();
 				System.out.println(clicked.toString());
 			}
