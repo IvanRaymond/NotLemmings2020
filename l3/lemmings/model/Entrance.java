@@ -12,20 +12,22 @@ public class Entrance {
     private int x;
     private int y;
     private Level level;
+    private int numberOfLemmings;
 
     public Entrance(Level level, int numberOfLemmings, int x, int y){
         this.x = x;
         this.y = y;
         this.level = level;
-        letTheLemmingsOut(numberOfLemmings);
+        this.numberOfLemmings = numberOfLemmings;
     }
 
-    private void letTheLemmingsOut(int numberOfLemmings){
-        ArrayList<Lemming> lemmings = new ArrayList<>();
-        for(int i=0; i<=numberOfLemmings; i++){
-            lemmings.add(new Lemming(x,y));
+    public void addLemming(){
+        if (numberOfLemmings>0) {
+            ArrayList<Lemming> lemmings = level.getLemmings();
+            lemmings.add(new Lemming(x, y));
+            level.setLemmings(lemmings);
+            numberOfLemmings--;
         }
-        level.setLemmings(lemmings);
     }
 
     public void increaseFlow(){
@@ -38,6 +40,10 @@ public class Entrance {
         if (flow > 1){
             flow--;
         }
+    }
+
+    public int getFlow(){
+        return flow;
     }
 
     // Used to test flow change button

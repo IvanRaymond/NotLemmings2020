@@ -37,6 +37,8 @@ public class Views extends JComponent{
 	private int blockHeight;
 	private Level level;
 
+	private int flowCounter=0;
+
 
 	public Views(Game game, int w, int h, int x, int y) {
 		level = game.getLevel();
@@ -121,6 +123,14 @@ public class Views extends JComponent{
 	public void update() {
 		int gg=0;
 		level.update();
+
+		// The addition of lemmings needs to be here as only update knows about game time passing (aka frames)
+		if(flowCounter == 0){
+			level.getEntrance().addLemming();
+			flowCounter = level.getEntrance().getFlow();
+		}
+		flowCounter--;
+
 		for(Lemming l : lemmings)
 		{
 			boolean[][] surrounding = new boolean[3][3];
