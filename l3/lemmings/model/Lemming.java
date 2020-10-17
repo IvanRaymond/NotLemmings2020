@@ -16,6 +16,8 @@ public class Lemming {
 	
 	LemmingState state = LemmingState.NORMAL;
 
+	int directionAxisX;
+	int directionAxisY;
 	int x;
 	int y;
 	
@@ -23,11 +25,13 @@ public class Lemming {
 	{
 		this.x = x;
 		this.y = y;
+		directionAxisX = 1;
+		directionAxisY = 0;
 	}
 
 	public void move() {
-		x++;
-		//y++;
+		x += directionAxisX;
+		y += directionAxisY;
 	}
 	
 	public LemmingState getState() {
@@ -52,5 +56,21 @@ public class Lemming {
 
 	public void setY(int y) {
 		this.y = y;
+	}
+
+	public int getDirectionAxisY() {
+		return directionAxisY;
+	}
+
+	public void setDirectionAxisY(int directionAxisY) {
+		this.directionAxisY = directionAxisY;
+	}
+
+	public int getDirectionAxisX() {
+		return directionAxisX;
+	}
+
+	public void setDirectionAxisX(int directionAxisX) {
+		this.directionAxisX = directionAxisX;
 	}
 }
