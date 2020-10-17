@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 
 import l3.lemmings.controller.UIcontroller.Button;
 import l3.lemmings.model.Lemming.LemmingState;
+import l3.lemmings.model.Level;
 import l3.lemmings.model.Models;
 import l3.lemmings.view.Views;
 
@@ -17,12 +18,14 @@ import l3.lemmings.view.Views;
 public class Listener extends MouseAdapter {
 
 	private Views view;
+	private Level level;
 	private UIcontroller uiController;
 	private boolean actionFlag = false;
 	Action action;
 			
 	
-	public Listener(Views view) {
+	public Listener(Views view, Level level) {
+		this.level = level;
 		this.view = view;
 		uiController = new UIcontroller(view);
 	}
@@ -33,6 +36,8 @@ public class Listener extends MouseAdapter {
 		super.mouseClicked(e);
 		
 		if(e.getButton()==MouseEvent.BUTTON1) {
+
+
 			
 			Point cell = uiController.pointToMatrix(e.getPoint());
 			
@@ -40,10 +45,11 @@ public class Listener extends MouseAdapter {
 				Button clicked = uiController.getButton(cell);
 				action = new Action(clicked, this);
 				action.doAction();
+				System.out.println(clicked.toString());
 			}
 			if(uiController.isCellPlayable(cell)) {
-				if (view.lemmingPresent(cell) && actionFlag) {
-					actionFlag = action.setAction(view.getLemming(cell));
+				if (level.lemmingPresent(cell) && actionFlag) {
+					actionFlag = action.setAction(level.getLemming(cell));
 				}
 			}
 		}

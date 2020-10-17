@@ -2,14 +2,13 @@ package l3.lemmings.view;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import javax.swing.JComponent;
 
 import l3.lemmings.controller.Listener;
 import l3.lemmings.model.Block;
 import l3.lemmings.model.Lemming;
-import l3.lemmings.model.Models;
+import l3.lemmings.model.Level;
 import l3.lemmings.model.Lemming.LemmingState;
 
 import java.util.ArrayList;
@@ -19,40 +18,35 @@ public class Views extends JComponent{
 	 * 
 	 */
 	private static final long serialVersionUID = 2493529223813614525L;
-		
-	private final Models game;
 	
 	enum currentDisplay {
 		  mainMenu,
 		  game
 	}
 
-	ArrayList<Lemming> lemmings = new ArrayList<Lemming>();
-	ArrayList<Block> blocks = new ArrayList<Block>();
+	ArrayList<Lemming> lemmings;
+	ArrayList<Block> blocks;
 
-	
-	int numCaseX = 40;
-	int numCaseY = 24;
+	private int numCaseX;
+	private int numCaseY;
 
-	int w,h;
+	private int w,h;
 
-	int blockWidth;
-	int blockHeight;
+	private int blockWidth;
+	private int blockHeight;
 
 
-	public Views(Models m, int w, int h, ArrayList<Lemming> l, ArrayList<Block> b, int x, int y) {
-		this.game = m;
-		this.lemmings = l;
-		this.blocks = b;
+	public Views(Level level, int w, int h, int x, int y) {
+		this.lemmings = level.getLemmings();
+		this.blocks = level.getBlocks();
 		numCaseX = x;
 		numCaseY = y;
-		MouseAdapter ma = new Listener(this);
+		this.w = w;
+		this.h = h;
+		MouseAdapter ma = new Listener(this, level);
 		addMouseListener(ma);
 		setOpaque(true);
 		setSize(w, h);
-
-		this.w = w;
-		this.h = h;
 
 		blockWidth = getSize().width / numCaseX;
 		blockHeight = getSize().height / numCaseY;
@@ -119,28 +113,6 @@ public class Views extends JComponent{
 			return Color.ORANGE;
 		}
 		return Color.PINK;
-	}
-	
-	public boolean lemmingPresent(Point cell) {
-		Lemming currentLemming;
-		for (int i=0; i<lemmings.size(); i++) {
-			currentLemming = lemmings.get(i);
-			if (currentLemming.getX() == cell.x && currentLemming.getY() == cell.y) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public Lemming getLemming(Point cell) {
-		Lemming currentLemming;
-		for (int i=0; i<lemmings.size(); i++) {
-			currentLemming = lemmings.get(i);
-			if (currentLemming.getX() == cell.x && currentLemming.getY() == cell.y) {
-				return currentLemming;
-			}
-		}
-		return null;
 	}
 
 	public void update() {

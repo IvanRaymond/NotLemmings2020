@@ -27,7 +27,7 @@ public class UIcontroller {
 		DIGGER,
 		PAUSE,
 		NUKE;
-		
+
 		public Button getNext() {
 			return this.ordinal() < Button.values().length - 1
 			         ? Button.values()[this.ordinal() + 1]
@@ -39,6 +39,7 @@ public class UIcontroller {
 	private int matrixLengthX, matrixLengthY;
 	
 	public UIcontroller(Views view) {
+		System.out.println("w = "+view.getWidth() + " h = "+view.getHeight());
 		width = view.getWidth();
 		height = view.getHeight();
 		matrixLengthX = view.getNumCaseX();
