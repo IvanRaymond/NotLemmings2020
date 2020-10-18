@@ -1,17 +1,20 @@
 package l3.lemmings.controller;
 
 import l3.lemmings.controller.UIcontroller.Button;
+import l3.lemmings.model.Game;
 import l3.lemmings.model.Lemming.LemmingState;
 import l3.lemmings.model.Lemming;
 
 public class Action {
 
-    Button clicked;
-    Listener l;
+    private Button clicked;
+    private Listener l;
+    private Game game;
 
-    public Action(Button clicked, Listener l){
+    public Action(Button clicked, Listener l, Game game){
         this.clicked = clicked;
         this.l = l;
+        this.game = game;
     }
 
     public void doAction(){
@@ -76,22 +79,24 @@ public class Action {
     }
 
     private boolean decrease(){
-
+        game.getLevel().getEntrance().decreaseFlow();
+        game.getLevel().getEntrance().printFlow();
         return true;
     }
 
     private boolean increase(){
-
+        game.getLevel().getEntrance().increaseFlow();
+        game.getLevel().getEntrance().printFlow();
         return true;
     }
 
     private boolean pause(){
-
+        game.togglePause();
         return true;
     }
 
     private boolean nuke(){
-
+        game.getLevel().killAll();
         return true;
     }
 

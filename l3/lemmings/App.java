@@ -1,13 +1,9 @@
 package l3.lemmings;
 
 import java.awt.Toolkit;
-import java.util.ArrayList;
-
 import javax.swing.JFrame;
 
-import l3.lemmings.model.Block;
-import l3.lemmings.model.Lemming;
-import l3.lemmings.model.Models;
+import l3.lemmings.model.Game;
 import l3.lemmings.view.Views;
 
 public class App {
@@ -21,13 +17,12 @@ public class App {
 	private final static int    FRAME_PERIOD = 30000 / MAX_FPS;
 
 	public static void main(String[] args) throws InterruptedException {
-		ArrayList<Lemming> lemmings = new ArrayList<Lemming>();
-		ArrayList<Block> blocks = new ArrayList<Block>();
+
 		int numCaseX = 40;
 		int numCaseY = 24;
+		Game game = new Game();
 
-
-		Views view = new Views(new Models(),WIDTH-200, HEIGHT-100, lemmings, blocks, numCaseX, numCaseY);
+		Views view = new Views(game,WIDTH-200, HEIGHT-100, numCaseX, numCaseY);
 		JFrame frame = new JFrame("Lemmingway");
 		frame.add(view);
 		frame.setSize(view.getSize());
@@ -36,27 +31,16 @@ public class App {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 
-		for(int i = 10; i<25;i++)
-		{
-			blocks.add(new Block(i,16));
-
-		}
-		blocks.add(new Block(10,14));
-		blocks.add(new Block(10,15));
-		blocks.add(new Block(17,15));
-		blocks.add(new Block(18,14));
-		blocks.add(new Block(19,13));
-		blocks.add(new Block(24,14));
-		blocks.add(new Block(24,15));
-		lemmings.add(new Lemming(11,15));
-
-
 		while (true) {
-			view.update();
-			view.repaint();
-			Thread.sleep(900);
-			//Thread.sleep(100);
-
+			if (!game.pause()) {
+				game.update();
+				view.repaint();
+				Thread.sleep(700);
+			}
+			// Necessary to make pause work.
+			else {
+				Thread.sleep(50);
+			}
 		}
 	}
 

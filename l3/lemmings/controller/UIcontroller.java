@@ -9,10 +9,9 @@ import l3.lemmings.view.Views;
  * @author Ivan
  */
 public class UIcontroller {
-	
-	
-	int singleButtonSize = 2;
-	int numberOfButtons = Button.values().length;
+
+	private int singleButtonSize;
+	private int numberOfButtons = Button.values().length;
 	
 	public enum Button {
 		DECREASE,
@@ -27,7 +26,7 @@ public class UIcontroller {
 		DIGGER,
 		PAUSE,
 		NUKE;
-		
+
 		public Button getNext() {
 			return this.ordinal() < Button.values().length - 1
 			         ? Button.values()[this.ordinal() + 1]
@@ -39,10 +38,12 @@ public class UIcontroller {
 	private int matrixLengthX, matrixLengthY;
 	
 	public UIcontroller(Views view) {
+		System.out.println("w = "+view.getWidth() + " h = "+view.getHeight());
 		width = view.getWidth();
 		height = view.getHeight();
 		matrixLengthX = view.getNumCaseX();
 		matrixLengthY = view.getNumCaseY();
+		singleButtonSize = view.getSingleButtonSize();
 	}
 	
 	public Point pointToMatrix(Point p) {
@@ -90,4 +91,7 @@ public class UIcontroller {
 		return null;
 	}
 
+	public int getNumberOfButtons() {
+		return numberOfButtons;
+	}
 }
