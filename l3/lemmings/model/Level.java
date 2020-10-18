@@ -6,9 +6,9 @@ import java.io.FileReader;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.*;
+//import org.json.simple.JSONArray;
+//import org.json.simple.JSONObject;
+//import org.json.simple.parser.*;
 
 /**
  * Model of a level.
@@ -22,7 +22,6 @@ public class Level {
     private Entrance entrance;
 
     public Level(){
-        // Could be placed in the Model in a class Level.
         for(int i = 10; i<25;i++)
         {
             blocks.add(new Block(i,16));
@@ -89,10 +88,6 @@ public class Level {
 
     public ArrayList<Block> getBlocks() {
         return blocks;
-    }
-
-    public void setBlocks(ArrayList<Block> blocks) {
-        this.blocks = blocks;
     }
 
     public Entrance getEntrance(){

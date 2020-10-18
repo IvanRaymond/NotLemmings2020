@@ -1,7 +1,6 @@
 package l3.lemmings.view;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import javax.swing.JComponent;
 
@@ -28,6 +27,8 @@ public class Views extends JComponent{
 	private ArrayList<Lemming> lemmings;
 	private ArrayList<Block> blocks;
 
+	private int numberOfButtons = 12;
+	private int singleButtonSize = 2;
 	private int numCaseX,numCaseY;
 	private int w,h;
 	private int blockWidth,blockHeight;
@@ -61,21 +62,23 @@ public class Views extends JComponent{
 
 	private void drawMoves(Graphics g) {
 		
-		for(int i = 0; i < numCaseX;i++)
-			for(int j = 0; j < numCaseY;j++)
-				drawMove(g,i,j);
+//		for(int i = 0; i < numCaseX;i++)
+//			for(int j = 0; j < numCaseY;j++)
+//				drawMatrix(g,i,j);
+
+		drawButtons(g);
 		
 		g.setColor(Color.BLACK);
 		for(Block b : blocks)
 			g.fillRect(b.getX() * blockWidth,b.getY() * blockHeight, blockWidth, blockHeight);
 
 		for(Lemming l : lemmings) {
-			g.setColor(lemmingAnimation(l));
+			g.setColor(lemmingSprite(l));
 			g.fillRect(l.getX() * blockWidth, l.getY() * blockHeight, blockWidth, blockHeight);
 		}
 	}
-	
-	private void drawMove(Graphics g, int posX, int posY) {
+
+	private void drawMatrix(Graphics g, int posX, int posY) {
 		int x = blockWidth * posX;
 		int y = blockHeight * posY;
 		g.setColor(Color.WHITE);	
@@ -83,8 +86,19 @@ public class Views extends JComponent{
 		g.setColor(Color.BLACK);
 		g.drawRect(x, y, blockWidth, blockHeight);
 	}
-	
-	private Color lemmingAnimation(Lemming l) {
+
+	private void drawButtons(Graphics g) {
+		Point p1 = new Point(0,h-(singleButtonSize*blockHeight));
+		Point p2 = new Point(0, h);
+		for(int i=0; i<=numberOfButtons; i++){
+			g.drawLine(p1.x,p1.y,p2.x,p2.y);
+			p1.x = p1.x + (blockWidth*singleButtonSize);
+			p2.x = p1.x;
+		}
+		g.drawLine(0,h-(singleButtonSize*blockHeight),w, h-(singleButtonSize*blockHeight));
+	}
+
+	private Color lemmingSprite(Lemming l) {
 		
 		if (l.getState()==LemmingState.NORMAL) {
 			return Color.RED;
@@ -113,7 +127,9 @@ public class Views extends JComponent{
 		return Color.PINK;
 	}
 
-
+	public int getSingleButtonSize(){
+		return singleButtonSize;
+	}
 
 	public int getNumCaseX() {
 		return numCaseX;
@@ -130,6 +146,5 @@ public class Views extends JComponent{
 	public int getHeight() {
 		return h;
 	}
-
 }
 

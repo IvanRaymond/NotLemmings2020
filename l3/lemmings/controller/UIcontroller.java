@@ -9,9 +9,8 @@ import l3.lemmings.view.Views;
  * @author Ivan
  */
 public class UIcontroller {
-	
-	// Peut etre mieux dans la vue
-	private int singleButtonSize = 2;
+
+	private int singleButtonSize;
 	private int numberOfButtons = Button.values().length;
 	
 	public enum Button {
@@ -44,6 +43,7 @@ public class UIcontroller {
 		height = view.getHeight();
 		matrixLengthX = view.getNumCaseX();
 		matrixLengthY = view.getNumCaseY();
+		singleButtonSize = view.getSingleButtonSize();
 	}
 	
 	public Point pointToMatrix(Point p) {
@@ -91,4 +91,7 @@ public class UIcontroller {
 		return null;
 	}
 
+	public int getNumberOfButtons() {
+		return numberOfButtons;
+	}
 }
