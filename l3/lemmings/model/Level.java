@@ -37,7 +37,7 @@ public class Level {
         blocks.add(new Block(24,14));
         blocks.add(new Block(24,15));
         entrance = new Entrance(this, 1, 10, 15);
-        escape = new Escape(15,15);
+        escape = new Escape(15,20);
         objective = 10;
     }
 

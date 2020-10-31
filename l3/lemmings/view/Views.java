@@ -18,7 +18,7 @@ public class Views extends JComponent{
 	 * 
 	 */
 	private static final long serialVersionUID = 2493529223813614525L;
-	
+
 	enum currentDisplay {
 		  mainMenu,
 		  game
@@ -62,9 +62,9 @@ public class Views extends JComponent{
 
 	private void drawMoves(Graphics g) {
 		
-//		for(int i = 0; i < numCaseX;i++)
-//			for(int j = 0; j < numCaseY;j++)
-//				drawMatrix(g,i,j);
+		for(int i = 0; i < numCaseX;i++)
+			for(int j = 0; j < numCaseY-2;j++)
+				drawMatrix(g,i,j);
 
 		drawButtons(g);
 		

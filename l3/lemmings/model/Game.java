@@ -83,7 +83,7 @@ public class Game {
             if(!surrounding[1][2])
             {
                 l.setDirectionAxisY(1);
-                direction = l.getDirectionAxisX();
+                l.setOldDirectionAxisX(l.getDirectionAxisX());
                 l.setDirectionAxisX(0);
             }
 
@@ -91,7 +91,7 @@ public class Game {
             if(surrounding[1][2]){
                 l.setDirectionAxisY(0);
                 if (l.getDirectionAxisX()==0){
-                    l.setDirectionAxisX(direction);
+                        l.setDirectionAxisX(l.getOldDirectionAxisX());
                 }
 
             }
