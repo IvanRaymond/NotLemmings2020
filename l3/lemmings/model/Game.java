@@ -7,6 +7,7 @@ import java.util.ArrayList;
  */
 public class Game {
 
+    private int direction = 0;
     private int flowCounter=0;
     private boolean pause = false;
     private Level level;
@@ -73,23 +74,36 @@ public class Game {
                         surrounding[2][2] = true;
                 }
             }
+            // Mur à gauche ou a droite de 2 blocks ou plus
             if(surrounding[0][0] && surrounding[0][1] && l.getDirectionAxisX() == -1 || surrounding[2][0] && surrounding[2][1] && l.getDirectionAxisX() == 1)
             {
                 l.setDirectionAxisX(l.getDirectionAxisX()*-1);
             }
-
+            // Pas de sol en dessous
             if(!surrounding[1][2])
             {
                 l.setDirectionAxisY(1);
+                direction = l.getDirectionAxisX();
+                l.setDirectionAxisX(0);
             }
 
+            // Sol en dessous
             if(surrounding[1][2]){
                 l.setDirectionAxisY(0);
+                if (l.getDirectionAxisX()==0){
+                    l.setDirectionAxisX(direction);
+                }
+
             }
 
+            // Escaliers
             if(surrounding[2][1] && !surrounding[2][0] && l.getDirectionAxisX() == 1 || surrounding[0][1] && !surrounding[0][0] && l.getDirectionAxisX() == -1)
             {
-                l.setDirectionAxisY(-1);
+                if(!surrounding[1][0])
+                    l.setDirectionAxisY(-1);
+                else {
+                    l.setDirectionAxisX(l.getDirectionAxisX()*-1);
+                }
             }
 
 

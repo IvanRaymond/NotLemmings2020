@@ -20,6 +20,9 @@ public class Level {
     private ArrayList<Lemming> lemmings = new ArrayList<>();
     private ArrayList<Block> blocks = new ArrayList<>();
     private Entrance entrance;
+    private Escape escape;
+    private int safe = 0;
+    private int objective = 0;  // Number of lemmings to save for win
 
     public Level(){
         for(int i = 10; i<25;i++)
@@ -33,7 +36,9 @@ public class Level {
         blocks.add(new Block(19,13));
         blocks.add(new Block(24,14));
         blocks.add(new Block(24,15));
-        entrance = new Entrance(this, 20, 11, 16);
+        entrance = new Entrance(this, 1, 10, 15);
+        escape = new Escape(15,15);
+        objective = 10;
     }
 
     public boolean lemmingPresent(Point cell) {
@@ -66,6 +71,10 @@ public class Level {
      * Removes destroyed blocks and dead lemmings from lists.
      */
     public void update(){
+        if (won()) {
+            // Do something
+        }
+        escape.reach(this);
         for (int i=0; i<blocks.size(); i++) {
             if(blocks.get(i).destroyed()) {
                 blocks.remove(i);
@@ -76,6 +85,14 @@ public class Level {
                 lemmings.remove(i);
             }
         }
+    }
+
+    public void incSafe(){
+        safe++;
+    }
+
+    public boolean won(){
+        return objective==safe;
     }
 
     public ArrayList<Lemming> getLemmings() {

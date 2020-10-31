@@ -1,0 +1,15 @@
+!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+Behaviour	/Users/ivan/Git/ProjetObjet/src/l3/lemmings/model/Behaviour.java	/^    public Behaviour(Game game){$/;"	m	language:Java	class:Behaviour
+Behaviour	/Users/ivan/Git/ProjetObjet/src/l3/lemmings/model/Behaviour.java	/^public class Behaviour {$/;"	c	language:Java
+changeBehaviour	/Users/ivan/Git/ProjetObjet/src/l3/lemmings/model/Behaviour.java	/^    public void changeBehaviour(){$/;"	m	language:Java	class:Behaviour
+game	/Users/ivan/Git/ProjetObjet/src/l3/lemmings/model/Behaviour.java	/^    Game game;$/;"	f	language:Java	class:Behaviour
+l3.lemmings.model	/Users/ivan/Git/ProjetObjet/src/l3/lemmings/model/Behaviour.java	/^package l3.lemmings.model;$/;"	p	language:Java
+setBasher	/Users/ivan/Git/ProjetObjet/src/l3/lemmings/model/Behaviour.java	/^    private void setBasher() {$/;"	m	language:Java	class:Behaviour	file:
+setBlocker	/Users/ivan/Git/ProjetObjet/src/l3/lemmings/model/Behaviour.java	/^    private void setBlocker() {$/;"	m	language:Java	class:Behaviour	file:
+setBomb	/Users/ivan/Git/ProjetObjet/src/l3/lemmings/model/Behaviour.java	/^    private void setBomb() {$/;"	m	language:Java	class:Behaviour	file:
+setBridge	/Users/ivan/Git/ProjetObjet/src/l3/lemmings/model/Behaviour.java	/^    private void setBridge() {$/;"	m	language:Java	class:Behaviour	file:
+setClimber	/Users/ivan/Git/ProjetObjet/src/l3/lemmings/model/Behaviour.java	/^    private void setClimber(){$/;"	m	language:Java	class:Behaviour	file:
+setDigger	/Users/ivan/Git/ProjetObjet/src/l3/lemmings/model/Behaviour.java	/^    private void setDigger() {$/;"	m	language:Java	class:Behaviour	file:
+setFloater	/Users/ivan/Git/ProjetObjet/src/l3/lemmings/model/Behaviour.java	/^    private void setFloater() {$/;"	m	language:Java	class:Behaviour	file:
+setMiner	/Users/ivan/Git/ProjetObjet/src/l3/lemmings/model/Behaviour.java	/^    private void setMiner() {$/;"	m	language:Java	class:Behaviour	file:
+setNormal	/Users/ivan/Git/ProjetObjet/src/l3/lemmings/model/Behaviour.java	/^    private void setNormal() {$/;"	m	language:Java	class:Behaviour	file:
