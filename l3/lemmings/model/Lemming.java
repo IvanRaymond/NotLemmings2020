@@ -20,7 +20,7 @@ public class Lemming {
 
 	private int directionAxisX;
 	private int directionAxisY;
-	private int oldDirectionAxisX;
+	private int oldDirectionAxisX=0;
 	private int oldDirectionAxisY;
 	private int x;
 	private int y;
@@ -86,12 +86,12 @@ public class Lemming {
 		this.directionAxisX = directionAxisX;
 	}
 
-	public int getOldDirectionAxisX() {
-		return oldDirectionAxisX;
+	public void restoreDirectionAxisX() {
+		directionAxisX = oldDirectionAxisX;
 	}
 
-	public void setOldDirectionAxisX(int oldDirectionAxisX) {
-		this.oldDirectionAxisX = oldDirectionAxisX;
+	public void saveDirectionX() {
+		oldDirectionAxisX = directionAxisX;
 	}
 
 	public int getOldDirectionAxisY() {

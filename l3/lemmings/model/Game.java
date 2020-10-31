@@ -83,17 +83,18 @@ public class Game {
             if(!surrounding[1][2])
             {
                 l.setDirectionAxisY(1);
-                l.setOldDirectionAxisX(l.getDirectionAxisX());
-                l.setDirectionAxisX(0);
+                if(l.getDirectionAxisX()!=0) {
+                    l.saveDirectionX();
+                    l.setDirectionAxisX(0);
+                }
             }
 
             // Sol en dessous
             if(surrounding[1][2]){
                 l.setDirectionAxisY(0);
                 if (l.getDirectionAxisX()==0){
-                        l.setDirectionAxisX(l.getOldDirectionAxisX());
+                    l.restoreDirectionAxisX();
                 }
-
             }
 
             // Escaliers

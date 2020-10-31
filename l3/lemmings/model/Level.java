@@ -37,7 +37,7 @@ public class Level {
         blocks.add(new Block(24,14));
         blocks.add(new Block(24,15));
         entrance = new Entrance(this, 1, 10, 15);
-        escape = new Escape(15,20);
+//        escape = new Escape(15,20);
         objective = 10;
     }
 
@@ -74,7 +74,7 @@ public class Level {
         if (won()) {
             // Do something
         }
-        escape.reach(this);
+//        escape.reach(this);
         for (int i=0; i<blocks.size(); i++) {
             if(blocks.get(i).destroyed()) {
                 blocks.remove(i);
