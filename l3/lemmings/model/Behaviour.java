@@ -4,7 +4,7 @@ import l3.lemmings.model.Game;
 import l3.lemmings.model.Lemming;
 
 /**
- * Decide the behaviour of a lemming by his state.
+ * A prototype for a solution to merge game physics and lemmings type
  */
 public class Behaviour {
 
