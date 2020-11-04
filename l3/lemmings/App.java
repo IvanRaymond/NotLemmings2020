@@ -1,6 +1,7 @@
 package l3.lemmings;
 
-import java.awt.Toolkit;
+import 	java.awt.Toolkit;
+import java.io.IOException;
 import javax.swing.JFrame;
 
 import l3.lemmings.model.Game;
@@ -16,7 +17,7 @@ public class App {
 	// the frame period
 	private final static int    FRAME_PERIOD = 30000 / MAX_FPS;
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, IOException {
 
 		int numCaseX = 40;
 		int numCaseY = 24;

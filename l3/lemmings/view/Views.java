@@ -2,6 +2,7 @@ package l3.lemmings.view;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
+import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
 import l3.lemmings.controller.Listener;
@@ -11,6 +12,9 @@ import l3.lemmings.model.Lemming;
 import l3.lemmings.model.Level;
 import l3.lemmings.model.Lemming.LemmingState;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Views extends JComponent{
@@ -33,8 +37,16 @@ public class Views extends JComponent{
 	private int w,h;
 	private int blockWidth,blockHeight;
 	private Level level;
+	final BufferedImage spriteNormal = ImageIO.read(new File("spriteNormal.jpg"));
+	final BufferedImage spriteClimber = ImageIO.read(new File("spriteClimber.jpg"));
+	final BufferedImage spriteFloater = ImageIO.read(new File("spriteFloater.jpg"));
+	final BufferedImage spriteBomb = ImageIO.read(new File("spriteBomb.jpg"));
+	final BufferedImage spriteBlocker = ImageIO.read(new File("spriteBlocker.jpg"));
+	final BufferedImage spriteMiner = ImageIO.read(new File("spriteMiner.jpg"));
+	final BufferedImage spriteDigger = ImageIO.read(new File("spriteDigger.jpg"));
 
-	public Views(Game game, int w, int h, int x, int y) {
+
+	public Views(Game game, int w, int h, int x, int y) throws IOException {
 		level = game.getLevel();
 		this.lemmings = level.getLemmings();
 		this.blocks = level.getBlocks();
@@ -73,8 +85,10 @@ public class Views extends JComponent{
 			g.fillRect(b.getX() * blockWidth,b.getY() * blockHeight, blockWidth, blockHeight);
 
 		for(Lemming l : lemmings) {
-			g.setColor(lemmingSprite(l));
-			g.fillRect(l.getX() * blockWidth, l.getY() * blockHeight, blockWidth, blockHeight);
+
+			//g.setColor(lemmingSprite(l));
+			//g.fillRect(l.getX() * blockWidth, l.getY() * blockHeight, blockWidth, blockHeight);
+			g.drawImage(lemmingSprite(l), l.getX() * blockWidth, l.getY() * blockHeight, blockWidth,blockHeight,null);
 		}
 	}
 
@@ -91,6 +105,7 @@ public class Views extends JComponent{
 		Point p1 = new Point(0,h-(singleButtonSize*blockHeight));
 		Point p2 = new Point(0, h);
 		for(int i=0; i<=numberOfButtons; i++){
+			//g.drawImage(lemmingSprite(l), l.getX() * blockWidth, l.getY() * blockHeight, blockWidth,blockHeight,null);
 			g.drawLine(p1.x,p1.y,p2.x,p2.y);
 			p1.x = p1.x + (blockWidth*singleButtonSize);
 			p2.x = p1.x;
@@ -98,33 +113,33 @@ public class Views extends JComponent{
 		g.drawLine(0,h-(singleButtonSize*blockHeight),w, h-(singleButtonSize*blockHeight));
 	}
 
-	private Color lemmingSprite(Lemming l) {
+	private BufferedImage lemmingSprite(Lemming l) {
 		
 		if (l.getState()==LemmingState.NORMAL) {
-			return Color.RED;
+			return spriteNormal;
 		}
 		if (l.getState()==LemmingState.CLIMBER) {
-			return Color.BLUE;
+			return spriteClimber;
 		}
 		if (l.getState()==LemmingState.FLOATER) {
-			return Color.CYAN;
+			return spriteFloater;
 		}
 		if (l.getState()==LemmingState.BOMB) {
-			return Color.DARK_GRAY;
+			return spriteBomb;
 		}
 		if (l.getState()==LemmingState.BLOCKER) {
-			return Color.GRAY;
+			return spriteBlocker;
 		}
 		if (l.getState()==LemmingState.BRIDGE_BUILDER) {
-			return Color.GREEN;
+			return spriteNormal;
 		}
 		if (l.getState()==LemmingState.BASHER) {
-			return Color.MAGENTA;
+			return spriteNormal;
 		}
 		if (l.getState()==LemmingState.MINER) {
-			return Color.ORANGE;
+			return spriteMiner;
 		}
-		return Color.PINK;
+		return spriteNormal;
 	}
 
 	public int getSingleButtonSize(){
