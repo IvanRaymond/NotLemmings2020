@@ -77,12 +77,15 @@ public class Game {
             // Mur à gauche ou a droite de 2 blocks ou plus
             if(surrounding[0][0] && surrounding[0][1] && l.getDirectionAxisX() == -1 || surrounding[2][0] && surrounding[2][1] && l.getDirectionAxisX() == 1)
             {
-                l.setDirectionAxisX(l.getDirectionAxisX()*-1);
+                l.changeDirectionX();
             }
             // Pas de sol en dessous
             if(!surrounding[1][2])
             {
                 l.setDirectionAxisY(1);
+                // Death by height
+                l.fellToDeath(); // Checks if lemming fell to death and kills him if true
+                l.incFallCount();
                 if(l.getDirectionAxisX()!=0) {
                     l.saveDirectionX();
                     l.setDirectionAxisX(0);
@@ -92,6 +95,9 @@ public class Game {
             // Sol en dessous
             if(surrounding[1][2]){
                 l.setDirectionAxisY(0);
+                // Death by height
+                l.fellToDeath();
+                l.resetFallCount();
                 if (l.getDirectionAxisX()==0){
                     l.restoreDirectionAxisX();
                 }
@@ -102,10 +108,23 @@ public class Game {
             {
                 if(!surrounding[1][0])
                     l.setDirectionAxisY(-1);
-                else {
-                    l.setDirectionAxisX(l.getDirectionAxisX()*-1);
+            }
+
+            // Bloqueur
+            if(l.isState(Lemming.LemmingState.BLOCKER)){
+                l.setDirectionAxisX(0);
+            }
+            for (Lemming lem: lemmings){
+                if(lem.isState(Lemming.LemmingState.BLOCKER) && lem.getX() == l.getX() && lem.getY() == l.getY()){
+                    l.changeDirectionX();
                 }
             }
+
+            // Tunnelier
+            if(l.isState(Lemming.LemmingState.BASHER)){
+
+            }
+
 
 
             for(int i =0;i<3;i++)

@@ -15,7 +15,8 @@ public class Lemming {
 	}
 
 	private boolean alive = true;
-	
+	private int fallCount =0;
+	private int deathByFallHeight = 5;
 	private LemmingState state = LemmingState.NORMAL;
 
 	private int directionAxisX;
@@ -36,6 +37,24 @@ public class Lemming {
 	public void move() {
 		x += directionAxisX;
 		y += directionAxisY;
+	}
+
+	public void incFallCount(){
+		fallCount++;
+	}
+
+	public void fellToDeath(){
+		if(fallCount==deathByFallHeight){
+			kill();
+		}
+	}
+
+	public boolean isState(LemmingState state){
+		return this.state==state;
+	}
+
+	public void resetFallCount(){
+		fallCount=0;
 	}
 
 	public void kill(){
@@ -72,6 +91,10 @@ public class Lemming {
 
 	public int getDirectionAxisY() {
 		return directionAxisY;
+	}
+
+	public void changeDirectionX(){
+		directionAxisX = -directionAxisX;
 	}
 
 	public void setDirectionAxisY(int directionAxisY) {
