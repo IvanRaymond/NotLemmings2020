@@ -110,6 +110,23 @@ public class Game {
                     l.setDirectionAxisY(-1);
             }
 
+            // Digger
+            if(l.isState(Lemming.LemmingState.DIGGER)){
+                if(surrounding[1][2]) // [1][2] bugs
+                {
+                    Block belowBlock = null;
+                    for(Block b : blocks) {
+                        if(b.getX() == l.getX() && b.getY() == l.getY()+1) {
+                            belowBlock = b;
+                        }
+                    }
+                    if(belowBlock != null)
+                        blocks.remove(belowBlock);
+                    else
+                        l.setState(Lemming.LemmingState.NORMAL);
+                }
+            }
+
             // Bloqueur
             if(l.isState(Lemming.LemmingState.BLOCKER)){
                 l.setDirectionAxisX(0);
@@ -122,8 +139,32 @@ public class Game {
 
             // Tunnelier
             if(l.isState(Lemming.LemmingState.BASHER)){
-
+                if(surrounding[2][1]) // [1][2] bugs
+                {
+                    Block belowBlock = null;
+                    for(Block b : blocks) {
+                        if(b.getX() == l.getX()+ l.getDirectionAxisX() && b.getY() == l.getY()) {
+                            belowBlock = b;
+                        }
+                    }
+                    if(belowBlock != null)
+                        blocks.remove(belowBlock);
+                }
             }
+
+            // Bomb
+            if(l.isState(Lemming.LemmingState.BOMB)){
+                ArrayList<Block> surroundingBlocks = new ArrayList<>();
+                    for(Block b : blocks) {
+                        if(b.getX() == l.getX() - 1 && b.getY() == l.getY() || b.getX() == l.getX() + 1 && b.getY() == l.getY() || b.getX() == l.getX() && b.getY() == l.getY() - 1  || b.getX() == l.getX() && b.getY() == l.getY() + 1  ) {
+                            surroundingBlocks.add(b);
+                        }
+                    }
+                    for(Block b : surroundingBlocks)
+                        blocks.remove(b);
+                        l.kill();
+                }
+
 
 
 

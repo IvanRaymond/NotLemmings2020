@@ -37,20 +37,20 @@ public class Views extends JComponent{
 	private int w,h;
 	private int blockWidth,blockHeight;
 	private Level level;
-//	final BufferedImage spriteNormal = ImageIO.read(new File("spriteNormal.jpg"));
-//	final BufferedImage spriteClimber = ImageIO.read(new File("spriteClimber.jpg"));
-//	final BufferedImage spriteFloater = ImageIO.read(new File("spriteFloater.jpg"));
-//	final BufferedImage spriteBomb = ImageIO.read(new File("spriteBomb.jpg"));
-//	final BufferedImage spriteBlocker = ImageIO.read(new File("spriteBlocker.jpg"));
-//	final BufferedImage spriteMiner = ImageIO.read(new File("spriteMiner.jpg"));
-//	final BufferedImage spriteDigger = ImageIO.read(new File("spriteDigger.jpg"));
-	final BufferedImage spriteNormal = ImageIO.read(new File("/Users/ivan/Git/ProjetObjet/src/spriteBlocker.jpg"));
+	final BufferedImage spriteNormal = ImageIO.read(new File("spriteNormal.jpg"));
+	final BufferedImage spriteClimber = ImageIO.read(new File("spriteClimber.jpg"));
+	final BufferedImage spriteFloater = ImageIO.read(new File("spriteFloater.jpg"));
+	final BufferedImage spriteBomb = ImageIO.read(new File("spriteBomb.jpg"));
+	final BufferedImage spriteBlocker = ImageIO.read(new File("spriteBlocker.jpg"));
+	final BufferedImage spriteMiner = ImageIO.read(new File("spriteMiner.jpg"));
+	final BufferedImage spriteDigger = ImageIO.read(new File("spriteDigger.jpg"));
+/*	final BufferedImage spriteNormal = ImageIO.read(new File("/Users/ivan/Git/ProjetObjet/src/spriteBlocker.jpg"));
 	final BufferedImage spriteClimber = ImageIO.read(new File("/Users/ivan/Git/ProjetObjet/src/spriteBlocker.jpg"));
 	final BufferedImage spriteFloater = ImageIO.read(new File("/Users/ivan/Git/ProjetObjet/src/spriteBlocker.jpg"));
 	final BufferedImage spriteBomb = ImageIO.read(new File("/Users/ivan/Git/ProjetObjet/src/spriteBlocker.jpg"));
 	final BufferedImage spriteBlocker = ImageIO.read(new File("/Users/ivan/Git/ProjetObjet/src/spriteBlocker.jpg"));
 	final BufferedImage spriteMiner = ImageIO.read(new File("/Users/ivan/Git/ProjetObjet/src/spriteBlocker.jpg"));
-	final BufferedImage spriteDigger = ImageIO.read(new File("/Users/ivan/Git/ProjetObjet/src/spriteBlocker.jpg"));
+	final BufferedImage spriteDigger = ImageIO.read(new File("/Users/ivan/Git/ProjetObjet/src/spriteBlocker.jpg"));*/
 
 
 	public Views(Game game, int w, int h, int x, int y) throws IOException {
