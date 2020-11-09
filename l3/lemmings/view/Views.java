@@ -43,6 +43,8 @@ public class Views extends JComponent{
 	final BufferedImage spriteFloater = ImageIO.read(new File("spriteFloater.jpg"));
 	final BufferedImage spriteBomb = ImageIO.read(new File("spriteBomb.jpg"));
 	final BufferedImage spriteBlocker = ImageIO.read(new File("spriteBlocker.jpg"));
+	final BufferedImage spriteBuilder = ImageIO.read(new File("spriteBuilder.jpg"));
+	final BufferedImage spriteBasher = ImageIO.read(new File("spriteBasher.jpg"));
 	final BufferedImage spriteMiner = ImageIO.read(new File("spriteMiner.jpg"));
 	final BufferedImage spriteDigger = ImageIO.read(new File("spriteDigger.jpg"));
 
@@ -88,7 +90,7 @@ public class Views extends JComponent{
 
 			//g.setColor(lemmingSprite(l));
 			//g.fillRect(l.getX() * blockWidth, l.getY() * blockHeight, blockWidth, blockHeight);
-			g.drawImage(lemmingSprite(l), l.getX() * blockWidth, l.getY() * blockHeight, blockWidth,blockHeight,null);
+			g.drawImage(lemmingSprite(l), (int) l.getX() * blockWidth, (int) l.getY() * blockHeight, blockWidth,blockHeight,null);
 		}
 	}
 
@@ -111,6 +113,14 @@ public class Views extends JComponent{
 			p2.x = p1.x;
 		}
 		g.drawLine(0,h-(singleButtonSize*blockHeight),w, h-(singleButtonSize*blockHeight));
+		g.drawImage(spriteClimber, 4 * blockWidth+3, 	h-(singleButtonSize*blockHeight)+3, blockWidth,blockHeight,null);
+		g.drawImage(spriteFloater, 6 * blockWidth+3, h-(singleButtonSize*blockHeight)+3, blockWidth,blockHeight,null);
+		g.drawImage(spriteBomb, 8 * blockWidth+3, h-(singleButtonSize*blockHeight)+3, blockWidth,blockHeight,null);
+		g.drawImage(spriteBlocker, 10 * blockWidth+3, h-(singleButtonSize*blockHeight)+3, blockWidth,blockHeight,null);
+		g.drawImage(spriteBuilder, 12 * blockWidth+3, h-(singleButtonSize*blockHeight)+3, blockWidth,blockHeight,null);
+		g.drawImage(spriteBasher, 14 * blockWidth+3, h-(singleButtonSize*blockHeight)+3, blockWidth,blockHeight,null);
+		g.drawImage(spriteMiner, 16 * blockWidth+3, h-(singleButtonSize*blockHeight)+3, blockWidth,blockHeight,null);
+		g.drawImage(spriteDigger, 18 * blockWidth+3, h-(singleButtonSize*blockHeight)+3, blockWidth,blockHeight,null);
 	}
 
 	private BufferedImage lemmingSprite(Lemming l) {

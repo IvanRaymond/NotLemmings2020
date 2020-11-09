@@ -37,11 +37,14 @@ public class Game {
         int gg=0;
         level.update();
 
-        if(flowCounter == 0){
-            level.getEntrance().addLemming();
-            flowCounter = level.getEntrance().getFlow();
+        ArrayList<Entrance> entrances = level.getsEntrances();
+        for(Entrance e : entrances) {
+            if (flowCounter == 0) {
+                e.addLemming();
+                flowCounter = e.getFlow();
+            }
+            flowCounter--;
         }
-        flowCounter--;
 
         for(Lemming l : lemmings)
         {
