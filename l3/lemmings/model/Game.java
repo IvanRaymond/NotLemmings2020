@@ -77,7 +77,14 @@ public class Game {
             // Mur à gauche ou a droite de 2 blocks ou plus
             if(surrounding[0][0] && surrounding[0][1] && l.getDirectionAxisX() == -1 || surrounding[2][0] && surrounding[2][1] && l.getDirectionAxisX() == 1)
             {
-                l.changeDirectionX();
+                // ToDo: Add exceptions in other cases to cater for climber
+                if(l.isState(Lemming.LemmingState.CLIMBER)){
+                    l.saveDirectionX();
+                    l.setDirectionAxisX(0);
+                    l.setDirectionAxisY(-1);
+                }else{
+                    l.changeDirectionX();
+                }
             }
             // Pas de sol en dessous
             if(!surrounding[1][2])

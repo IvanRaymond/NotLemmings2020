@@ -44,12 +44,12 @@ public class Views extends JComponent{
 //	final BufferedImage spriteBlocker = ImageIO.read(new File("spriteBlocker.jpg"));
 //	final BufferedImage spriteMiner = ImageIO.read(new File("spriteMiner.jpg"));
 //	final BufferedImage spriteDigger = ImageIO.read(new File("spriteDigger.jpg"));
-	final BufferedImage spriteNormal = ImageIO.read(new File("/Users/ivan/Git/ProjetObjet/src/spriteBlocker.jpg"));
-	final BufferedImage spriteClimber = ImageIO.read(new File("/Users/ivan/Git/ProjetObjet/src/spriteBlocker.jpg"));
-	final BufferedImage spriteFloater = ImageIO.read(new File("/Users/ivan/Git/ProjetObjet/src/spriteBlocker.jpg"));
-	final BufferedImage spriteBomb = ImageIO.read(new File("/Users/ivan/Git/ProjetObjet/src/spriteBlocker.jpg"));
+	final BufferedImage spriteNormal = ImageIO.read(new File("/Users/ivan/Git/ProjetObjet/src/spriteNormal.jpg"));
+	final BufferedImage spriteClimber = ImageIO.read(new File("/Users/ivan/Git/ProjetObjet/src/spriteClimber.jpg"));
+	final BufferedImage spriteFloater = ImageIO.read(new File("/Users/ivan/Git/ProjetObjet/src/spriteFloater.jpg"));
+	final BufferedImage spriteBomb = ImageIO.read(new File("/Users/ivan/Git/ProjetObjet/src/spriteBomb.jpg"));
 	final BufferedImage spriteBlocker = ImageIO.read(new File("/Users/ivan/Git/ProjetObjet/src/spriteBlocker.jpg"));
-	final BufferedImage spriteMiner = ImageIO.read(new File("/Users/ivan/Git/ProjetObjet/src/spriteBlocker.jpg"));
+	final BufferedImage spriteMiner = ImageIO.read(new File("/Users/ivan/Git/ProjetObjet/src/spriteMiner.jpg"));
 	final BufferedImage spriteDigger = ImageIO.read(new File("/Users/ivan/Git/ProjetObjet/src/spriteBlocker.jpg"));
 
 
