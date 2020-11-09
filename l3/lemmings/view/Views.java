@@ -97,7 +97,7 @@ public class Views extends JComponent{
 
 			//g.setColor(lemmingSprite(l));
 			//g.fillRect(l.getX() * blockWidth, l.getY() * blockHeight, blockWidth, blockHeight);
-			g.drawImage(lemmingSprite(l), l.getX() * blockWidth, l.getY() * blockHeight, blockWidth,blockHeight,null);
+			g.drawImage(lemmingSprite(l), (int) l.getX() * blockWidth, (int) l.getY() * blockHeight, blockWidth,blockHeight,null);
 		}
 	}
 

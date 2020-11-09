@@ -2,9 +2,6 @@ package l3.lemmings.model;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.io.FileReader;
-import java.util.Iterator;
-import java.util.Map;
 
 //import org.json.simple.JSONArray;
 //import org.json.simple.JSONObject;
@@ -19,8 +16,8 @@ public class Level {
     private boolean levelCompleted = false;
     private ArrayList<Lemming> lemmings = new ArrayList<>();
     private ArrayList<Block> blocks = new ArrayList<>();
-    private Entrance entrance;
-    private Escape escape;
+    private ArrayList<Entrance> entrance;
+    private ArrayList<Escape> escape;
     private int safe = 0;
     private int objective = 0;  // Number of lemmings to save for win
 
@@ -36,8 +33,9 @@ public class Level {
         blocks.add(new Block(19,13));
         blocks.add(new Block(24,14));
         blocks.add(new Block(24,15));
-        entrance = new Entrance(this, 2, 10, 15);
-//        escape = new Escape(15,20);
+        entrance.add(new Entrance(this, 2, 10, 15));
+        entrance.add(new Entrance(this, 2, 20, 15));
+        escape.add(new Escape(15,20));
         objective = 10;
     }
 
@@ -107,7 +105,12 @@ public class Level {
         return blocks;
     }
 
-    public Entrance getEntrance(){
+    public Entrance getEntrance(int index){
+        return entrance.get(index);
+    }
+
+    public ArrayList<Entrance> getsEntrances(){
         return entrance;
     }
+
 }
