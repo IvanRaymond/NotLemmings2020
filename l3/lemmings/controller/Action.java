@@ -79,14 +79,14 @@ public class Action {
     }
 
     private boolean decrease(){
-        game.getLevel().getEntrance().decreaseFlow();
-        game.getLevel().getEntrance().printFlow();
+//        game.getLevel().getEntrance().decreaseFlow();
+//        game.getLevel().getEntrance().printFlow();
         return true;
     }
 
     private boolean increase(){
-        game.getLevel().getEntrance().increaseFlow();
-        game.getLevel().getEntrance().printFlow();
+    //        game.getLevel().getEntrance().increaseFlow();
+    //        game.getLevel().getEntrance().printFlow();
         return true;
     }
 
