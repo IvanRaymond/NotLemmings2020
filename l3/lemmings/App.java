@@ -1,6 +1,7 @@
 package l3.lemmings;
 
 import 	java.awt.Toolkit;
+import java.io.File;
 import java.io.IOException;
 import javax.swing.JFrame;
 
@@ -22,6 +23,8 @@ public class App {
 		int numCaseX = 40;
 		int numCaseY = 24;
 		Game game = new Game();
+
+		System.out.println(System.getProperty("user.dir")+"/resources/images/spriteNormal.jpg");
 
 		Views view = new Views(game,WIDTH-200, HEIGHT-100, numCaseX, numCaseY);
 		JFrame frame = new JFrame("Lemmingway");

@@ -118,6 +118,9 @@ public class Game {
             {
                 if(!surrounding[1][0])
                     l.setDirectionAxisY(-1);
+                else {
+                    l.setDirectionAxisX(l.getDirectionAxisX() * -1);
+                }
             }
 
             // Digger
