@@ -35,7 +35,7 @@ public class Level {
         blocks.add(new Block(24,14));
         blocks.add(new Block(24,15));
         entrances.add(new Entrance(this, 2, 10, 15));
-        entrances.add(new Entrance(this, 2, 5, 15));
+        entrances.add(new Entrance(this, 3, 15, 15));
         escapes.add(new Escape(15,20));
         objective = 10;
     }
@@ -102,6 +102,10 @@ public class Level {
         this.lemmings = lemmings;
     }
 
+    public void addLemmings(Lemming lemming){
+        lemmings.add(lemming);
+    }
+
     public ArrayList<Block> getBlocks() {
         return blocks;
     }
@@ -110,7 +114,7 @@ public class Level {
         return entrances.get(index);
     }
 
-    public ArrayList<Entrance> getsEntrances(){
+    public ArrayList<Entrance> getEntrances(){
         return entrances;
     }
 

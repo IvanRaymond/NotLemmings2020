@@ -37,10 +37,14 @@ public class Game {
         int gg=0;
         level.update();
 
-        ArrayList<Entrance> entrances = level.getsEntrances();
+        // ToDo: Entrance problem is here, don't know why for loop don't reach the second entrance.
+        ArrayList<Entrance> entrances = level.getEntrances();
         for(Entrance e : entrances) {
             if (flowCounter == 0) {
-                e.addLemming();
+                if(!e.getDone()) {
+                    e.addLemming();
+                }
+                entrances.get(1).addLemming();
                 flowCounter = level.getFlow();
             }
             flowCounter--;

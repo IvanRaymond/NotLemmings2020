@@ -24,7 +24,7 @@ public class App {
 		int numCaseY = 24;
 		Game game = new Game();
 
-		System.out.println(System.getProperty("user.dir")+"/resources/images/spriteNormal.jpg");
+
 
 		Views view = new Views(game,WIDTH-200, HEIGHT-100, numCaseX, numCaseY);
 		JFrame frame = new JFrame("Lemmingway");
@@ -37,6 +37,10 @@ public class App {
 
 		while (true) {
 			if (!game.pause()) {
+
+				System.out.println(game.getLevel().getLemmings().size());
+				game.getLevel().getEntrance(0).printNumberOfLemmings();
+
 				game.update();
 				view.repaint();
 				Thread.sleep(700);
