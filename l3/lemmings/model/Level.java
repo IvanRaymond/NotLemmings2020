@@ -16,10 +16,11 @@ public class Level {
     private boolean levelCompleted = false;
     private ArrayList<Lemming> lemmings = new ArrayList<>();
     private ArrayList<Block> blocks = new ArrayList<>();
-    private ArrayList<Entrance> entrance;
-    private ArrayList<Escape> escape;
+    private ArrayList<Entrance> entrances = new ArrayList<>();
+    private ArrayList<Escape> escapes = new ArrayList<>();
     private int safe = 0;
     private int objective = 0;  // Number of lemmings to save for win
+    private int flow = 2;
 
     public Level(){
         for(int i = 10; i<25;i++)
@@ -33,9 +34,9 @@ public class Level {
         blocks.add(new Block(19,13));
         blocks.add(new Block(24,14));
         blocks.add(new Block(24,15));
-        entrance.add(new Entrance(this, 2, 10, 15));
-        entrance.add(new Entrance(this, 2, 20, 15));
-        escape.add(new Escape(15,20));
+        entrances.add(new Entrance(this, 2, 10, 15));
+        entrances.add(new Entrance(this, 2, 20, 15));
+        escapes.add(new Escape(15,20));
         objective = 10;
     }
 
@@ -106,11 +107,27 @@ public class Level {
     }
 
     public Entrance getEntrance(int index){
-        return entrance.get(index);
+        return entrances.get(index);
     }
 
     public ArrayList<Entrance> getsEntrances(){
-        return entrance;
+        return entrances;
+    }
+
+    public void increaseFlow(){
+        if (flow > 1){
+            flow--;
+        }
+    }
+
+    public void decreaseFlow(){
+        if (flow < 5){
+            flow++;
+        }
+    }
+
+    public int getFlow(){
+        return flow;
     }
 
 }

@@ -41,7 +41,7 @@ public class Game {
         for(Entrance e : entrances) {
             if (flowCounter == 0) {
                 e.addLemming();
-                flowCounter = e.getFlow();
+                flowCounter = level.getFlow();
             }
             flowCounter--;
         }
