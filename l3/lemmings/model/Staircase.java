@@ -32,7 +32,8 @@ public class Staircase {
         steps.add(new Step(x,y));
     }
 
-    // ToDo Prevent death by fall & changing direction in the middle of building staircase
+    // ToDo Prevent changing direction in the middle of building staircase and prevent
+    //  building against structure
     public void build(){
         if(stepCount>0) {
             Step lastStep = steps.get(steps.size()-1);
@@ -50,6 +51,9 @@ public class Staircase {
             stepCount--;
         }else {
             done = true;
+            lemming.toggleBusy();
+            lemming.setState(Lemming.LemmingState.NORMAL);
+            lemming.resetFallCount();
         }
     }
 
