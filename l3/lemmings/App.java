@@ -35,12 +35,10 @@ public class App {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 
+		System.out.println(System.getProperty("user.dir"));
+
 		while (true) {
 			if (!game.pause()) {
-
-				System.out.println(game.getLevel().getLemmings().size());
-				game.getLevel().getEntrance(0).printNumberOfLemmings();
-
 				game.update();
 				view.repaint();
 				Thread.sleep(700);
