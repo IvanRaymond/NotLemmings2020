@@ -18,6 +18,8 @@ public class Level {
     private ArrayList<Block> blocks = new ArrayList<>();
     private ArrayList<Entrance> entrances = new ArrayList<>();
     private ArrayList<Escape> escapes = new ArrayList<>();
+    private ArrayList<Teleporter> teleporters = new ArrayList<>();
+    private ArrayList<Lava> lava = new ArrayList<>();
     private int safe = 0;
     private int objective = 0;  // Number of lemmings to save for win
     private int flow = 2;
@@ -35,14 +37,16 @@ public class Level {
         blocks.add(new Block(24,14));
         blocks.add(new Block(24,15));
         entrances.add(new Entrance(this, 2, 10, 15));
-        entrances.add(new Entrance(this, 2, 18, 15));
+//        entrances.add(new Entrance(this, 2, 18, 15));
+//        teleporters.add(new Teleporter(15, 15, 21,15));
+        lava.add(new Lava(22,15));
 
         // Don't remove, entrance bug fix
         if(entrances.size()%2==0){
             entrances.add(new Entrance(this, 0, -1, -1));
         }
-        escapes.add(new Escape(15,15));
-        escapes.add(new Escape(20,15));
+//        escapes.add(new Escape(15,15));
+//        escapes.add(new Escape(20,15));
         objective = 10;
     }
 
@@ -79,8 +83,15 @@ public class Level {
         if (won()) {
             // Do something
         }
+
         for(Escape escape: escapes){
             escape.reach(this);
+        }
+        for(Teleporter teleporter: teleporters){
+            teleporter.reach(this);
+        }
+        for(Lava lava: lava){
+            lava.reach(this);
         }
         for (int i=0; i<blocks.size(); i++) {
             if(blocks.get(i).destroyed()) {
