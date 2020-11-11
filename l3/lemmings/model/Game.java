@@ -155,7 +155,7 @@ public class Game {
                 l.setDirectionAxisX(0);
             }
             for (Lemming lem: lemmings){
-                if(lem.isState(Lemming.LemmingState.BLOCKER) && l.getDirectionAxisX()==1 && lem.getX() == l.getX()+1 || l.getDirectionAxisX()==-1 && lem.getX() == l.getX()-1 && lem.getY() == l.getY()){
+                if(lem.isState(Lemming.LemmingState.BLOCKER) && ((l.getDirectionAxisX()==1 && lem.getX() == l.getX()+1) || (l.getDirectionAxisX()==-1 && lem.getX() == l.getX()-1)) && lem.getY() == l.getY()){
                     l.changeDirectionX();
                 }
             }
