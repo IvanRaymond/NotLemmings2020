@@ -35,7 +35,11 @@ public class Level {
         blocks.add(new Block(24,14));
         blocks.add(new Block(24,15));
         entrances.add(new Entrance(this, 2, 10, 15));
-        entrances.add(new Entrance(this, 3, 15, 15));
+        entrances.add(new Entrance(this, 2, 18, 15));
+//        entrances.add(new Entrance(this, 2, 15, 15));
+        if(entrances.size()%2==0){
+            entrances.add(new Entrance(this, 0, -1, -1));
+        }
         escapes.add(new Escape(15,20));
         objective = 10;
     }
