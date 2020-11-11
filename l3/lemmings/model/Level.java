@@ -36,10 +36,24 @@ public class Level {
         blocks.add(new Block(19,13));
         blocks.add(new Block(24,14));
         blocks.add(new Block(24,15));
+
         entrances.add(new Entrance(this, 2, 10, 15));
 //        entrances.add(new Entrance(this, 2, 18, 15));
 //        teleporters.add(new Teleporter(15, 15, 21,15));
         lava.add(new Lava(22,15));
+
+        entrances.add(new Entrance(this, 4, 10, 15));
+
+
+        // Testing off Bombs
+        for(int i = 33; i < 40; i++)
+            for(int j = 0; j < 7;j++)
+                if(!(i == 36 && j == 3))
+                    blocks.add(new Block(i,j));
+        entrances.add(new Entrance(this, 1, 36, 2));
+        //
+
+
 
         // Don't remove, entrance bug fix
         if(entrances.size()%2==0){
