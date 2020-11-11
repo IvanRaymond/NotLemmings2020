@@ -37,15 +37,15 @@ public class Level {
         blocks.add(new Block(24,14));
         blocks.add(new Block(24,15));
 
-        entrances.add(new Entrance(this, 2, 10, 15));
+//        entrances.add(new Entrance(this, 2, 10, 15));
 //        entrances.add(new Entrance(this, 2, 18, 15));
 //        teleporters.add(new Teleporter(15, 15, 21,15));
-        lava.add(new Lava(22,15));
+//        lava.add(new Lava(22,15));
 
-        entrances.add(new Entrance(this, 4, 10, 15));
+        entrances.add(new Entrance(this, 2, 10, 15));
 
 
-        // Testing off Bombs
+        // Testing of Bombs
         for(int i = 33; i < 40; i++)
             for(int j = 0; j < 7;j++)
                 if(!(i == 36 && j == 3))
@@ -61,7 +61,7 @@ public class Level {
         }
 //        escapes.add(new Escape(15,15));
 //        escapes.add(new Escape(20,15));
-        objective = 10;
+        objective = 2;
     }
 
     public boolean lemmingPresent(Point cell) {
@@ -95,9 +95,9 @@ public class Level {
      */
     public void update(){
         if (won()) {
-            // Do something
+            // Attendre que tous les lemmings soit mort et ensuite afficher un message
+            System.out.println("You won");
         }
-
         for(Escape escape: escapes){
             escape.reach(this);
         }
