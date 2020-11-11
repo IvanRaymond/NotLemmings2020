@@ -39,10 +39,6 @@ public class App {
 
 		while (true) {
 			if (!game.pause()) {
-
-				System.out.println(game.getLevel().getLemmings().size());
-				game.getLevel().getEntrance(0).printNumberOfLemmings();
-
 				game.update();
 				view.repaint();
 				Thread.sleep(700);
