@@ -36,11 +36,13 @@ public class Level {
         blocks.add(new Block(24,15));
         entrances.add(new Entrance(this, 2, 10, 15));
         entrances.add(new Entrance(this, 2, 18, 15));
-//        entrances.add(new Entrance(this, 2, 15, 15));
+
+        // Don't remove, entrance bug fix
         if(entrances.size()%2==0){
             entrances.add(new Entrance(this, 0, -1, -1));
         }
-        escapes.add(new Escape(15,20));
+        escapes.add(new Escape(15,15));
+        escapes.add(new Escape(20,15));
         objective = 10;
     }
 
@@ -77,7 +79,9 @@ public class Level {
         if (won()) {
             // Do something
         }
-//        escape.reach(this);
+        for(Escape escape: escapes){
+            escape.reach(this);
+        }
         for (int i=0; i<blocks.size(); i++) {
             if(blocks.get(i).destroyed()) {
                 blocks.remove(i);
