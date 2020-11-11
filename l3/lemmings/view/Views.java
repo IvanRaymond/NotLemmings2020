@@ -98,7 +98,7 @@ public class Views extends JComponent{
 
 		drawButtons(g);
 		
-		g.setColor(Color.BLACK);
+		g.setColor(new Color(112, 72, 60));
 		for(Block b : blocks)
 			g.fillRect(b.getX() * blockWidth,b.getY() * blockHeight, blockWidth, blockHeight);
 
@@ -115,6 +115,11 @@ public class Views extends JComponent{
 		g.setColor(Color.RED);
 		for(Lava lava : lava){
 			g.fillRect(lava.getX() * blockWidth,lava.getY() * blockHeight, blockWidth, blockHeight);
+		}
+		g.setColor(new Color(161, 157,148));
+		for(Staircase staircase : staircases){
+			for(Staircase.Step step : staircase.getSteps())
+			g.fillRect(step.getX() * blockWidth,step.getY() * blockHeight, blockWidth, blockHeight);
 		}
 
 	}

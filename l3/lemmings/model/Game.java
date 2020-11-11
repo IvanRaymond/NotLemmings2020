@@ -107,6 +107,33 @@ public class Game {
                         surrounding[2][2] = true;
                 }
             }
+            for(Staircase staircase : getLevel().getStaircases())
+            {
+                for(Staircase.Step step : staircase.getSteps()) {
+                    if (l.getY() == step.getY()) {
+                        if (l.getX() == step.getX())
+                            surrounding[1][1] = true;
+                        else if (l.getX() - 1 == step.getX())
+                            surrounding[0][1] = true;
+                        else if (l.getX() + 1 == step.getX())
+                            surrounding[2][1] = true;
+                    } else if (l.getY() - 1 == step.getY()) {
+                        if (l.getX() == step.getX())
+                            surrounding[1][0] = true;
+                        else if (l.getX() - 1 == step.getX())
+                            surrounding[0][0] = true;
+                        else if (l.getX() + 1 == step.getX())
+                            surrounding[2][0] = true;
+                    } else if (l.getY() + 1 == step.getY()) {
+                        if (l.getX() == step.getX())
+                            surrounding[1][2] = true;
+                        else if (l.getX() - 1 == step.getX())
+                            surrounding[0][2] = true;
+                        else if (l.getX() + 1 == step.getX())
+                            surrounding[2][2] = true;
+                    }
+                }
+            }
 
             // Mur à gauche ou a droite de 2 blocks ou plus
             if(surrounding[0][0] && surrounding[0][1] && l.getDirectionAxisX() == -1 || surrounding[2][0] && surrounding[2][1] && l.getDirectionAxisX() == 1)

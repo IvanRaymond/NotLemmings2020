@@ -60,4 +60,8 @@ public class Staircase {
     public boolean completed(){
         return done;
     }
+
+    public ArrayList<Step> getSteps(){
+        return steps;
+    }
 }
