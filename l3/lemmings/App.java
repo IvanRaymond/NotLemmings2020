@@ -1,6 +1,7 @@
 package l3.lemmings;
 
 import 	java.awt.Toolkit;
+import java.io.File;
 import java.io.IOException;
 import javax.swing.JFrame;
 
@@ -23,6 +24,8 @@ public class App {
 		int numCaseY = 24;
 		Game game = new Game();
 
+
+
 		Views view = new Views(game,WIDTH-200, HEIGHT-100, numCaseX, numCaseY);
 		JFrame frame = new JFrame("Lemmingway");
 		frame.add(view);
@@ -32,8 +35,14 @@ public class App {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 
+		System.out.println(System.getProperty("user.dir"));
+
 		while (true) {
 			if (!game.pause()) {
+
+				System.out.println(game.getLevel().getLemmings().size());
+				game.getLevel().getEntrance(0).printNumberOfLemmings();
+
 				game.update();
 				view.repaint();
 				Thread.sleep(700);

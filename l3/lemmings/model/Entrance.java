@@ -7,47 +7,35 @@ import java.util.ArrayList;
  */
 public class Entrance {
 
-    // Number of frames between addition of a lemming.
-    private int flow = 2;
     private int x, y;
     private Level level;
     private int numberOfLemmings;
+    private boolean done = false;
+    int n;
 
     public Entrance(Level level, int numberOfLemmings, int x, int y){
         this.x = x;
         this.y = y;
         this.level = level;
         this.numberOfLemmings = numberOfLemmings;
+        n = numberOfLemmings;
     }
 
     public void addLemming(){
         if (numberOfLemmings>0) {
-            ArrayList<Lemming> lemmings = level.getLemmings();
-            lemmings.add(new Lemming(x, y));
-            level.setLemmings(lemmings);
+            level.addLemmings(new Lemming(x, y));
             numberOfLemmings--;
+        }else{
+            done = true;
         }
     }
 
-    public void increaseFlow(){
-        if (flow > 1){
-            flow--;
-        }
+    public void printNumberOfLemmings(){
+        System.out.println(""+n);
     }
 
-    public void decreaseFlow(){
-        if (flow < 5){
-            flow++;
-        }
-    }
-
-    public int getFlow(){
-        return flow;
-    }
-
-    // Used to test flow change button
-    public void printFlow(){
-        System.out.println("flow = "+flow);
+    public boolean getDone(){
+        return done;
     }
 
 }
