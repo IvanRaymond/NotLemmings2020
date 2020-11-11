@@ -23,4 +23,12 @@ public class Lava {
         level.setLemmings(lemmings);
     }
 
+    public int getX(){
+        return x;
+    }
+
+    public int getY(){
+        return y;
+    }
+
 }

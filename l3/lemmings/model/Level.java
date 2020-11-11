@@ -21,11 +21,13 @@ public class Level {
     private ArrayList<Teleporter> teleporters = new ArrayList<>();
     private ArrayList<Lava> lava = new ArrayList<>();
     private ArrayList<Staircase> staircases = new ArrayList<>();
+    private ArrayList<Trap> traps = new ArrayList<Trap>();
     private int safe = 0;
     private int objective = 0;  // Number of lemmings to save for win
     private int flow = 2;
 
     public Level(){
+        objective = 2;
         for(int i = 10; i<25;i++)
         {
             blocks.add(new Block(i,16));
@@ -40,14 +42,14 @@ public class Level {
 //        blocks.add(new Block(24,13));
 //        blocks.add(new Block(24,12));
 //        blocks.add(new Block(24,11));
-
+        entrances.add(new Entrance(this, 2, 10, 15));
 //        entrances.add(new Entrance(this, 2, 10, 15));
 //        entrances.add(new Entrance(this, 2, 18, 15));
+//        escapes.add(new Escape(15,15));
+//        escapes.add(new Escape(20,15));
 //        teleporters.add(new Teleporter(15, 15, 21,15));
 //        lava.add(new Lava(22,15));
-
-        entrances.add(new Entrance(this, 2, 10, 15));
-
+        traps.add(new Bomb(20,15));
 
         // Testing of Bombs
         for(int i = 33; i < 40; i++)
@@ -57,15 +59,10 @@ public class Level {
         entrances.add(new Entrance(this, 1, 36, 2));
         //
 
-
-
         // Don't remove, entrance bug fix
         if(entrances.size()%2==0){
             entrances.add(new Entrance(this, 0, -1, -1));
         }
-//        escapes.add(new Escape(15,15));
-//        escapes.add(new Escape(20,15));
-        objective = 2;
     }
 
     public boolean lemmingPresent(Point cell) {
@@ -142,6 +139,10 @@ public class Level {
         return objective==safe;
     }
 
+    public void setBlocks(ArrayList<Block> blocks){
+        this.blocks = blocks;
+    }
+
     public ArrayList<Lemming> getLemmings() {
         return lemmings;
     }
@@ -156,6 +157,18 @@ public class Level {
 
     public ArrayList<Block> getBlocks() {
         return blocks;
+    }
+
+    public ArrayList<Trap> getTraps(){
+        return traps;
+    }
+
+    public ArrayList<Staircase> getStaircases(){
+        return staircases;
+    }
+
+    public ArrayList<Lava> getLava(){
+        return lava;
     }
 
     public Entrance getEntrance(int index){

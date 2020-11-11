@@ -35,7 +35,7 @@ public class Game {
     // Could use some refactoring to implement different lemmings behaviours
     public void update() {
         level.update();
-
+        ArrayList<Trap> traps = level.getTraps();
         ArrayList<Entrance> entrances = level.getEntrances();
         for(Entrance e : entrances) {
             if (flowCounter == 0) {
@@ -76,6 +76,34 @@ public class Game {
                     else if(l.getX() - 1 == b.getX())
                         surrounding[0][2] = true;
                     else if(l.getX() + 1 == b.getX())
+                        surrounding[2][2] = true;
+                }
+            }
+            for(Trap trap : traps)
+            {
+                if(l.getY() == trap.getY())
+                {	if(l.getX() == trap.getX())
+                    surrounding[1][1] = true;
+                else if(l.getX() - 1 == trap.getX() )
+                    surrounding[0][1] = true;
+                else if(l.getX() + 1 == trap.getX())
+                    surrounding[2][1] = true;}
+                else if(l.getY() - 1 == trap.getY())
+                {
+                    if(l.getX() == trap.getX())
+                        surrounding[1][0] = true;
+                    else if(l.getX() - 1 == trap.getX())
+                        surrounding[0][0] = true;
+                    else if(l.getX() + 1 == trap.getX())
+                        surrounding[2][0] = true;
+                }
+                else if(l.getY() + 1 == trap.getY())
+                {
+                    if(l.getX() == trap.getX())
+                        surrounding[1][2] = true;
+                    else if(l.getX() - 1 == trap.getX())
+                        surrounding[0][2] = true;
+                    else if(l.getX() + 1 == trap.getX())
                         surrounding[2][2] = true;
                 }
             }
@@ -138,6 +166,11 @@ public class Game {
                 if(surrounding[1][2]) // [1][2] bugs
                 {
                     Block belowBlock = null;
+                    for(Trap trap: traps){
+                        if(trap.getX() == l.getX() && trap.getY() == l.getY()+1) {
+                            trap.activate(level);
+                        }
+                    }
                     for(Block b : blocks) {
                         if(b.getX() == l.getX() && b.getY() == l.getY()+1) {
                             belowBlock = b;
@@ -165,6 +198,11 @@ public class Game {
                 if(surrounding[2][1]) // [1][2] bugs
                 {
                     Block belowBlock = null;
+                    for(Trap trap: traps){
+                        if(trap.getX() == l.getX()+ l.getDirectionAxisX() && trap.getY() == l.getY()) {
+                            trap.activate(level);
+                        }
+                    }
                     for(Block b : blocks) {
                         if(b.getX() == l.getX()+ l.getDirectionAxisX() && b.getY() == l.getY()) {
                             belowBlock = b;
@@ -178,14 +216,25 @@ public class Game {
             // Bomb
             if(l.isState(Lemming.LemmingState.BOMB)){
                 ArrayList<Block> surroundingBlocks = new ArrayList<>();
-                    for(Block b : blocks) {
-                        if(b.getX() == l.getX() - 1 && b.getY() == l.getY() || b.getX() == l.getX() + 1 && b.getY() == l.getY() || b.getX() == l.getX() && b.getY() == l.getY() - 1  || b.getX() == l.getX() && b.getY() == l.getY() + 1 || b.getX() == l.getX() - 2 && b.getY() == l.getY() || b.getX() == l.getX() + 2 && b.getY() == l.getY() || b.getX() == l.getX() && b.getY() == l.getY() - 2  || b.getX() == l.getX() && b.getY() == l.getY() + 2 || b.getX() == l.getX() - 1 && b.getY() == l.getY() -1 || b.getX() == l.getX() + 1 && b.getY() == l.getY() +1 || b.getX() == l.getX() + 1 && b.getY() == l.getY() - 1  || b.getX() == l.getX() + 1 && b.getY() == l.getY() - 1 || b.getX() == l.getX() - 2 && b.getY() == l.getY() - 2 || b.getX() == l.getX() + 2 && b.getY() == l.getY() + 2 || b.getX() == l.getX() + 2 && b.getY() == l.getY() - 2  || b.getX() == l.getX() + 2 && b.getY() == l.getY() - 2 || b.getX() == l.getX() - 1 && b.getY() == l.getY() + 1 || b.getX() == l.getX() - 2 && b.getY() == l.getY() + 2 || b.getX() == l.getX() - 1 && b.getY() == l.getY() - 2 || b.getX() == l.getX() + 1 && b.getY() == l.getY() - 2 || b.getX() == l.getX() + 2 && b.getY() == l.getY() - 1 || b.getX() == l.getX() - 2 && b.getY() == l.getY() - 1 || b.getX() == l.getX() - 2 && b.getY() == l.getY() + 1 || b.getX() == l.getX() + 2 && b.getY() == l.getY() + 1 || b.getX() == l.getX() + 1 && b.getY() == l.getY() + 2 || b.getX() == l.getX() - 1 && b.getY() == l.getY() + 2) {
-                            surroundingBlocks.add(b);
-                        }
+                ArrayList<Trap> usedTraps = new ArrayList<>();
+                for(Trap trap: traps){
+                    if(trap.getX() == l.getX() - 1 && trap.getY() == l.getY() || trap.getX() == l.getX() + 1 && trap.getY() == l.getY() || trap.getX() == l.getX() && trap.getY() == l.getY() - 1  || trap.getX() == l.getX() && trap.getY() == l.getY() + 1 || trap.getX() == l.getX() - 2 && trap.getY() == l.getY() || trap.getX() == l.getX() + 2 && trap.getY() == l.getY() || trap.getX() == l.getX() && trap.getY() == l.getY() - 2  || trap.getX() == l.getX() && trap.getY() == l.getY() + 2 || trap.getX() == l.getX() - 1 && trap.getY() == l.getY() -1 || trap.getX() == l.getX() + 1 && trap.getY() == l.getY() +1 || trap.getX() == l.getX() + 1 && trap.getY() == l.getY() - 1  || trap.getX() == l.getX() + 1 && trap.getY() == l.getY() - 1 || trap.getX() == l.getX() - 2 && trap.getY() == l.getY() - 2 || trap.getX() == l.getX() + 2 && trap.getY() == l.getY() + 2 || trap.getX() == l.getX() + 2 && trap.getY() == l.getY() - 2  || trap.getX() == l.getX() + 2 && trap.getY() == l.getY() - 2 || trap.getX() == l.getX() - 1 && trap.getY() == l.getY() + 1 || trap.getX() == l.getX() - 2 && trap.getY() == l.getY() + 2 || trap.getX() == l.getX() - 1 && trap.getY() == l.getY() - 2 || trap.getX() == l.getX() + 1 && trap.getY() == l.getY() - 2 || trap.getX() == l.getX() + 2 && trap.getY() == l.getY() - 1 || trap.getX() == l.getX() - 2 && trap.getY() == l.getY() - 1 || trap.getX() == l.getX() - 2 && trap.getY() == l.getY() + 1 || trap.getX() == l.getX() + 2 && trap.getY() == l.getY() + 1 || trap.getX() == l.getX() + 1 && trap.getY() == l.getY() + 2 || trap.getX() == l.getX() - 1 && trap.getY() == l.getY() + 2) {
+                        trap.activate(level);
+                        usedTraps.add(trap);
                     }
-                    for(Block b : surroundingBlocks)
-                        blocks.remove(b);
-                        l.kill();
+                }
+                for(Block b : blocks) {
+                    if(b.getX() == l.getX() - 1 && b.getY() == l.getY() || b.getX() == l.getX() + 1 && b.getY() == l.getY() || b.getX() == l.getX() && b.getY() == l.getY() - 1  || b.getX() == l.getX() && b.getY() == l.getY() + 1 || b.getX() == l.getX() - 2 && b.getY() == l.getY() || b.getX() == l.getX() + 2 && b.getY() == l.getY() || b.getX() == l.getX() && b.getY() == l.getY() - 2  || b.getX() == l.getX() && b.getY() == l.getY() + 2 || b.getX() == l.getX() - 1 && b.getY() == l.getY() -1 || b.getX() == l.getX() + 1 && b.getY() == l.getY() +1 || b.getX() == l.getX() + 1 && b.getY() == l.getY() - 1  || b.getX() == l.getX() + 1 && b.getY() == l.getY() - 1 || b.getX() == l.getX() - 2 && b.getY() == l.getY() - 2 || b.getX() == l.getX() + 2 && b.getY() == l.getY() + 2 || b.getX() == l.getX() + 2 && b.getY() == l.getY() - 2  || b.getX() == l.getX() + 2 && b.getY() == l.getY() - 2 || b.getX() == l.getX() - 1 && b.getY() == l.getY() + 1 || b.getX() == l.getX() - 2 && b.getY() == l.getY() + 2 || b.getX() == l.getX() - 1 && b.getY() == l.getY() - 2 || b.getX() == l.getX() + 1 && b.getY() == l.getY() - 2 || b.getX() == l.getX() + 2 && b.getY() == l.getY() - 1 || b.getX() == l.getX() - 2 && b.getY() == l.getY() - 1 || b.getX() == l.getX() - 2 && b.getY() == l.getY() + 1 || b.getX() == l.getX() + 2 && b.getY() == l.getY() + 1 || b.getX() == l.getX() + 1 && b.getY() == l.getY() + 2 || b.getX() == l.getX() - 1 && b.getY() == l.getY() + 2) {
+                        surroundingBlocks.add(b);
+                    }
+                }
+                for (Trap trap : usedTraps){
+                    traps.remove(trap);
+                    l.kill();
+                }
+                for(Block b : surroundingBlocks)
+                    blocks.remove(b);
+                    l.kill();
             }
 
             // Builder
@@ -196,9 +245,6 @@ public class Game {
                     l.toggleBusy();
                 }
             }
-
-
-            System.out.println(""+lemmings.size());
 
 
 //            for(int i =0;i<3;i++)
