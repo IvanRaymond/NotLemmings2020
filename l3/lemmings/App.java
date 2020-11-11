@@ -37,7 +37,7 @@ public class App {
 
 		System.out.println(System.getProperty("user.dir"));
 
-		/*while (true) {
+		while (true) {
 			if (!game.pause()) {
 
 				System.out.println(game.getLevel().getLemmings().size());
@@ -51,7 +51,7 @@ public class App {
 			else {
 				Thread.sleep(50);
 			}
-		}*/
+		}
 	}
 
 }
