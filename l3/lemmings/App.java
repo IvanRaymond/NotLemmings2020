@@ -35,7 +35,9 @@ public class App {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 
-		while (true) {
+		System.out.println(System.getProperty("user.dir"));
+
+		/*while (true) {
 			if (!game.pause()) {
 
 				System.out.println(game.getLevel().getLemmings().size());
@@ -49,7 +51,7 @@ public class App {
 			else {
 				Thread.sleep(50);
 			}
-		}
+		}*/
 	}
 
 }

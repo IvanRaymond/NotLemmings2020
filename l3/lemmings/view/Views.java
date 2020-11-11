@@ -39,7 +39,25 @@ public class Views extends JComponent{
 	private Level level;
 
 	// Comment out if breaks code, can't test without it
-	final BufferedImage spriteNormal = ImageIO.read(new File(System.getProperty("user.dir")+"/src/resource/images/spriteNormal.jpg"));
+	final BufferedImage spriteNormal = ImageIO.read(this.getClass().getResource("/images/spriteNormal.jpg"));
+	final BufferedImage spriteClimber = ImageIO.read(this.getClass().getResource("/images/spriteClimber.jpg"));
+	final BufferedImage spriteFloater = ImageIO.read(new File("resource/images/spriteFloater.jpg"));
+	final BufferedImage spriteBomb = ImageIO.read(new File("resource/images/spriteBomb.jpg"));
+	final BufferedImage spriteBlocker = ImageIO.read(new File("resource/images/spriteBlocker.jpg"));
+	final BufferedImage spriteBuilder = ImageIO.read(new File("resource/images/spriteBuilder.jpg"));
+	final BufferedImage spriteBasher = ImageIO.read(new File("resource/images/spriteBasher.jpg"));
+	final BufferedImage spriteMiner = ImageIO.read(new File("resource/images/spriteMiner.jpg"));
+	final BufferedImage spriteDigger = ImageIO.read(new File("resource/images/spriteDigger.jpg"));
+	/*final BufferedImage spriteNormal = ImageIO.read(new File("resource/images/spriteNormal.jpg"));
+	final BufferedImage spriteClimber = ImageIO.read(new File("resource/images/spriteClimber.jpg"));
+	final BufferedImage spriteFloater = ImageIO.read(new File("resource/images/spriteFloater.jpg"));
+	final BufferedImage spriteBomb = ImageIO.read(new File("resource/images/spriteBomb.jpg"));
+	final BufferedImage spriteBlocker = ImageIO.read(new File("resource/images/spriteBlocker.jpg"));
+	final BufferedImage spriteBuilder = ImageIO.read(new File("resource/images/spriteBuilder.jpg"));
+	final BufferedImage spriteBasher = ImageIO.read(new File("resource/images/spriteBasher.jpg"));
+	final BufferedImage spriteMiner = ImageIO.read(new File("resource/images/spriteMiner.jpg"));
+	final BufferedImage spriteDigger = ImageIO.read(new File("resource/images/spriteDigger.jpg"));*/
+	/*final BufferedImage spriteNormal = ImageIO.read(new File(System.getProperty("user.dir")+"/src/resource/images/spriteNormal.jpg"));
 	final BufferedImage spriteClimber = ImageIO.read(new File(System.getProperty("user.dir")+"/src/resource/images/spriteClimber.jpg"));
 	final BufferedImage spriteFloater = ImageIO.read(new File(System.getProperty("user.dir")+"/src/resource/images/spriteFloater.jpg"));
 	final BufferedImage spriteBomb = ImageIO.read(new File(System.getProperty("user.dir")+"/src/resource/images/spriteBomb.jpg"));
@@ -47,7 +65,7 @@ public class Views extends JComponent{
 	final BufferedImage spriteBuilder = ImageIO.read(new File(System.getProperty("user.dir")+"/src/resource/images/spriteBuilder.jpg"));
 	final BufferedImage spriteBasher = ImageIO.read(new File(System.getProperty("user.dir")+"/src/resource/images/spriteBasher.jpg"));
 	final BufferedImage spriteMiner = ImageIO.read(new File(System.getProperty("user.dir")+"/src/resource/images/spriteMiner.jpg"));
-	final BufferedImage spriteDigger = ImageIO.read(new File(System.getProperty("user.dir")+"/src/resource/images/spriteDigger.jpg"));
+	final BufferedImage spriteDigger = ImageIO.read(new File(System.getProperty("user.dir")+"/src/resource/images/spriteDigger.jpg"));*/
 
 	public Views(Game game, int w, int h, int x, int y) throws IOException {
 		level = game.getLevel();
