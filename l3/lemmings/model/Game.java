@@ -36,7 +36,6 @@ public class Game {
     public void update() {
         level.update();
 
-        // ToDo: Entrance problem is here, don't know why for loop don't reach the second entrance.
         ArrayList<Entrance> entrances = level.getEntrances();
         for(Entrance e : entrances) {
             if (flowCounter == 0) {
@@ -80,6 +79,7 @@ public class Game {
                         surrounding[2][2] = true;
                 }
             }
+
             // Mur à gauche ou a droite de 2 blocks ou plus
             if(surrounding[0][0] && surrounding[0][1] && l.getDirectionAxisX() == -1 || surrounding[2][0] && surrounding[2][1] && l.getDirectionAxisX() == 1)
             {
@@ -186,18 +186,28 @@ public class Game {
                     for(Block b : surroundingBlocks)
                         blocks.remove(b);
                         l.kill();
-                }
-
-
-
-
-            for(int i =0;i<3;i++)
-            {
-                for(int j =0;j<3;j++)
-                    System.out.print(" "+surrounding[i][j]);
-                System.out.println();
             }
-            System.out.println();
+
+            // Builder
+            if(l.isState(Lemming.LemmingState.BRIDGE_BUILDER)){
+                if (!l.getIfBusy()) {
+                    Staircase staircase = level.buildStaircase(l);
+                    staircase.build();
+                    l.toggleBusy();
+                }
+            }
+
+
+            System.out.println(""+lemmings.size());
+
+
+//            for(int i =0;i<3;i++)
+//            {
+//                for(int j =0;j<3;j++)
+//                    System.out.print(" "+surrounding[i][j]);
+//                System.out.println();
+//            }
+//            System.out.println();
             l.move();
         }
 

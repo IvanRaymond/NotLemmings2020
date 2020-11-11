@@ -18,6 +18,7 @@ public class Lemming {
 	private int fallCount =0;
 	private int deathByFallHeight = 5;
 	private LemmingState state = LemmingState.NORMAL;
+	private boolean busy = false;
 
 	private int directionAxisX;
 	private int directionAxisY;
@@ -55,6 +56,14 @@ public class Lemming {
 		if(fallCount==deathByFallHeight && state != LemmingState.FLOATER){
 			kill();
 		}
+	}
+
+	public void toggleBusy(){
+		busy = !busy;
+	}
+
+	public boolean getIfBusy(){
+		return busy;
 	}
 
 	public boolean isState(LemmingState state){

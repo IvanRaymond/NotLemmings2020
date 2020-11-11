@@ -20,6 +20,7 @@ public class Level {
     private ArrayList<Escape> escapes = new ArrayList<>();
     private ArrayList<Teleporter> teleporters = new ArrayList<>();
     private ArrayList<Lava> lava = new ArrayList<>();
+    private ArrayList<Staircase> staircases = new ArrayList<>();
     private int safe = 0;
     private int objective = 0;  // Number of lemmings to save for win
     private int flow = 2;
@@ -36,6 +37,9 @@ public class Level {
         blocks.add(new Block(19,13));
         blocks.add(new Block(24,14));
         blocks.add(new Block(24,15));
+//        blocks.add(new Block(24,13));
+//        blocks.add(new Block(24,12));
+//        blocks.add(new Block(24,11));
 
 //        entrances.add(new Entrance(this, 2, 10, 15));
 //        entrances.add(new Entrance(this, 2, 18, 15));
@@ -107,6 +111,11 @@ public class Level {
         for(Lava lava: lava){
             lava.reach(this);
         }
+        for(Staircase staircase: staircases){
+            if(!staircase.completed()) {
+                staircase.build();
+            }
+        }
         for (int i=0; i<blocks.size(); i++) {
             if(blocks.get(i).destroyed()) {
                 blocks.remove(i);
@@ -121,6 +130,12 @@ public class Level {
 
     public void incSafe(){
         safe++;
+    }
+
+    public Staircase buildStaircase(Lemming lemming){
+        Staircase staircase = new Staircase(lemming);
+        staircases.add(staircase);
+        return staircase;
     }
 
     public boolean won(){
@@ -161,6 +176,10 @@ public class Level {
         if (flow < 5){
             flow++;
         }
+    }
+
+    public void printFlow(){
+        System.out.println(""+flow);
     }
 
     public int getFlow(){
