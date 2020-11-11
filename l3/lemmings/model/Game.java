@@ -34,7 +34,6 @@ public class Game {
 
     // Could use some refactoring to implement different lemmings behaviours
     public void update() {
-        int gg=0;
         level.update();
 
         // ToDo: Entrance problem is here, don't know why for loop don't reach the second entrance.
@@ -90,7 +89,11 @@ public class Game {
                     l.setDirectionAxisX(0);
                     l.setDirectionAxisY(-1);
                 }else{
-                    l.changeDirectionX();
+                    //surrounded
+                    if(surrounding[0][0] && surrounding[0][1] && surrounding[2][0] && surrounding[2][1])
+                        l.setDirectionAxisX(0);
+                    else
+                        l.changeDirectionX();
                 }
             }
             // Pas de sol en dessous
@@ -114,6 +117,9 @@ public class Game {
                 l.resetFallCount();
                 if (l.getDirectionAxisX()==0){
                     l.restoreDirectionAxisX();
+                    //Reset Floater to normal once ground touch
+                    if(l.getState() == Lemming.LemmingState.FLOATER)
+                        l.setState(Lemming.LemmingState.NORMAL);
                 }
             }
 
@@ -123,7 +129,7 @@ public class Game {
                 if(!surrounding[1][0])
                     l.setDirectionAxisY(-1);
                 else {
-                    l.setDirectionAxisX(l.getDirectionAxisX() * -1);
+                    l.changeDirectionX();
                 }
             }
 
@@ -173,7 +179,7 @@ public class Game {
             if(l.isState(Lemming.LemmingState.BOMB)){
                 ArrayList<Block> surroundingBlocks = new ArrayList<>();
                     for(Block b : blocks) {
-                        if(b.getX() == l.getX() - 1 && b.getY() == l.getY() || b.getX() == l.getX() + 1 && b.getY() == l.getY() || b.getX() == l.getX() && b.getY() == l.getY() - 1  || b.getX() == l.getX() && b.getY() == l.getY() + 1  ) {
+                        if(b.getX() == l.getX() - 1 && b.getY() == l.getY() || b.getX() == l.getX() + 1 && b.getY() == l.getY() || b.getX() == l.getX() && b.getY() == l.getY() - 1  || b.getX() == l.getX() && b.getY() == l.getY() + 1 || b.getX() == l.getX() - 2 && b.getY() == l.getY() || b.getX() == l.getX() + 2 && b.getY() == l.getY() || b.getX() == l.getX() && b.getY() == l.getY() - 2  || b.getX() == l.getX() && b.getY() == l.getY() + 2 || b.getX() == l.getX() - 1 && b.getY() == l.getY() -1 || b.getX() == l.getX() + 1 && b.getY() == l.getY() +1 || b.getX() == l.getX() + 1 && b.getY() == l.getY() - 1  || b.getX() == l.getX() + 1 && b.getY() == l.getY() - 1 || b.getX() == l.getX() - 2 && b.getY() == l.getY() - 2 || b.getX() == l.getX() + 2 && b.getY() == l.getY() + 2 || b.getX() == l.getX() + 2 && b.getY() == l.getY() - 2  || b.getX() == l.getX() + 2 && b.getY() == l.getY() - 2 || b.getX() == l.getX() - 1 && b.getY() == l.getY() + 1 || b.getX() == l.getX() - 2 && b.getY() == l.getY() + 2 || b.getX() == l.getX() - 1 && b.getY() == l.getY() - 2 || b.getX() == l.getX() + 1 && b.getY() == l.getY() - 2 || b.getX() == l.getX() + 2 && b.getY() == l.getY() - 1 || b.getX() == l.getX() - 2 && b.getY() == l.getY() - 1 || b.getX() == l.getX() - 2 && b.getY() == l.getY() + 1 || b.getX() == l.getX() + 2 && b.getY() == l.getY() + 1 || b.getX() == l.getX() + 1 && b.getY() == l.getY() + 2 || b.getX() == l.getX() - 1 && b.getY() == l.getY() + 2) {
                             surroundingBlocks.add(b);
                         }
                     }
