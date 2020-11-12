@@ -39,6 +39,7 @@ public class Game {
         level.update();
         ArrayList<Trap> traps = level.getTraps();
         ArrayList<Entrance> entrances = level.getEntrances();
+        ArrayList<Switch> switches = level.getSwitches();
         for(Entrance e : entrances) {
             if (flowCounter == 0) {
                 if(!e.getDone()) {
@@ -136,23 +137,36 @@ public class Game {
                     }
                 }
             }
+            for(Switch currentSwitch : switches)
+            {
+                if(l.getY() == currentSwitch.getY())
+                {	if(l.getX() == currentSwitch.getX())
+                    surrounding[1][1] = true;
+                else if(l.getX() - 1 == currentSwitch.getX() )
+                    surrounding[0][1] = true;
+                else if(l.getX() + 1 == currentSwitch.getX())
+                    surrounding[2][1] = true;}
+                else if(l.getY() - 1 == currentSwitch.getY())
+                {
+                    if(l.getX() == currentSwitch.getX())
+                        surrounding[1][0] = true;
+                    else if(l.getX() - 1 == currentSwitch.getX())
+                        surrounding[0][0] = true;
+                    else if(l.getX() + 1 == currentSwitch.getX())
+                        surrounding[2][0] = true;
+                }
+                else if(l.getY() + 1 == currentSwitch.getY())
+                {
+                    if(l.getX() == currentSwitch.getX())
+                        surrounding[1][2] = true;
+                    else if(l.getX() - 1 == currentSwitch.getX())
+                        surrounding[0][2] = true;
+                    else if(l.getX() + 1 == currentSwitch.getX())
+                        surrounding[2][2] = true;
+                }
+            }
 
             // Mur à gauche ou a droite de 2 blocks ou plus
-            /*if(surrounding[0][0] && surrounding[0][1] && l.getDirectionAxisX() == -1 || surrounding[2][0] && surrounding[2][1] && l.getDirectionAxisX() == 1)
-            {
-                // ToDo: Add exceptions in other cases to cater for climber
-                if(l.isState(Lemming.LemmingState.CLIMBER)){
-                    l.saveDirectionX();
-                    l.setDirectionAxisX(0);
-                    l.setDirectionAxisY(-1);
-                }else{
-                    //surrounded
-                    if(surrounding[0][0] && surrounding[0][1] && surrounding[2][0] && surrounding[2][1])
-                        l.setDirectionAxisX(0);
-                    else
-                        l.changeDirectionX();
-                }
-            }*/
             if(surrounding[0][0] && surrounding[0][1] && l.getDirectionAxisX() == -1 || surrounding[2][0] && surrounding[2][1] && l.getDirectionAxisX() == 1)
             {
                 //surrounded
@@ -213,9 +227,19 @@ public class Game {
             if(l.isState(Lemming.LemmingState.DIGGER)){
                 ArrayList<Block> surroundingBlocks = new ArrayList<>();
                 ArrayList<Trap> usedTraps = new ArrayList<>();
+                ArrayList<Switch> usedSwitch = new ArrayList<>();
+
                 if(surrounding[1][2])
                 {
                     Block belowBlock = null;
+
+                    for(Switch currentSwitch :  switches) {
+                        if(currentSwitch.getX() == l.getX() && currentSwitch.getY() == l.getY()+1) {                            usedSwitch.add(currentSwitch);
+                            blocks.addAll(currentSwitch.getBlocks());
+                        }
+                    }
+                    for(Switch currentSwitch : usedSwitch)
+                        switches.remove(currentSwitch);
 
                     for(Trap trap: traps){
                         if(trap.getX() == l.getX() && trap.getY() == l.getY()+1) {
@@ -260,9 +284,20 @@ public class Game {
             if(l.isState(Lemming.LemmingState.BASHER)){
                 ArrayList<Block> surroundingBlocks = new ArrayList<>();
                 ArrayList<Trap> usedTraps = new ArrayList<>();
+                ArrayList<Switch> usedSwitch = new ArrayList<>();
                 if(surrounding[2][1] || surrounding[0][1]) // [1][2] bugs
                 {
                     Block belowBlock = null;
+
+                    for(Switch currentSwitch :  switches) {
+                        if(currentSwitch.getX() == l.getX() + l.getDirectionAxisX() && currentSwitch.getY() == l.getY() || currentSwitch.getX() == l.getX() - l.getDirectionAxisX() && currentSwitch.getY() == l.getY()) {
+                            usedSwitch.add(currentSwitch);
+                            blocks.addAll(currentSwitch.getBlocks());
+                        }
+                    }
+                    for(Switch currentSwitch : usedSwitch)
+                        switches.remove(currentSwitch);
+
                     for(Trap trap: traps){
                         if(trap.getX() == l.getX() + l.getDirectionAxisX() && trap.getY() == l.getY() || trap.getX() == l.getX() - l.getDirectionAxisX() && trap.getY() == l.getY()) {
                             for(Block b : blocks){
@@ -302,6 +337,16 @@ public class Game {
             if(l.isState(Lemming.LemmingState.BOMB)){
                 ArrayList<Block> surroundingBlocks = new ArrayList<>();
                 ArrayList<Trap> usedTraps = new ArrayList<>();
+                ArrayList<Switch> usedSwitch = new ArrayList<>();
+                for(Switch currentSwitch :  switches) {
+                    if(l.getX() == currentSwitch.getX() - 1 && l.getY() == currentSwitch.getY() || l.getX() == currentSwitch.getX() + 1 && l.getY() == currentSwitch.getY() || l.getX() == currentSwitch.getX() && l.getY() == currentSwitch.getY() - 1  || l.getX() == currentSwitch.getX() && l.getY() == currentSwitch.getY() + 1 || l.getX() == currentSwitch.getX() - 2 && l.getY() == currentSwitch.getY() || l.getX() == currentSwitch.getX() + 2 && l.getY() == currentSwitch.getY() || l.getX() == currentSwitch.getX() && l.getY() == currentSwitch.getY() - 2  || l.getX() == currentSwitch.getX() && l.getY() == currentSwitch.getY() + 2 || l.getX() == currentSwitch.getX() - 1 && l.getY() == currentSwitch.getY() -1 || l.getX() == currentSwitch.getX() + 1 && l.getY() == currentSwitch.getY() +1 || l.getX() == currentSwitch.getX() + 1 && l.getY() == currentSwitch.getY() - 1 || l.getX() == currentSwitch.getX() - 2 && l.getY() == currentSwitch.getY() - 2 || l.getX() == currentSwitch.getX() + 2 && l.getY() == currentSwitch.getY() + 2 || l.getX() == currentSwitch.getX() + 2 && l.getY() == currentSwitch.getY() - 2 || l.getX() == currentSwitch.getX() - 1 && l.getY() == currentSwitch.getY() + 1 || l.getX() == currentSwitch.getX() - 2 && l.getY() == currentSwitch.getY() + 2 || l.getX() == currentSwitch.getX() - 1 && l.getY() == currentSwitch.getY() - 2 || l.getX() == currentSwitch.getX() + 1 && l.getY() == currentSwitch.getY() - 2 || l.getX() == currentSwitch.getX() + 2 && l.getY() == currentSwitch.getY() - 1 || l.getX() == currentSwitch.getX() - 2 && l.getY() == currentSwitch.getY() - 1 || l.getX() == currentSwitch.getX() - 2 && l.getY() == currentSwitch.getY() + 1 || l.getX() == currentSwitch.getX() + 2 && l.getY() == currentSwitch.getY() + 1 || l.getX() == currentSwitch.getX() + 1 && l.getY() == currentSwitch.getY() + 2 || l.getX() == currentSwitch.getX() - 1 && l.getY() == currentSwitch.getY() + 2) {
+                        usedSwitch.add(currentSwitch);
+                        blocks.addAll(currentSwitch.getBlocks());
+                    }
+                }
+                for(Switch currentSwitch : usedSwitch)
+                    switches.remove(currentSwitch);
+
                 for(Trap trap: traps){
                     for(Block b : blocks){
                         if(b.getX() == trap.getX() - 1 && b.getY() == trap.getY() || b.getX() == trap.getX() + 1 && b.getY() == trap.getY() || b.getX() == trap.getX() && b.getY() == trap.getY() - 1  || b.getX() == trap.getX() && b.getY() == trap.getY() + 1 || b.getX() == trap.getX() - 2 && b.getY() == trap.getY() || b.getX() == trap.getX() + 2 && b.getY() == trap.getY() || b.getX() == trap.getX() && b.getY() == trap.getY() - 2  || b.getX() == trap.getX() && b.getY() == trap.getY() + 2 || b.getX() == trap.getX() - 1 && b.getY() == trap.getY() -1 || b.getX() == trap.getX() + 1 && b.getY() == trap.getY() +1 || b.getX() == trap.getX() + 1 && b.getY() == trap.getY() - 1 || b.getX() == trap.getX() - 2 && b.getY() == trap.getY() - 2 || b.getX() == trap.getX() + 2 && b.getY() == trap.getY() + 2 || b.getX() == trap.getX() + 2 && b.getY() == trap.getY() - 2 || b.getX() == trap.getX() - 1 && b.getY() == trap.getY() + 1 || b.getX() == trap.getX() - 2 && b.getY() == trap.getY() + 2 || b.getX() == trap.getX() - 1 && b.getY() == trap.getY() - 2 || b.getX() == trap.getX() + 1 && b.getY() == trap.getY() - 2 || b.getX() == trap.getX() + 2 && b.getY() == trap.getY() - 1 || b.getX() == trap.getX() - 2 && b.getY() == trap.getY() - 1 || b.getX() == trap.getX() - 2 && b.getY() == trap.getY() + 1 || b.getX() == trap.getX() + 2 && b.getY() == trap.getY() + 1 || b.getX() == trap.getX() + 1 && b.getY() == trap.getY() + 2 || b.getX() == trap.getX() - 1 && b.getY() == trap.getY() + 2) {
@@ -343,23 +388,22 @@ public class Game {
             if(l.isState(Lemming.LemmingState.CLIMBER)){
                 if(surrounding[0][1] && l.getDirectionAxisX() == -1 || surrounding[2][1] /*&& l.getDirectionAxisX() == 1*/)
                 {
-                    l.saveDirectionX();
                     l.setDirectionAxisX(0);
                     l.setDirectionAxisY(-1);
                 }
                 else if(!surrounding[2][1] && l.getDirectionAxisY() == 1)
                 {
-                    l.setX(l.getX() + 1);
+                   // l.setX(l.getX() + 1);
                     l.setY(l.getY() - 1);
                     l.setState(Lemming.LemmingState.NORMAL);
-                    l.restoreDirectionAxisX();
+                    l.setDirectionAxisX(1);
                 }
                 else if(!surrounding[0][1] && l.getDirectionAxisY() == 1)
                 {
                     l.setX(l.getX() - 1);
                     l.setY(l.getY() - 1);
                     l.setState(Lemming.LemmingState.NORMAL);
-                    l.restoreDirectionAxisX();
+                    l.setDirectionAxisX(1);
                 }
             }
 

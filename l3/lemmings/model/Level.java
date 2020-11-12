@@ -22,6 +22,8 @@ public class Level {
     private ArrayList<Lava> lava = new ArrayList<>();
     private ArrayList<Staircase> staircases = new ArrayList<>();
     private ArrayList<Trap> traps = new ArrayList<Trap>();
+    private ArrayList<Switch> switches = new ArrayList<Switch>();
+
     private int safe = 0;
     private int objective = 0;  // Number of lemmings to save for win
     private int flow = 2;
@@ -30,11 +32,11 @@ public class Level {
         objective = 2;
         for(int i = 10; i<25;i++)
         {
-//            blocks.add(new Block(i,16));
-            traps.add(new Bomb(i,16));
+            blocks.add(new Block(i,16));
+//            traps.add(new Bomb(i,16));
         }
         blocks.add(new Block(10,14));
-        blocks.add(new Block(10,15));
+//        blocks.add(new Block(10,14));
         blocks.add(new Block(17,15));
         blocks.add(new Block(18,14));
         blocks.add(new Block(19,13));
@@ -54,7 +56,9 @@ public class Level {
         lava.add(new Lava(25,16));
         teleporters.add(new Teleporter(36,8,10,11));
         teleporters.add(new Teleporter(10,10,38,8));
-        traps.add(new Bomb(20,15));
+        //traps.add(new Bomb(20,15));
+
+        switches.add(new Switch(36,7, new ArrayList<Block>(){{add(new Block(9,16));add(new Block(8,16));add(new Block(7,16));add(new Block(6,16));}}));
 
         // Testing of Bombs
         for(int i = 33; i < 40; i++)
@@ -69,6 +73,7 @@ public class Level {
             entrances.add(new Entrance(this, 0, -1, -1));
         }
     }
+
 
     public boolean lemmingPresent(Point cell) {
         Lemming currentLemming;
@@ -183,6 +188,10 @@ public class Level {
         return escapes;
     }
 
+    public ArrayList<Switch> getSwitches() {
+        return switches;
+    }
+
     public ArrayList<Teleporter> getTeleporters(){
         return teleporters;
     }
@@ -206,5 +215,4 @@ public class Level {
     public int getFlow(){
         return flow;
     }
-
 }
