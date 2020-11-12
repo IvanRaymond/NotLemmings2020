@@ -2,25 +2,25 @@ package l3.lemmings.model;
 
 import java.util.ArrayList;
 
-public class Bomb extends Trap {
+public class Switch {
     private int x, y;
+    ArrayList<Block> blocks;
 
-    public Bomb(int x, int y){
+    public Switch(int x, int y, ArrayList<Block> b){
         this.x = x;
         this.y = y;
+        blocks = b;
     }
 
-    @Override
-    public void activate(Level level) {
-    }
-
-    @Override
     public int getX() {
         return x;
     }
 
-    @Override
     public int getY() {
         return y;
+    }
+
+    public ArrayList<Block> getBlocks() {
+        return blocks;
     }
 }

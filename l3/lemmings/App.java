@@ -24,8 +24,6 @@ public class App {
 		int numCaseY = 24;
 		Game game = new Game();
 
-
-
 		Views view = new Views(game,WIDTH-200, HEIGHT-100, numCaseX, numCaseY);
 		JFrame frame = new JFrame("Lemmingway");
 		frame.add(view);
@@ -34,8 +32,6 @@ public class App {
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-
-		System.out.println(System.getProperty("user.dir"));
 
 		while (true) {
 			if (!game.pause()) {

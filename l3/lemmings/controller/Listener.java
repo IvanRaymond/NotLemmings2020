@@ -36,13 +36,8 @@ public class Listener extends MouseAdapter {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		super.mouseClicked(e);
-		
 		if(e.getButton()==MouseEvent.BUTTON1) {
-
-
-			
 			Point cell = uiController.pointToMatrix(e.getPoint());
-			
 			if(uiController.isButton(cell)) {
 				Button clicked = uiController.getButton(cell);
 				action = new Action(clicked, this, game);
@@ -55,12 +50,10 @@ public class Listener extends MouseAdapter {
 				}
 			}
 		}
-		
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		
 		super.mouseMoved(e);
 	}
 

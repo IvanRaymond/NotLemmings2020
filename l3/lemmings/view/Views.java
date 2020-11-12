@@ -33,6 +33,7 @@ public class Views extends JComponent{
 	private ArrayList<Entrance> entrances;
 	private ArrayList<Escape> escapes;
 	private ArrayList<Teleporter> teleporters;
+	private ArrayList<Switch> switches;
 
 	private int numberOfButtons = 12;
 	private int singleButtonSize = 2;
@@ -69,6 +70,7 @@ public class Views extends JComponent{
 	final BufferedImage spriteStair = ImageIO.read(new File("resource/images/spriteStair.jpg"));
 	final BufferedImage spriteLava = ImageIO.read(new File("resource/images/spriteLava.jpg"));
 	final BufferedImage spriteTrap = ImageIO.read(new File("resource/images/spriteTrap.jpg"));
+	final BufferedImage spriteSwitch = ImageIO.read(new File("resource/images/spriteSwitch.jpg"));
 
 
 	public Views(Game game, int w, int h, int x, int y) throws IOException {
@@ -81,6 +83,7 @@ public class Views extends JComponent{
 		this.teleporters = level.getTeleporters();
 		this.entrances = level.getEntrances();
 		this.escapes = level.getEscapes();
+		this.switches = level.getSwitches();
 		numCaseX = x;
 		numCaseY = y;
 		this.w = w;
@@ -115,9 +118,6 @@ public class Views extends JComponent{
 		for(Block b : blocks)
 			g.drawImage(spriteBlock, (int) b.getX() * blockWidth, (int) b.getY() * blockHeight, blockWidth,blockHeight,null);
 
-		for(Lemming l : lemmings)
-			g.drawImage(lemmingSprite(l), (int) l.getX() * blockWidth, (int) l.getY() * blockHeight, blockWidth,blockHeight,null);
-
 		for(Trap trap : traps)
 			g.drawImage(spriteTrap, (int) trap.getX() * blockWidth, (int) trap.getY() * blockHeight, blockWidth,blockHeight,null);
 
@@ -138,6 +138,12 @@ public class Views extends JComponent{
 		for(Escape escape : escapes)
 			g.drawImage(spriteExit, (int) escape.getX() * blockWidth, (int) escape.getY() * blockHeight, blockWidth,blockHeight,null);
 
+		for(Switch currentSwitch : switches)
+			g.drawImage(spriteSwitch, (int) currentSwitch.getX() * blockWidth, (int) currentSwitch.getY() * blockHeight, blockWidth,blockHeight,null);
+
+
+		for(Lemming l : lemmings)
+			g.drawImage(lemmingSprite(l), (int) l.getX() * blockWidth, (int) l.getY() * blockHeight, blockWidth,blockHeight,null);
 
 	}
 
@@ -175,25 +181,28 @@ public class Views extends JComponent{
 		if (l.getState()==LemmingState.NORMAL) {
 			return spriteNormal;
 		}
-		if (l.getState()==LemmingState.CLIMBER) {
+		else if (l.getState()==LemmingState.CLIMBER) {
 			return spriteClimber;
 		}
-		if (l.getState()==LemmingState.FLOATER) {
+		else if (l.getState()==LemmingState.FLOATER) {
 			return spriteFloater;
 		}
-		if (l.getState()==LemmingState.BOMB) {
+		else if (l.getState()==LemmingState.BOMB) {
 			return spriteBomb;
 		}
-		if (l.getState()==LemmingState.BLOCKER) {
+		else if (l.getState()==LemmingState.BLOCKER) {
 			return spriteBlocker;
 		}
-		if (l.getState()==LemmingState.BRIDGE_BUILDER) {
+		else if (l.getState()==LemmingState.BRIDGE_BUILDER) {
 			return spriteNormal;
 		}
-		if (l.getState()==LemmingState.BASHER) {
+		else if (l.getState()==LemmingState.DIGGER) {
+			return spriteDigger;
+		}
+		else if (l.getState()==LemmingState.BASHER) {
 			return spriteBasher;
 		}
-		if (l.getState()==LemmingState.MINER) {
+		else if (l.getState()==LemmingState.MINER) {
 			return spriteMiner;
 		}
 		return spriteNormal;

@@ -28,37 +28,37 @@ public class Action {
         switch (clicked) {
             case CLIMBER:
                 lemming.setState(LemmingState.CLIMBER);
-                return false;
+                return true;
 
             case FLOATER:
                 lemming.setState(LemmingState.FLOATER);
-                return false;
+                return true;
 
             case BOMB:
                 lemming.setState(LemmingState.BOMB);
-                return false;
+                return true;
 
             case BLOCKER:
                 lemming.setState(LemmingState.BLOCKER);
-                return false;
+                return true;
 
             case BRIDGE_BUILDER:
                 lemming.setState(LemmingState.BRIDGE_BUILDER);
-                return false;
+                return true;
 
             case BASHER:
                 lemming.setState(LemmingState.BASHER);
-                return false;
+                return true;
 
             case MINER:
                 lemming.setState(LemmingState.MINER);
-                return false;
+                return true;
 
             case DIGGER:
                 lemming.setState(LemmingState.DIGGER);
-                return false;
+                return true;
         }
-        return true;
+        return false;
     }
 
     private boolean gameAction(Button clicked){
