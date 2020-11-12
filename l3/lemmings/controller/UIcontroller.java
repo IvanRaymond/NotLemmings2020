@@ -38,7 +38,6 @@ public class UIcontroller {
 	private int matrixLengthX, matrixLengthY;
 	
 	public UIcontroller(Views view) {
-		System.out.println("w = "+view.getWidth() + " h = "+view.getHeight());
 		width = view.getWidth();
 		height = view.getHeight();
 		matrixLengthX = view.getNumCaseX();

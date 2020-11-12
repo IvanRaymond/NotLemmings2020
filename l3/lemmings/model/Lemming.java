@@ -15,15 +15,14 @@ public class Lemming {
 	}
 
 	private boolean alive = true;
-	private int fallCount =0;
-	private int deathByFallHeight = 5;
-	private LemmingState state = LemmingState.NORMAL;
+	private int fallCount = 0;
+	private int digCount = 0;
+	private LemmingState state;
 	private boolean busy = false;
 
 	private int directionAxisX;
 	private int directionAxisY;
 	private int oldDirectionAxisX=0;
-	private int oldDirectionAxisY;
 	private double x;
 	private double y;
 	
@@ -53,9 +52,22 @@ public class Lemming {
 	}
 
 	public void fellToDeath(){
-		if(fallCount==deathByFallHeight && state != LemmingState.FLOATER){
+		int deathByFallHeight = 5;
+		if(fallCount== deathByFallHeight && state != LemmingState.FLOATER){
 			kill();
 		}
+	}
+
+	public void incDigCount(){
+		digCount++;
+	}
+
+	public int getDigCount(){
+		return digCount;
+	}
+
+	public void resetDigCount(){
+		digCount=0;
 	}
 
 	public void toggleBusy(){
@@ -134,11 +146,4 @@ public class Lemming {
 		oldDirectionAxisX = directionAxisX;
 	}
 
-	public int getOldDirectionAxisY() {
-		return oldDirectionAxisY;
-	}
-
-	public void setOldDirectionAxisY(int oldDirectionAxisY) {
-		this.oldDirectionAxisY = oldDirectionAxisY;
-	}
 }

@@ -155,12 +155,11 @@ public class Game {
             }*/
             if(surrounding[0][0] && surrounding[0][1] && l.getDirectionAxisX() == -1 || surrounding[2][0] && surrounding[2][1] && l.getDirectionAxisX() == 1)
             {
-
-                    //surrounded
-                    if(surrounding[0][0] && surrounding[0][1] && surrounding[2][0] && surrounding[2][1])
-                        l.setDirectionAxisX(0);
-                    else
-                        l.changeDirectionX();
+                //surrounded
+                if(surrounding[0][0] && surrounding[0][1] && surrounding[2][0] && surrounding[2][1])
+                    l.setDirectionAxisX(0);
+                else
+                    l.changeDirectionX();
             }
             // Pas de sol en dessous
             if(!surrounding[1][2])
@@ -239,7 +238,6 @@ public class Game {
                     for(Trap usedTrap : usedTraps){
                         traps.remove(usedTrap);
                     }
-
                     for(Block b : blocks) {
                         if(b.getX() == l.getX() && b.getY() == l.getY()+1) {
                             belowBlock = b;
@@ -247,7 +245,12 @@ public class Game {
                     }
                     if(belowBlock != null) {
                         blocks.remove(belowBlock);
+                        l.incDigCount();
                         l.setX(l.getX()-l.getDirectionAxisX());
+                        if(l.getDigCount()==5){
+                            l.resetDigCount();
+                            l.setState(Lemming.LemmingState.NORMAL);
+                        }
                     }
                 }
             }

@@ -28,11 +28,4 @@ public class Block {
 		this.y = y;
 	}
 
-	public void destroy(){
-		destroyed = true;
-	}
-
-	public boolean destroyed() {
-		return destroyed;
-	}
 }

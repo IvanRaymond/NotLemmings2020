@@ -118,11 +118,6 @@ public class Level {
                 staircase.build();
             }
         }
-        for (int i=0; i<blocks.size(); i++) {
-            if(blocks.get(i).destroyed()) {
-                blocks.remove(i);
-            }
-        }
         for (int i=0; i<lemmings.size(); i++) {
             if(!lemmings.get(i).alive()) {
                 lemmings.remove(i);

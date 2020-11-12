@@ -12,14 +12,6 @@ public class Bomb extends Trap {
 
     @Override
     public void activate(Level level) {
-        ArrayList<Block> blocks = new ArrayList<>(level.getBlocks());
-        ArrayList<Lemming> lemmings = new ArrayList<>(level.getLemmings());
-
-        //ToDo needs testing
-        blocks.removeIf(block -> block.getX() <= x + 5 && block.getX() >= x - 5 && block.getY() >= x - 5 && block.getY() <= x + 5);
-        lemmings.removeIf(lemming -> lemming.getX() >= x - 5 && lemming.getX() <= x + 5 && lemming.getY() >= x - 5 && lemming.getY() <= x + 5);
-        level.setLemmings(lemmings);
-        level.setBlocks(blocks);
     }
 
     @Override
