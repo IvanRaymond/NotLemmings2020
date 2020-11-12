@@ -136,7 +136,7 @@ public class Game {
             }
 
             // Mur à gauche ou a droite de 2 blocks ou plus
-            if(surrounding[0][0] && surrounding[0][1] && l.getDirectionAxisX() == -1 || surrounding[2][0] && surrounding[2][1] && l.getDirectionAxisX() == 1)
+            /*if(surrounding[0][0] && surrounding[0][1] && l.getDirectionAxisX() == -1 || surrounding[2][0] && surrounding[2][1] && l.getDirectionAxisX() == 1)
             {
                 // ToDo: Add exceptions in other cases to cater for climber
                 if(l.isState(Lemming.LemmingState.CLIMBER)){
@@ -150,6 +150,15 @@ public class Game {
                     else
                         l.changeDirectionX();
                 }
+            }*/
+            if(surrounding[0][0] && surrounding[0][1] && l.getDirectionAxisX() == -1 || surrounding[2][0] && surrounding[2][1] && l.getDirectionAxisX() == 1)
+            {
+
+                    //surrounded
+                    if(surrounding[0][0] && surrounding[0][1] && surrounding[2][0] && surrounding[2][1])
+                        l.setDirectionAxisX(0);
+                    else
+                        l.changeDirectionX();
             }
             // Pas de sol en dessous
             if(!surrounding[1][2])
@@ -270,6 +279,29 @@ public class Game {
                     Staircase staircase = level.buildStaircase(l);
                     staircase.build();
                     l.toggleBusy();
+                }
+            }
+
+            if(l.isState(Lemming.LemmingState.CLIMBER)){
+                if(surrounding[0][1] && l.getDirectionAxisX() == -1 || surrounding[2][1] /*&& l.getDirectionAxisX() == 1*/)
+                {
+                    l.saveDirectionX();
+                    l.setDirectionAxisX(0);
+                    l.setDirectionAxisY(-1);
+                }
+                else if(!surrounding[2][1] && l.getDirectionAxisY() == 1)
+                {
+                    l.setX(l.getX() + 1);
+                    l.setY(l.getY() - 1);
+                    l.setState(Lemming.LemmingState.NORMAL);
+                    l.restoreDirectionAxisX();
+                }
+                else if(!surrounding[0][1] && l.getDirectionAxisY() == 1)
+                {
+                    l.setX(l.getX() - 1);
+                    l.setY(l.getY() - 1);
+                    l.setState(Lemming.LemmingState.NORMAL);
+                    l.restoreDirectionAxisX();
                 }
             }
 
