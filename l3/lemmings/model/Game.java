@@ -197,9 +197,20 @@ public class Game {
                 }
             }
 
+            // Bloqueur
+            if(l.isState(Lemming.LemmingState.BLOCKER)){
+                l.setDirectionAxisX(0);
+            }
+            for (Lemming lem: lemmings){
+                if(lem.isState(Lemming.LemmingState.BLOCKER) && ((l.getDirectionAxisX()==1 && lem.getX() == l.getX()+1) || (l.getDirectionAxisX()==-1 && lem.getX() == l.getX()-1)) && lem.getY() == l.getY()){
+                    l.changeDirectionX();
+                }
+            }
+
+
             // Digger
             if(l.isState(Lemming.LemmingState.DIGGER)){
-                if(surrounding[1][2]) // [1][2] bugs
+                if(surrounding[1][2])
                 {
                     Block belowBlock = null;
                     for(Trap trap: traps){
@@ -212,26 +223,20 @@ public class Game {
                             belowBlock = b;
                         }
                     }
-                    if(belowBlock != null)
+                    if(belowBlock != null) {
                         blocks.remove(belowBlock);
-                    else
+                        l.setX(l.getX()-l.getDirectionAxisX());
+                    }
+                    else {
                         l.setState(Lemming.LemmingState.NORMAL);
+                    }
                 }
             }
 
-            // Bloqueur
-            if(l.isState(Lemming.LemmingState.BLOCKER)){
-                l.setDirectionAxisX(0);
-            }
-            for (Lemming lem: lemmings){
-                if(lem.isState(Lemming.LemmingState.BLOCKER) && ((l.getDirectionAxisX()==1 && lem.getX() == l.getX()+1) || (l.getDirectionAxisX()==-1 && lem.getX() == l.getX()-1)) && lem.getY() == l.getY()){
-                    l.changeDirectionX();
-                }
-            }
 
             // Tunnelier
             if(l.isState(Lemming.LemmingState.BASHER)){
-                if(surrounding[2][1]) // [1][2] bugs
+                if(surrounding[2][1] || surrounding[0][1]) // [1][2] bugs
                 {
                     Block belowBlock = null;
                     for(Trap trap: traps){
@@ -240,12 +245,16 @@ public class Game {
                         }
                     }
                     for(Block b : blocks) {
-                        if(b.getX() == l.getX()+ l.getDirectionAxisX() && b.getY() == l.getY()) {
+                        // Bug: le fait de devoir avoir deux fois la condition avec un + et un -
+                        if(b.getX() == l.getX() + l.getDirectionAxisX() && b.getY() == l.getY() || b.getX() == l.getX() - l.getDirectionAxisX() && b.getY() == l.getY()) {
                             belowBlock = b;
                         }
                     }
                     if(belowBlock != null)
+                    {
+                        l.changeDirectionX();
                         blocks.remove(belowBlock);
+                    }
                 }
             }
 

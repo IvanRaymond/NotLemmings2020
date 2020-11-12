@@ -174,7 +174,7 @@ public class Views extends JComponent{
 			return spriteNormal;
 		}
 		if (l.getState()==LemmingState.BASHER) {
-			return spriteNormal;
+			return spriteBasher;
 		}
 		if (l.getState()==LemmingState.MINER) {
 			return spriteMiner;
