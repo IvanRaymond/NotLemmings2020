@@ -56,7 +56,7 @@ public class Level {
         lava.add(new Lava(25,16));
         teleporters.add(new Teleporter(36,8,10,11));
         teleporters.add(new Teleporter(10,10,38,8));
-        //traps.add(new Bomb(20,15));
+        traps.add(new Bomb(20,15));
 
         switches.add(new Switch(36,7, new ArrayList<Block>(){{add(new Block(9,16));add(new Block(8,16));add(new Block(7,16));add(new Block(6,16));}}));
 

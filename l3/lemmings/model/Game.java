@@ -236,6 +236,7 @@ public class Game {
                     for(Switch currentSwitch :  switches) {
                         if(currentSwitch.getX() == l.getX() && currentSwitch.getY() == l.getY()+1) {                            usedSwitch.add(currentSwitch);
                             blocks.addAll(currentSwitch.getBlocks());
+                            l.incDigCount();
                         }
                     }
                     for(Switch currentSwitch : usedSwitch)
@@ -274,6 +275,7 @@ public class Game {
                         if(l.getDigCount()==5){
                             l.resetDigCount();
                             l.setState(Lemming.LemmingState.NORMAL);
+                            l.saveDirectionX(1);
                         }
                     }
                 }
