@@ -4,7 +4,7 @@ import l3.lemmings.model.Game;
 import l3.lemmings.model.Lemming;
 
 /**
- * A prototype for a solution to merge game physics and lemmings type
+ * Todo Delete as this is implemented in games directly
  */
 public class Behaviour {
 

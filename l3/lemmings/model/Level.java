@@ -18,11 +18,16 @@ public class Level {
     private ArrayList<Block> blocks = new ArrayList<>();
     private ArrayList<Entrance> entrances = new ArrayList<>();
     private ArrayList<Escape> escapes = new ArrayList<>();
+    private ArrayList<Teleporter> teleporters = new ArrayList<>();
+    private ArrayList<Lava> lava = new ArrayList<>();
+    private ArrayList<Staircase> staircases = new ArrayList<>();
+    private ArrayList<Trap> traps = new ArrayList<Trap>();
     private int safe = 0;
     private int objective = 0;  // Number of lemmings to save for win
     private int flow = 2;
 
     public Level(){
+        objective = 2;
         for(int i = 10; i<25;i++)
         {
             blocks.add(new Block(i,16));
@@ -34,10 +39,19 @@ public class Level {
         blocks.add(new Block(19,13));
         blocks.add(new Block(24,14));
         blocks.add(new Block(24,15));
-        entrances.add(new Entrance(this, 4, 10, 15));
+//        blocks.add(new Block(24,13));
+//        blocks.add(new Block(24,12));
+//        blocks.add(new Block(24,11));
+        entrances.add(new Entrance(this, 2, 10, 15));
+//        entrances.add(new Entrance(this, 2, 10, 15));
+//        entrances.add(new Entrance(this, 2, 18, 15));
+//        escapes.add(new Escape(15,15));
+//        escapes.add(new Escape(20,15));
+//        teleporters.add(new Teleporter(15, 15, 21,15));
+//        lava.add(new Lava(22,15));
+        traps.add(new Bomb(20,15));
 
-
-        // Testing off Bombs
+        // Testing of Bombs
         for(int i = 33; i < 40; i++)
             for(int j = 0; j < 7;j++)
                 if(!(i == 36 && j == 3))
@@ -45,14 +59,10 @@ public class Level {
         entrances.add(new Entrance(this, 1, 36, 2));
         //
 
-
         // Don't remove, entrance bug fix
         if(entrances.size()%2==0){
             entrances.add(new Entrance(this, 0, -1, -1));
         }
-//        escapes.add(new Escape(15,15));
-//        escapes.add(new Escape(20,15));
-        objective = 10;
     }
 
     public boolean lemmingPresent(Point cell) {
@@ -86,10 +96,22 @@ public class Level {
      */
     public void update(){
         if (won()) {
-            // Do something
+            // Attendre que tous les lemmings soit mort et ensuite afficher un message
+            System.out.println("You won");
         }
         for(Escape escape: escapes){
             escape.reach(this);
+        }
+        for(Teleporter teleporter: teleporters){
+            teleporter.reach(this);
+        }
+        for(Lava lava: lava){
+            lava.reach(this);
+        }
+        for(Staircase staircase: staircases){
+            if(!staircase.completed()) {
+                staircase.build();
+            }
         }
         for (int i=0; i<blocks.size(); i++) {
             if(blocks.get(i).destroyed()) {
@@ -107,8 +129,18 @@ public class Level {
         safe++;
     }
 
+    public Staircase buildStaircase(Lemming lemming){
+        Staircase staircase = new Staircase(lemming);
+        staircases.add(staircase);
+        return staircase;
+    }
+
     public boolean won(){
         return objective==safe;
+    }
+
+    public void setBlocks(ArrayList<Block> blocks){
+        this.blocks = blocks;
     }
 
     public ArrayList<Lemming> getLemmings() {
@@ -125,6 +157,18 @@ public class Level {
 
     public ArrayList<Block> getBlocks() {
         return blocks;
+    }
+
+    public ArrayList<Trap> getTraps(){
+        return traps;
+    }
+
+    public ArrayList<Staircase> getStaircases(){
+        return staircases;
+    }
+
+    public ArrayList<Lava> getLava(){
+        return lava;
     }
 
     public Entrance getEntrance(int index){
@@ -145,6 +189,10 @@ public class Level {
         if (flow < 5){
             flow++;
         }
+    }
+
+    public void printFlow(){
+        System.out.println(""+flow);
     }
 
     public int getFlow(){

@@ -6,10 +6,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
 import l3.lemmings.controller.Listener;
-import l3.lemmings.model.Block;
-import l3.lemmings.model.Game;
-import l3.lemmings.model.Lemming;
-import l3.lemmings.model.Level;
+import l3.lemmings.model.*;
 import l3.lemmings.model.Lemming.LemmingState;
 
 import java.awt.image.BufferedImage;
@@ -30,6 +27,9 @@ public class Views extends JComponent{
 
 	private ArrayList<Lemming> lemmings;
 	private ArrayList<Block> blocks;
+	private ArrayList<Trap> traps;
+	private ArrayList<Staircase> staircases;
+	private ArrayList<Lava> lava;
 
 	private int numberOfButtons = 12;
 	private int singleButtonSize = 2;
@@ -65,6 +65,9 @@ public class Views extends JComponent{
 		level = game.getLevel();
 		this.lemmings = level.getLemmings();
 		this.blocks = level.getBlocks();
+		this.traps = level.getTraps();
+		this.staircases = level.getStaircases();
+		this.lava = level.getLava();
 		numCaseX = x;
 		numCaseY = y;
 		this.w = w;
@@ -95,7 +98,7 @@ public class Views extends JComponent{
 
 		drawButtons(g);
 		
-		g.setColor(Color.BLACK);
+		g.setColor(new Color(112, 72, 60));
 		for(Block b : blocks)
 			g.fillRect(b.getX() * blockWidth,b.getY() * blockHeight, blockWidth, blockHeight);
 
@@ -105,6 +108,20 @@ public class Views extends JComponent{
 			//g.fillRect(l.getX() * blockWidth, l.getY() * blockHeight, blockWidth, blockHeight);
 			g.drawImage(lemmingSprite(l), (int) l.getX() * blockWidth, (int) l.getY() * blockHeight, blockWidth,blockHeight,null);
 		}
+		g.setColor(Color.ORANGE);
+		for(Trap trap : traps){
+			g.fillRect(trap.getX() * blockWidth,trap.getY() * blockHeight, blockWidth, blockHeight);
+		}
+		g.setColor(Color.RED);
+		for(Lava lava : lava){
+			g.fillRect(lava.getX() * blockWidth,lava.getY() * blockHeight, blockWidth, blockHeight);
+		}
+		g.setColor(new Color(161, 157,148));
+		for(Staircase staircase : staircases){
+			for(Staircase.Step step : staircase.getSteps())
+			g.fillRect(step.getX() * blockWidth,step.getY() * blockHeight, blockWidth, blockHeight);
+		}
+
 	}
 
 	private void drawMatrix(Graphics g, int posX, int posY) {
