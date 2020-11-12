@@ -38,4 +38,11 @@ public class Entrance {
         return done;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 }

@@ -30,6 +30,9 @@ public class Views extends JComponent{
 	private ArrayList<Trap> traps;
 	private ArrayList<Staircase> staircases;
 	private ArrayList<Lava> lava;
+	private ArrayList<Entrance> entrances;
+	private ArrayList<Escape> escapes;
+	private ArrayList<Teleporter> teleporters;
 
 	private int numberOfButtons = 12;
 	private int singleButtonSize = 2;
@@ -59,6 +62,13 @@ public class Views extends JComponent{
 	final BufferedImage spriteBasher = ImageIO.read(new File("resource/images/spriteBasher.jpg"));
 	final BufferedImage spriteMiner = ImageIO.read(new File("resource/images/spriteMiner.jpg"));
 	final BufferedImage spriteDigger = ImageIO.read(new File("resource/images/spriteDigger.jpg"));
+	final BufferedImage spriteBlock = ImageIO.read(new File("resource/images/spriteBlock.jpg"));
+	final BufferedImage spriteEntrance = ImageIO.read(new File("resource/images/spriteEntrance.jpg"));
+	final BufferedImage spriteExit = ImageIO.read(new File("resource/images/spriteExit.jpg"));
+	final BufferedImage spritePortal = ImageIO.read(new File("resource/images/spritePortal.jpg"));
+	final BufferedImage spriteStair = ImageIO.read(new File("resource/images/spriteStair.jpg"));
+	final BufferedImage spriteLava = ImageIO.read(new File("resource/images/spriteLava.jpg"));
+	final BufferedImage spriteTrap = ImageIO.read(new File("resource/images/spriteTrap.jpg"));
 
 
 	public Views(Game game, int w, int h, int x, int y) throws IOException {
@@ -68,6 +78,9 @@ public class Views extends JComponent{
 		this.traps = level.getTraps();
 		this.staircases = level.getStaircases();
 		this.lava = level.getLava();
+		this.teleporters = level.getTeleporters();
+		this.entrances = level.getEntrances();
+		this.escapes = level.getEscapes();
 		numCaseX = x;
 		numCaseY = y;
 		this.w = w;
@@ -100,27 +113,31 @@ public class Views extends JComponent{
 		
 		g.setColor(new Color(112, 72, 60));
 		for(Block b : blocks)
-			g.fillRect(b.getX() * blockWidth,b.getY() * blockHeight, blockWidth, blockHeight);
+			g.drawImage(spriteBlock, (int) b.getX() * blockWidth, (int) b.getY() * blockHeight, blockWidth,blockHeight,null);
 
-		for(Lemming l : lemmings) {
-
-			//g.setColor(lemmingSprite(l));
-			//g.fillRect(l.getX() * blockWidth, l.getY() * blockHeight, blockWidth, blockHeight);
+		for(Lemming l : lemmings)
 			g.drawImage(lemmingSprite(l), (int) l.getX() * blockWidth, (int) l.getY() * blockHeight, blockWidth,blockHeight,null);
-		}
-		g.setColor(Color.ORANGE);
-		for(Trap trap : traps){
-			g.fillRect(trap.getX() * blockWidth,trap.getY() * blockHeight, blockWidth, blockHeight);
-		}
-		g.setColor(Color.RED);
-		for(Lava lava : lava){
-			g.fillRect(lava.getX() * blockWidth,lava.getY() * blockHeight, blockWidth, blockHeight);
-		}
-		g.setColor(new Color(161, 157,148));
+
+		for(Trap trap : traps)
+			g.drawImage(spriteTrap, (int) trap.getX() * blockWidth, (int) trap.getY() * blockHeight, blockWidth,blockHeight,null);
+
+		for(Lava lava : lava)
+			g.drawImage(spriteLava, (int) lava.getX() * blockWidth, (int) lava.getY() * blockHeight, blockWidth,blockHeight,null);
+
+		for(Teleporter teleporter : teleporters)
+			g.drawImage(spritePortal, (int) teleporter.getPosition1().x * blockWidth, (int) teleporter.getPosition1().y * blockHeight, blockWidth,blockHeight,null);
+
 		for(Staircase staircase : staircases){
 			for(Staircase.Step step : staircase.getSteps())
-			g.fillRect(step.getX() * blockWidth,step.getY() * blockHeight, blockWidth, blockHeight);
+				g.drawImage(spriteStair, (int) step.getX() * blockWidth, (int) step.getY() * blockHeight, blockWidth,blockHeight,null);
 		}
+
+		for(Entrance entrance : entrances)
+			g.drawImage(spriteEntrance, (int) entrance.getX() * blockWidth, (int) entrance.getY() * blockHeight, blockWidth,blockHeight,null);
+
+		for(Escape escape : escapes)
+			g.drawImage(spriteExit, (int) escape.getX() * blockWidth, (int) escape.getY() * blockHeight, blockWidth,blockHeight,null);
+
 
 	}
 
@@ -174,7 +191,7 @@ public class Views extends JComponent{
 			return spriteNormal;
 		}
 		if (l.getState()==LemmingState.BASHER) {
-			return spriteNormal;
+			return spriteBasher;
 		}
 		if (l.getState()==LemmingState.MINER) {
 			return spriteMiner;

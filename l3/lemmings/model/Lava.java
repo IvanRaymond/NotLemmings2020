@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 // ToDo Create an abstract class or interface Trap as they will all
 //  behave the same but just look different
-public class Lava {
+public class  Lava {
 
     private int x, y;
 

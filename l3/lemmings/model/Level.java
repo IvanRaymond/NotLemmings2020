@@ -42,13 +42,17 @@ public class Level {
 //        blocks.add(new Block(24,13));
 //        blocks.add(new Block(24,12));
 //        blocks.add(new Block(24,11));
-        entrances.add(new Entrance(this, 2, 10, 15));
+        entrances.add(new Entrance(this, 2, 11, 15));
+        escapes.add(new Escape(25 ,13));
 //        entrances.add(new Entrance(this, 2, 10, 15));
 //        entrances.add(new Entrance(this, 2, 18, 15));
 //        escapes.add(new Escape(15,15));
 //        escapes.add(new Escape(20,15));
 //        teleporters.add(new Teleporter(15, 15, 21,15));
 //        lava.add(new Lava(22,15));
+        lava.add(new Lava(25,16));
+        teleporters.add(new Teleporter(36,8,10,11));
+        teleporters.add(new Teleporter(10,10,38,8));
         traps.add(new Bomb(20,15));
 
         // Testing of Bombs
@@ -177,6 +181,14 @@ public class Level {
 
     public ArrayList<Entrance> getEntrances(){
         return entrances;
+    }
+
+    public ArrayList<Escape> getEscapes(){
+        return escapes;
+    }
+
+    public ArrayList<Teleporter> getTeleporters(){
+        return teleporters;
     }
 
     public void increaseFlow(){

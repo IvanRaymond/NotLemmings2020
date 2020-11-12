@@ -136,7 +136,7 @@ public class Game {
             }
 
             // Mur à gauche ou a droite de 2 blocks ou plus
-            if(surrounding[0][0] && surrounding[0][1] && l.getDirectionAxisX() == -1 || surrounding[2][0] && surrounding[2][1] && l.getDirectionAxisX() == 1)
+            /*if(surrounding[0][0] && surrounding[0][1] && l.getDirectionAxisX() == -1 || surrounding[2][0] && surrounding[2][1] && l.getDirectionAxisX() == 1)
             {
                 // ToDo: Add exceptions in other cases to cater for climber
                 if(l.isState(Lemming.LemmingState.CLIMBER)){
@@ -150,6 +150,15 @@ public class Game {
                     else
                         l.changeDirectionX();
                 }
+            }*/
+            if(surrounding[0][0] && surrounding[0][1] && l.getDirectionAxisX() == -1 || surrounding[2][0] && surrounding[2][1] && l.getDirectionAxisX() == 1)
+            {
+
+                    //surrounded
+                    if(surrounding[0][0] && surrounding[0][1] && surrounding[2][0] && surrounding[2][1])
+                        l.setDirectionAxisX(0);
+                    else
+                        l.changeDirectionX();
             }
             // Pas de sol en dessous
             if(!surrounding[1][2])
@@ -188,9 +197,20 @@ public class Game {
                 }
             }
 
+            // Bloqueur
+            if(l.isState(Lemming.LemmingState.BLOCKER)){
+                l.setDirectionAxisX(0);
+            }
+            for (Lemming lem: lemmings){
+                if(lem.isState(Lemming.LemmingState.BLOCKER) && ((l.getDirectionAxisX()==1 && lem.getX() == l.getX()+1) || (l.getDirectionAxisX()==-1 && lem.getX() == l.getX()-1)) && lem.getY() == l.getY()){
+                    l.changeDirectionX();
+                }
+            }
+
+
             // Digger
             if(l.isState(Lemming.LemmingState.DIGGER)){
-                if(surrounding[1][2]) // [1][2] bugs
+                if(surrounding[1][2])
                 {
                     Block belowBlock = null;
                     for(Trap trap: traps){
@@ -203,26 +223,17 @@ public class Game {
                             belowBlock = b;
                         }
                     }
-                    if(belowBlock != null)
+                    if(belowBlock != null) {
                         blocks.remove(belowBlock);
-                    else
-                        l.setState(Lemming.LemmingState.NORMAL);
+                        l.setX(l.getX()-l.getDirectionAxisX());
+                    }
                 }
             }
 
-            // Bloqueur
-            if(l.isState(Lemming.LemmingState.BLOCKER)){
-                l.setDirectionAxisX(0);
-            }
-            for (Lemming lem: lemmings){
-                if(lem.isState(Lemming.LemmingState.BLOCKER) && ((l.getDirectionAxisX()==1 && lem.getX() == l.getX()+1) || (l.getDirectionAxisX()==-1 && lem.getX() == l.getX()-1)) && lem.getY() == l.getY()){
-                    l.changeDirectionX();
-                }
-            }
 
             // Tunnelier
             if(l.isState(Lemming.LemmingState.BASHER)){
-                if(surrounding[2][1]) // [1][2] bugs
+                if(surrounding[2][1] || surrounding[0][1]) // [1][2] bugs
                 {
                     Block belowBlock = null;
                     for(Trap trap: traps){
@@ -231,12 +242,16 @@ public class Game {
                         }
                     }
                     for(Block b : blocks) {
-                        if(b.getX() == l.getX()+ l.getDirectionAxisX() && b.getY() == l.getY()) {
+                        // Bug: le fait de devoir avoir deux fois la condition avec un + et un -
+                        if(b.getX() == l.getX() + l.getDirectionAxisX() && b.getY() == l.getY() || b.getX() == l.getX() - l.getDirectionAxisX() && b.getY() == l.getY()) {
                             belowBlock = b;
                         }
                     }
                     if(belowBlock != null)
+                    {
+                        l.changeDirectionX();
                         blocks.remove(belowBlock);
+                    }
                 }
             }
 
@@ -270,6 +285,29 @@ public class Game {
                     Staircase staircase = level.buildStaircase(l);
                     staircase.build();
                     l.toggleBusy();
+                }
+            }
+
+            if(l.isState(Lemming.LemmingState.CLIMBER)){
+                if(surrounding[0][1] && l.getDirectionAxisX() == -1 || surrounding[2][1] /*&& l.getDirectionAxisX() == 1*/)
+                {
+                    l.saveDirectionX();
+                    l.setDirectionAxisX(0);
+                    l.setDirectionAxisY(-1);
+                }
+                else if(!surrounding[2][1] && l.getDirectionAxisY() == 1)
+                {
+                    l.setX(l.getX() + 1);
+                    l.setY(l.getY() - 1);
+                    l.setState(Lemming.LemmingState.NORMAL);
+                    l.restoreDirectionAxisX();
+                }
+                else if(!surrounding[0][1] && l.getDirectionAxisY() == 1)
+                {
+                    l.setX(l.getX() - 1);
+                    l.setY(l.getY() - 1);
+                    l.setState(Lemming.LemmingState.NORMAL);
+                    l.restoreDirectionAxisX();
                 }
             }
 
