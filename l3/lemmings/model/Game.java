@@ -227,9 +227,6 @@ public class Game {
                         blocks.remove(belowBlock);
                         l.setX(l.getX()-l.getDirectionAxisX());
                     }
-                    else {
-                        l.setState(Lemming.LemmingState.NORMAL);
-                    }
                 }
             }
 
