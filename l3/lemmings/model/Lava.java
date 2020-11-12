@@ -16,7 +16,7 @@ public class  Lava {
     public void reach(Level level){
         ArrayList<Lemming> lemmings = level.getLemmings();
         for (Lemming lemming : lemmings){
-            if (lemming.getX() == x && lemming.getY() == y){
+            if (lemming.getX() == x && lemming.getY() == y-1){
                 lemming.kill();
             }
         }

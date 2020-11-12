@@ -30,7 +30,8 @@ public class Level {
         objective = 2;
         for(int i = 10; i<25;i++)
         {
-            blocks.add(new Block(i,16));
+//            blocks.add(new Block(i,16));
+            traps.add(new Bomb(i,16));
         }
         blocks.add(new Block(10,14));
         blocks.add(new Block(10,15));
