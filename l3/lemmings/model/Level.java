@@ -66,8 +66,23 @@ public class Level {
         blocks.add(new Block(10,15));
         entrances.add(new Entrance(this, 4, 11, 15));
         escapes.add(new Escape(25 ,13));
+
         teleporters.add(new Teleporter(3,15,22,13));
         teleporters.add(new Teleporter(22,12,3,14));
+
+
+//        entrances.add(new Entrance(this, 2, 10, 15));
+//        entrances.add(new Entrance(this, 2, 18, 15));
+//        escapes.add(new Escape(15,15));
+//        escapes.add(new Escape(20,15));
+//        teleporters.add(new Teleporter(15, 15, 21,15));
+//        lava.add(new Lava(22,15));
+//         lava.add(new Lava(25,16));
+//         teleporters.add(new Teleporter(36,8,10,11));
+//         teleporters.add(new Teleporter(10,10,38,8));
+//         traps.add(new Bomb(20,15));
+
+//         switches.add(new Switch(36,7, new ArrayList<Block>(){{add(new Block(9,16));add(new Block(8,16));add(new Block(7,16));add(new Block(6,16));}}));
 
 
         // Testing of Bombs
