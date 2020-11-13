@@ -288,9 +288,9 @@ public class Game {
                 ArrayList<Block> surroundingBlocks = new ArrayList<>();
                 ArrayList<Trap> usedTraps = new ArrayList<>();
                 ArrayList<Switch> usedSwitch = new ArrayList<>();
+                Block adjacentBlock = null;
                 if(surrounding[2][1] || surrounding[0][1]) // [1][2] bugs
                 {
-                    Block adjacentBlock = null;
 
                     for(Switch currentSwitch :  switches) {
                         if(currentSwitch.getX() == l.getX() + l.getDirectionAxisX() && currentSwitch.getY() == l.getY() || currentSwitch.getX() == l.getX() - l.getDirectionAxisX() && currentSwitch.getY() == l.getY()) {
@@ -326,15 +326,18 @@ public class Game {
                         // Bug: le fait de devoir avoir deux fois la condition avec un + et un -
                         if(b.getX() == l.getX() + l.getDirectionAxisX() && b.getY() == l.getY() || b.getX() == l.getX() - l.getDirectionAxisX() && b.getY() == l.getY()) {
                             adjacentBlock = b;
+                            l.setBusy(true);
                         }
                     }
-                    if(adjacentBlock != null)
-                    {
-                        l.changeDirectionX();
-                        blocks.remove(adjacentBlock);
-                    }else
-                        l.setState(Lemming.LemmingState.NORMAL);
                 }
+                System.out.println(adjacentBlock);
+                if(adjacentBlock != null)
+                {
+                    l.changeDirectionX();
+                    blocks.remove(adjacentBlock);
+                }else
+                    if(l.getIfBusy() == true)
+                       l.setState(Lemming.LemmingState.NORMAL);
             }
 
             // Bomb

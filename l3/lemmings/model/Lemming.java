@@ -150,4 +150,7 @@ public class Lemming {
 		oldDirectionAxisX = n;
 	}
 
+	public void setBusy(boolean busy) {
+		this.busy = busy;
+	}
 }
