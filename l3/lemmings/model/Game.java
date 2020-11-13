@@ -234,7 +234,8 @@ public class Game {
                     Block belowBlock = null;
 
                     for(Switch currentSwitch :  switches) {
-                        if(currentSwitch.getX() == l.getX() && currentSwitch.getY() == l.getY()+1) {                            usedSwitch.add(currentSwitch);
+                        if(currentSwitch.getX() == l.getX() && currentSwitch.getY() == l.getY()+1) {
+                            usedSwitch.add(currentSwitch);
                             blocks.addAll(currentSwitch.getBlocks());
                         }
                     }
@@ -287,7 +288,7 @@ public class Game {
                 ArrayList<Switch> usedSwitch = new ArrayList<>();
                 if(surrounding[2][1] || surrounding[0][1]) // [1][2] bugs
                 {
-                    Block belowBlock = null;
+                    Block adjacentBlock = null;
 
                     for(Switch currentSwitch :  switches) {
                         if(currentSwitch.getX() == l.getX() + l.getDirectionAxisX() && currentSwitch.getY() == l.getY() || currentSwitch.getX() == l.getX() - l.getDirectionAxisX() && currentSwitch.getY() == l.getY()) {
@@ -322,14 +323,15 @@ public class Game {
                     for(Block b : blocks) {
                         // Bug: le fait de devoir avoir deux fois la condition avec un + et un -
                         if(b.getX() == l.getX() + l.getDirectionAxisX() && b.getY() == l.getY() || b.getX() == l.getX() - l.getDirectionAxisX() && b.getY() == l.getY()) {
-                            belowBlock = b;
+                            adjacentBlock = b;
                         }
                     }
-                    if(belowBlock != null)
+                    if(adjacentBlock != null)
                     {
                         l.changeDirectionX();
-                        blocks.remove(belowBlock);
-                    }
+                        blocks.remove(adjacentBlock);
+                    }else
+                        l.setState(Lemming.LemmingState.NORMAL);
                 }
             }
 
