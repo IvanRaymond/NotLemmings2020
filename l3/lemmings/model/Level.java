@@ -106,7 +106,7 @@ public class Level {
         for(int i=  2; i <= 14; i++){
             blocks.add(new Block(i,18));
         }
-        entrances.add(new Entrance(this, 10, 2,17));
+        entrances.add(new Entrance(this, 30, 2,17));
         escapes.add(new Escape(14,17));
 
         for(int i = 0; i <= 7; i++){
