@@ -236,6 +236,7 @@ public class Game {
                     for(Switch currentSwitch :  switches) {
                         if(currentSwitch.getX() == l.getX() && currentSwitch.getY() == l.getY()+1) {                            usedSwitch.add(currentSwitch);
                             blocks.addAll(currentSwitch.getBlocks());
+                            l.incDigCount();
                         }
                     }
                     for(Switch currentSwitch : usedSwitch)
@@ -256,8 +257,8 @@ public class Game {
                             for(Block b : surroundingBlocks) {
                                 blocks.remove(b);
                             }
+                            usedTraps.add(trap);
                         }
-                        usedTraps.add(trap);
                     }
                     for(Trap usedTrap : usedTraps){
                         traps.remove(usedTrap);
@@ -274,6 +275,7 @@ public class Game {
                         if(l.getDigCount()==5){
                             l.resetDigCount();
                             l.setState(Lemming.LemmingState.NORMAL);
+                            l.saveDirectionX(1);
                         }
                     }
                 }
@@ -313,8 +315,8 @@ public class Game {
                             for(Block b : surroundingBlocks) {
                                 blocks.remove(b);
                             }
+                            usedTraps.add(trap);
                         }
-                        usedTraps.add(trap);
                     }
                     for(Trap usedTrap : usedTraps){
                         traps.remove(usedTrap);
@@ -351,6 +353,7 @@ public class Game {
                     for(Block b : blocks){
                         if(b.getX() == trap.getX() - 1 && b.getY() == trap.getY() || b.getX() == trap.getX() + 1 && b.getY() == trap.getY() || b.getX() == trap.getX() && b.getY() == trap.getY() - 1  || b.getX() == trap.getX() && b.getY() == trap.getY() + 1 || b.getX() == trap.getX() - 2 && b.getY() == trap.getY() || b.getX() == trap.getX() + 2 && b.getY() == trap.getY() || b.getX() == trap.getX() && b.getY() == trap.getY() - 2  || b.getX() == trap.getX() && b.getY() == trap.getY() + 2 || b.getX() == trap.getX() - 1 && b.getY() == trap.getY() -1 || b.getX() == trap.getX() + 1 && b.getY() == trap.getY() +1 || b.getX() == trap.getX() + 1 && b.getY() == trap.getY() - 1 || b.getX() == trap.getX() - 2 && b.getY() == trap.getY() - 2 || b.getX() == trap.getX() + 2 && b.getY() == trap.getY() + 2 || b.getX() == trap.getX() + 2 && b.getY() == trap.getY() - 2 || b.getX() == trap.getX() - 1 && b.getY() == trap.getY() + 1 || b.getX() == trap.getX() - 2 && b.getY() == trap.getY() + 2 || b.getX() == trap.getX() - 1 && b.getY() == trap.getY() - 2 || b.getX() == trap.getX() + 1 && b.getY() == trap.getY() - 2 || b.getX() == trap.getX() + 2 && b.getY() == trap.getY() - 1 || b.getX() == trap.getX() - 2 && b.getY() == trap.getY() - 1 || b.getX() == trap.getX() - 2 && b.getY() == trap.getY() + 1 || b.getX() == trap.getX() + 2 && b.getY() == trap.getY() + 1 || b.getX() == trap.getX() + 1 && b.getY() == trap.getY() + 2 || b.getX() == trap.getX() - 1 && b.getY() == trap.getY() + 2) {
                             surroundingBlocks.add(b);
+                            usedTraps.add(trap);
                         }
                     }
                     for(Lemming lemming : lemmings){
@@ -358,7 +361,6 @@ public class Game {
                             lemming.kill();
                         }
                     }
-                    usedTraps.add(trap);
                 }
                 for(Block b : blocks) {
                     if(b.getX() == l.getX() - 1 && b.getY() == l.getY() || b.getX() == l.getX() + 1 && b.getY() == l.getY() || b.getX() == l.getX() && b.getY() == l.getY() - 1  || b.getX() == l.getX() && b.getY() == l.getY() + 1 || b.getX() == l.getX() - 2 && b.getY() == l.getY() || b.getX() == l.getX() + 2 && b.getY() == l.getY() || b.getX() == l.getX() && b.getY() == l.getY() - 2  || b.getX() == l.getX() && b.getY() == l.getY() + 2 || b.getX() == l.getX() - 1 && b.getY() == l.getY() -1 || b.getX() == l.getX() + 1 && b.getY() == l.getY() +1 || b.getX() == l.getX() + 1 && b.getY() == l.getY() - 1 || b.getX() == l.getX() - 2 && b.getY() == l.getY() - 2 || b.getX() == l.getX() + 2 && b.getY() == l.getY() + 2 || b.getX() == l.getX() + 2 && b.getY() == l.getY() - 2 || b.getX() == l.getX() - 1 && b.getY() == l.getY() + 1 || b.getX() == l.getX() - 2 && b.getY() == l.getY() + 2 || b.getX() == l.getX() - 1 && b.getY() == l.getY() - 2 || b.getX() == l.getX() + 1 && b.getY() == l.getY() - 2 || b.getX() == l.getX() + 2 && b.getY() == l.getY() - 1 || b.getX() == l.getX() - 2 && b.getY() == l.getY() - 1 || b.getX() == l.getX() - 2 && b.getY() == l.getY() + 1 || b.getX() == l.getX() + 2 && b.getY() == l.getY() + 1 || b.getX() == l.getX() + 1 && b.getY() == l.getY() + 2 || b.getX() == l.getX() - 1 && b.getY() == l.getY() + 2) {

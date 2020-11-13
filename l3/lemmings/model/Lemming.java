@@ -146,4 +146,8 @@ public class Lemming {
 		oldDirectionAxisX = directionAxisX;
 	}
 
+	public void saveDirectionX(int n){
+		oldDirectionAxisX = n;
+	}
+
 }
