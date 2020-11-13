@@ -330,7 +330,6 @@ public class Game {
                         }
                     }
                 }
-                System.out.println(adjacentBlock);
                 if(adjacentBlock != null)
                 {
                     l.changeDirectionX();
