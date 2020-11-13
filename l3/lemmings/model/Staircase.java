@@ -22,7 +22,7 @@ public class Staircase {
 
     private int x, y;
     private Lemming lemming;
-    private int stepCount = 5;
+    private int stepCount = 4;
     private boolean done = false;
 
     public Staircase(Lemming lemming){

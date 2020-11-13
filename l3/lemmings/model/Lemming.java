@@ -53,7 +53,7 @@ public class Lemming {
 
 	public void fellToDeath(){
 		int deathByFallHeight = 5;
-		if(fallCount== deathByFallHeight && state != LemmingState.FLOATER){
+		if(fallCount >= deathByFallHeight && state != LemmingState.FLOATER){
 			kill();
 		}
 	}

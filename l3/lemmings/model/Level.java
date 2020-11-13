@@ -33,18 +33,43 @@ public class Level {
 
         // Test grimper un block, retour si deux blocks, lemming grimpeur
         // 1: have first lemming become un grimpeur; The second and third lemming hit the wall and go back; The now first lemming go to the exit while the second lemming blows himself up to activate the switch
-        for(int i = 10; i<25;i++)
+        for(int i = 3; i<21;i++)
         {
             blocks.add(new Block(i,6));
         }
-        blocks.add(new Block(10,4));
+        for(int i = 7; i<30; i++){
+            blocks.add(new Block(i,9));
+        }
+        blocks.add(new Block(28,8));
+        blocks.add(new Block(28,7));
+        blocks.add(new Block(26,8));
+        blocks.add(new Block(26,7));
+        blocks.add(new Block(20,8));
+
+        blocks.add(new Block(6,5));
+        blocks.add(new Block(3,4));
+        blocks.add(new Block(3,5));
+
+        blocks.add(new Block(19,15));
+        blocks.add(new Block(19,14));
+
+        blocks.add(new Block(15,5));
+        blocks.add(new Block(16,5));
         blocks.add(new Block(17,5));
+        blocks.add(new Block(18,5));
+        blocks.add(new Block(19,5));
+        blocks.add(new Block(15,4));
+        blocks.add(new Block(16,4));
+        blocks.add(new Block(17,4));
+        blocks.add(new Block(18,4));
+        blocks.add(new Block(19,4));
         blocks.add(new Block(24,4));
         blocks.add(new Block(24,5));
-        entrances.add(new Entrance(this, 3, 11, 5));
+        entrances.add(new Entrance(this, 2, 11, 5));
         escapes.add(new Escape(25 ,3));
-        escapes.add(new Escape(10 ,5));
-        switches.add(new Switch(17, 6, new ArrayList<Block>(){{add(new Block(9,16));add(new Block(8,16));add(new Block(7,16));add(new Block(6,16));add(new Block(5,16));add(new Block(4,16)); add(new Block(9,14));add(new Block(8,14));add(new Block(7,14));add(new Block(6,14));add(new Block(5,14));add(new Block(4,14));add(new Block(9,15));add(new Block(8,15));add(new Block(7,15));add(new Block(6,15));add(new Block(5,15));}}));
+
+//        escapes.add(new Escape(10 ,5));
+        switches.add(new Switch(27, 9, new ArrayList<Block>(){{add(new Block(9,16));add(new Block(8,16));add(new Block(7,16));add(new Block(6,16));add(new Block(5,16));add(new Block(4,16)); add(new Block(9,14));add(new Block(8,14));add(new Block(7,14));add(new Block(6,14));add(new Block(5,14));add(new Block(4,14));add(new Block(9,15));add(new Block(8,15));add(new Block(7,15));add(new Block(6,15));add(new Block(5,15));}}));
         /////
 
 
@@ -64,11 +89,35 @@ public class Level {
         blocks.add(new Block(24,14));
         blocks.add(new Block(24,15));
         blocks.add(new Block(10,15));
-        entrances.add(new Entrance(this, 4, 11, 15));
+        entrances.add(new Entrance(this, 2, 11, 15));
         escapes.add(new Escape(25 ,13));
 
-        teleporters.add(new Teleporter(3,15,22,13));
+
+        teleporters.add(new Teleporter(7,15,22,13));
         teleporters.add(new Teleporter(22,12,3,14));
+
+        for(int i=  2; i <= 14; i++){
+            blocks.add(new Block(i,21));
+        }
+        entrances.add(new Entrance(this, 5, 2,20));
+        escapes.add(new Escape(14,20));
+        entrances.add(new Entrance(this, 5, 1,15));
+
+        for(int i=  2; i <= 14; i++){
+            blocks.add(new Block(i,18));
+        }
+        entrances.add(new Entrance(this, 10, 2,17));
+        escapes.add(new Escape(14,17));
+
+        for(int i = 0; i <= 7; i++){
+            blocks.add(new Block(i,16));
+        }
+        blocks.add(new Block(0,14));
+        blocks.add(new Block(0,15));
+//        blocks.add(new Block(3,15));
+        blocks.add(new Block(6,14));
+        blocks.add(new Block(6,15));
+
 
 
 //        entrances.add(new Entrance(this, 2, 10, 15));
