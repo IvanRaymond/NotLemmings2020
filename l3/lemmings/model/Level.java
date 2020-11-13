@@ -30,42 +30,95 @@ public class Level {
 
     public Level(){
         objective = 2;
+
+        // Test grimper un block, retour si deux blocks, lemming grimpeur
+        // 1: have first lemming become un grimpeur; The second and third lemming hit the wall and go back; The now first lemming go to the exit while the second lemming blows himself up to activate the switch
         for(int i = 10; i<25;i++)
         {
+            blocks.add(new Block(i,6));
+        }
+        blocks.add(new Block(10,4));
+        blocks.add(new Block(17,5));
+        blocks.add(new Block(24,4));
+        blocks.add(new Block(24,5));
+        entrances.add(new Entrance(this, 3, 11, 5));
+        escapes.add(new Escape(25 ,3));
+        escapes.add(new Escape(10 ,5));
+        switches.add(new Switch(17, 6, new ArrayList<Block>(){{add(new Block(9,16));add(new Block(8,16));add(new Block(7,16));add(new Block(6,16));add(new Block(5,16));add(new Block(4,16)); add(new Block(9,14));add(new Block(8,14));add(new Block(7,14));add(new Block(6,14));add(new Block(5,14));add(new Block(4,14));add(new Block(9,15));add(new Block(8,15));add(new Block(7,15));add(new Block(6,15));add(new Block(5,15));}}));
+        /////
+
+
+
+        // Test lava, generation escalier, lemming blocker, lemming tunnelier
+        //1: put a blocker on the last dirt; 2: put a ladder right before the stop with the last lemming coming right, make the lemming going left bash the wall on the left to go the tunnel
+
+        for(int i = 10; i<20;i++)
+        {
             blocks.add(new Block(i,16));
-//            traps.add(new Bomb(i,16));
+        }
+        for(int i = 20; i< 25;i++)
+        {
+            lava.add(new Lava(i,16));
         }
         blocks.add(new Block(10,14));
-//        blocks.add(new Block(10,14));
-        blocks.add(new Block(17,15));
-        blocks.add(new Block(18,14));
-        blocks.add(new Block(19,13));
         blocks.add(new Block(24,14));
         blocks.add(new Block(24,15));
-//        blocks.add(new Block(24,13));
-//        blocks.add(new Block(24,12));
-//        blocks.add(new Block(24,11));
-        entrances.add(new Entrance(this, 2, 11, 15));
+        blocks.add(new Block(10,15));
+        entrances.add(new Entrance(this, 4, 11, 15));
         escapes.add(new Escape(25 ,13));
+
+        teleporters.add(new Teleporter(3,15,22,13));
+        teleporters.add(new Teleporter(22,12,3,14));
+
+
 //        entrances.add(new Entrance(this, 2, 10, 15));
 //        entrances.add(new Entrance(this, 2, 18, 15));
 //        escapes.add(new Escape(15,15));
 //        escapes.add(new Escape(20,15));
 //        teleporters.add(new Teleporter(15, 15, 21,15));
 //        lava.add(new Lava(22,15));
-        lava.add(new Lava(25,16));
-        teleporters.add(new Teleporter(36,8,10,11));
-        teleporters.add(new Teleporter(10,10,38,8));
-        traps.add(new Bomb(20,15));
+//         lava.add(new Lava(25,16));
+//         teleporters.add(new Teleporter(36,8,10,11));
+//         teleporters.add(new Teleporter(10,10,38,8));
+//         traps.add(new Bomb(20,15));
 
-        switches.add(new Switch(36,7, new ArrayList<Block>(){{add(new Block(9,16));add(new Block(8,16));add(new Block(7,16));add(new Block(6,16));}}));
+//         switches.add(new Switch(36,7, new ArrayList<Block>(){{add(new Block(9,16));add(new Block(8,16));add(new Block(7,16));add(new Block(6,16));}}));
+
 
         // Testing of Bombs
         for(int i = 33; i < 40; i++)
             for(int j = 0; j < 7;j++)
                 if(!(i == 36 && j == 3))
                     blocks.add(new Block(i,j));
-        entrances.add(new Entrance(this, 1, 36, 2));
+        entrances.add(new Entrance(this, 1, 36, 3));
+        //
+
+        //Testing digger & parachute
+        for(int i = 29; i < 32; i++)
+            for(int j = -1; j < 7;j++)
+                if(!(i == 30 && j == 0))
+                    blocks.add(new Block(i,j));
+        entrances.add(new Entrance(this, 1, 30, 0));
+        escapes.add(new Escape(30,15));
+        //
+
+        //Test lemming big fall death
+        for(int i = 26; i < 29; i++)
+            for(int j = -1; j < 2;j++)
+                if(!(i == 27 && j == 0))
+                    blocks.add(new Block(i,j));
+        entrances.add(new Entrance(this, 1, 27, 0));
+
+        //Testing traps and possible 2 blocks wall
+        for(int i = 33; i < 40; i++)
+                if(!(i == 36 ))
+                    blocks.add(new Block(i,15));
+        blocks.add(new Block(33,14));
+        blocks.add(new Block(33,13));
+        blocks.add(new Block(39,14));
+        blocks.add(new Block(39,13));
+        traps.add(new Bomb(36,15));
+        entrances.add(new Entrance(this, 2, 36, 10));
         //
 
         // Don't remove, entrance bug fix
