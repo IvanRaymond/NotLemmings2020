@@ -33,7 +33,7 @@ public class Level {
 
         // Test grimper un block, retour si deux blocks, lemming grimpeur
         // 1: have first lemming become un grimpeur; The second and third lemming hit the wall and go back; The now first lemming go to the exit while the second lemming blows himself up to activate the switch
-        for(int i = 3; i<21;i++)
+        for(int i = 1; i<21;i++)
         {
             blocks.add(new Block(i,6));
         }
@@ -46,9 +46,13 @@ public class Level {
         blocks.add(new Block(26,7));
         blocks.add(new Block(20,8));
 
+        blocks.add(new Block(9,5));
         blocks.add(new Block(6,5));
-        blocks.add(new Block(3,4));
-        blocks.add(new Block(3,5));
+        blocks.add(new Block(7,5));
+        blocks.add(new Block(6,4));
+        blocks.add(new Block(5,3));
+        blocks.add(new Block(1,4));
+        blocks.add(new Block(1,5));
 
         blocks.add(new Block(19,15));
         blocks.add(new Block(19,14));
@@ -65,7 +69,13 @@ public class Level {
         blocks.add(new Block(19,4));
         blocks.add(new Block(24,4));
         blocks.add(new Block(24,5));
-        entrances.add(new Entrance(this, 2, 11, 5));
+        entrances.add(new Entrance(this, 2, 9, 5));
+
+        blocks.add(new Block(11,5));
+        blocks.add(new Block(11,4));
+
+        entrances.add(new Entrance(this, 1, 12,4));
+
         escapes.add(new Escape(25 ,3));
 
 //        escapes.add(new Escape(10 ,5));
@@ -89,11 +99,11 @@ public class Level {
         blocks.add(new Block(24,14));
         blocks.add(new Block(24,15));
         blocks.add(new Block(10,15));
-        entrances.add(new Entrance(this, 2, 11, 15));
+        entrances.add(new Entrance(this, 2, 12, 15));
         escapes.add(new Escape(25 ,13));
 
 
-        teleporters.add(new Teleporter(7,15,22,13));
+        teleporters.add(new Teleporter(7,11,22,13));
         teleporters.add(new Teleporter(22,12,3,14));
 
         for(int i=  2; i <= 14; i++){
