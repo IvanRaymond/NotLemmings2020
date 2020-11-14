@@ -248,9 +248,6 @@ public class Game {
                                     lemming.kill();
                                 }
                             }
-                            for(Block b : surroundingBlocks) {
-                                blocks.remove(b);
-                            }
                             usedTraps.add(trap);
                         }
                     }
@@ -300,9 +297,6 @@ public class Game {
                                 if(lemming.getX() == trap.getX() - 1 && lemming.getY() == trap.getY() || lemming.getX() == trap.getX() + 1 && lemming.getY() == trap.getY() || lemming.getX() == trap.getX() && lemming.getY() == trap.getY() - 1  || lemming.getX() == trap.getX() && lemming.getY() == trap.getY() + 1 || lemming.getX() == trap.getX() - 2 && lemming.getY() == trap.getY() || lemming.getX() == trap.getX() + 2 && lemming.getY() == trap.getY() || lemming.getX() == trap.getX() && lemming.getY() == trap.getY() - 2  || lemming.getX() == trap.getX() && lemming.getY() == trap.getY() + 2 || lemming.getX() == trap.getX() - 1 && lemming.getY() == trap.getY() -1 || lemming.getX() == trap.getX() + 1 && lemming.getY() == trap.getY() +1 || lemming.getX() == trap.getX() + 1 && lemming.getY() == trap.getY() - 1 || lemming.getX() == trap.getX() - 2 && lemming.getY() == trap.getY() - 2 || lemming.getX() == trap.getX() + 2 && lemming.getY() == trap.getY() + 2 || lemming.getX() == trap.getX() + 2 && lemming.getY() == trap.getY() - 2 || lemming.getX() == trap.getX() - 1 && lemming.getY() == trap.getY() + 1 || lemming.getX() == trap.getX() - 2 && lemming.getY() == trap.getY() + 2 || lemming.getX() == trap.getX() - 1 && lemming.getY() == trap.getY() - 2 || lemming.getX() == trap.getX() + 1 && lemming.getY() == trap.getY() - 2 || lemming.getX() == trap.getX() + 2 && lemming.getY() == trap.getY() - 1 || lemming.getX() == trap.getX() - 2 && lemming.getY() == trap.getY() - 1 || lemming.getX() == trap.getX() - 2 && lemming.getY() == trap.getY() + 1 || lemming.getX() == trap.getX() + 2 && lemming.getY() == trap.getY() + 1 || lemming.getX() == trap.getX() + 1 && lemming.getY() == trap.getY() + 2 || lemming.getX() == trap.getX() - 1 && lemming.getY() == trap.getY() + 2) {
                                     lemming.kill();
                                 }
-                            }
-                            for(Block b : surroundingBlocks) {
-                                blocks.remove(b);
                             }
                             usedTraps.add(trap);
                         }
