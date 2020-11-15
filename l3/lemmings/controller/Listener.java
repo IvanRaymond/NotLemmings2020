@@ -3,10 +3,8 @@ package l3.lemmings.controller;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 
 import l3.lemmings.controller.UIcontroller.Button;
-import l3.lemmings.model.Block;
 import l3.lemmings.model.Game;
 import l3.lemmings.model.Level;
 import l3.lemmings.view.Views;

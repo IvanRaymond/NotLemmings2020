@@ -1,4 +1,6 @@
-package l3.lemmings.model;
+package l3.lemmings.model.block;
+
+import l3.lemmings.model.block.Block;
 
 import java.util.ArrayList;
 

@@ -7,7 +7,15 @@ import javax.swing.JComponent;
 
 import l3.lemmings.controller.Listener;
 import l3.lemmings.model.*;
-import l3.lemmings.model.Lemming.LemmingState;
+import l3.lemmings.model.block.Block;
+import l3.lemmings.model.block.Switch;
+import l3.lemmings.model.lemming.Lemming;
+import l3.lemmings.model.props.Entrance;
+import l3.lemmings.model.props.Escape;
+import l3.lemmings.model.props.Staircase;
+import l3.lemmings.model.props.Teleporter;
+import l3.lemmings.model.trap.Lava;
+import l3.lemmings.model.trap.Trap;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -118,8 +126,8 @@ public class Views extends JComponent{
 		for(Block b : blocks)
 			g.drawImage(spriteBlock, (int) b.getX() * blockWidth, (int) b.getY() * blockHeight, blockWidth,blockHeight,null);
 
-		for(Trap trap : traps)
-			g.drawImage(spriteTrap, (int) trap.getX() * blockWidth, (int) trap.getY() * blockHeight, blockWidth,blockHeight,null);
+//		for(Trap trap : traps)
+//			g.drawImage(spriteTrap, (int) trap.getX() * blockWidth, (int) trap.getY() * blockHeight, blockWidth,blockHeight,null);
 
 		for(Lava lava : lava)
 			g.drawImage(spriteLava, (int) lava.getX() * blockWidth, (int) lava.getY() * blockHeight, blockWidth,blockHeight,null);
@@ -142,8 +150,8 @@ public class Views extends JComponent{
 			g.drawImage(spriteSwitch, (int) currentSwitch.getX() * blockWidth, (int) currentSwitch.getY() * blockHeight, blockWidth,blockHeight,null);
 
 
-		for(Lemming l : lemmings)
-			g.drawImage(lemmingSprite(l), (int) l.getX() * blockWidth, (int) l.getY() * blockHeight, blockWidth,blockHeight,null);
+//		for(Lemming l : lemmings)
+//			g.drawImage(lemmingSprite(l), (int) l.getX() * blockWidth, (int) l.getY() * blockHeight, blockWidth,blockHeight,null);
 
 	}
 
@@ -176,37 +184,39 @@ public class Views extends JComponent{
 		g.drawImage(spriteDigger, 18 * blockWidth+3, h-(singleButtonSize*blockHeight)+3, blockWidth,blockHeight,null);
 	}
 
-	private BufferedImage lemmingSprite(Lemming l) {
-		
-		if (l.getState()==LemmingState.NORMAL) {
-			return spriteNormal;
-		}
-		else if (l.getState()==LemmingState.CLIMBER) {
-			return spriteClimber;
-		}
-		else if (l.getState()==LemmingState.FLOATER) {
-			return spriteFloater;
-		}
-		else if (l.getState()==LemmingState.BOMB) {
-			return spriteBomb;
-		}
-		else if (l.getState()==LemmingState.BLOCKER) {
-			return spriteBlocker;
-		}
-		else if (l.getState()==LemmingState.BRIDGE_BUILDER) {
-			return spriteNormal;
-		}
-		else if (l.getState()==LemmingState.DIGGER) {
-			return spriteDigger;
-		}
-		else if (l.getState()==LemmingState.BASHER) {
-			return spriteBasher;
-		}
-		else if (l.getState()==LemmingState.MINER) {
-			return spriteMiner;
-		}
-		return spriteNormal;
-	}
+
+	// ToDo replace with something more OOP
+//	private BufferedImage lemmingSprite(Lemming l) {
+//
+//		if (l.getState()==LemmingState.NORMAL) {
+//			return spriteNormal;
+//		}
+//		else if (l.getState()==LemmingState.CLIMBER) {
+//			return spriteClimber;
+//		}
+//		else if (l.getState()==LemmingState.FLOATER) {
+//			return spriteFloater;
+//		}
+//		else if (l.getState()==LemmingState.BOMB) {
+//			return spriteBomb;
+//		}
+//		else if (l.getState()==LemmingState.BLOCKER) {
+//			return spriteBlocker;
+//		}
+//		else if (l.getState()==LemmingState.BRIDGE_BUILDER) {
+//			return spriteNormal;
+//		}
+//		else if (l.getState()==LemmingState.DIGGER) {
+//			return spriteDigger;
+//		}
+//		else if (l.getState()==LemmingState.BASHER) {
+//			return spriteBasher;
+//		}
+//		else if (l.getState()==LemmingState.MINER) {
+//			return spriteMiner;
+//		}
+//		return spriteNormal;
+//	}
 
 	public int getSingleButtonSize(){
 		return singleButtonSize;

@@ -1,9 +1,13 @@
-package l3.lemmings.model;
+package l3.lemmings.model.props;
+
+import l3.lemmings.model.Element;
+import l3.lemmings.model.Level;
+import l3.lemmings.model.lemming.Lemming;
 
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Teleporter {
+public class Teleporter implements Element {
 
     private int x1, y1, x2, y2;
 
@@ -37,4 +41,23 @@ public class Teleporter {
         return new Point(x2,y2);
     }
 
+    @Override
+    public int getX() {
+        return 0;
+    }
+
+    @Override
+    public int getY() {
+        return 0;
+    }
+
+    @Override
+    public boolean move() {
+        return false;
+    }
+
+    @Override
+    public boolean interfact(Element element) {
+        return false;
+    }
 }

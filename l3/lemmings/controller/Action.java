@@ -2,8 +2,7 @@ package l3.lemmings.controller;
 
 import l3.lemmings.controller.UIcontroller.Button;
 import l3.lemmings.model.Game;
-import l3.lemmings.model.Lemming.LemmingState;
-import l3.lemmings.model.Lemming;
+import l3.lemmings.model.lemming.*;
 
 public class Action {
 
@@ -27,35 +26,35 @@ public class Action {
     public boolean setAction(Lemming lemming){
         switch (clicked) {
             case CLIMBER:
-                lemming.setState(LemmingState.CLIMBER);
+                lemming.setState(new Climber());
                 return true;
 
             case FLOATER:
-                lemming.setState(LemmingState.FLOATER);
+                lemming.setState(new Floater());
                 return true;
 
             case BOMB:
-                lemming.setState(LemmingState.BOMB);
+                lemming.setState(new Bomber());
                 return true;
 
             case BLOCKER:
-                lemming.setState(LemmingState.BLOCKER);
+                lemming.setState(new Blocker());
                 return true;
 
             case BRIDGE_BUILDER:
-                lemming.setState(LemmingState.BRIDGE_BUILDER);
+                lemming.setState(new BridgeBuilder());
                 return true;
 
             case BASHER:
-                lemming.setState(LemmingState.BASHER);
+                lemming.setState(new Basher());
                 return true;
 
             case MINER:
-                lemming.setState(LemmingState.MINER);
+                lemming.setState(new Normal());
                 return true;
 
             case DIGGER:
-                lemming.setState(LemmingState.DIGGER);
+                lemming.setState(new Digger());
                 return true;
         }
         return false;

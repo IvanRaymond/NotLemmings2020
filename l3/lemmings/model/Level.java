@@ -1,5 +1,16 @@
 package l3.lemmings.model;
 
+import l3.lemmings.model.block.Block;
+import l3.lemmings.model.block.Bomb;
+import l3.lemmings.model.block.Switch;
+import l3.lemmings.model.lemming.Lemming;
+import l3.lemmings.model.props.Entrance;
+import l3.lemmings.model.props.Escape;
+import l3.lemmings.model.props.Staircase;
+import l3.lemmings.model.props.Teleporter;
+import l3.lemmings.model.trap.Lava;
+import l3.lemmings.model.trap.Trap;
+
 import java.awt.*;
 import java.util.ArrayList;
 

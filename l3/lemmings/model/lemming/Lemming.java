@@ -1,30 +1,20 @@
-package l3.lemmings.model;
+package l3.lemmings.model.lemming;
 
-public class Lemming {
-	
-	public enum LemmingState{
-		NORMAL,
-		CLIMBER,
-		FLOATER,
-		BOMB,
-		BLOCKER,
-		BRIDGE_BUILDER,
-		BASHER,
-		MINER,
-		DIGGER
-	}
+import l3.lemmings.model.Element;
+
+public class Lemming implements Element {
 
 	private boolean alive = true;
 	private int fallCount = 0;
 	private int digCount = 0;
-	private LemmingState state;
+	private State state;
 	private boolean busy = false;
 
 	private int directionAxisX;
 	private int directionAxisY;
 	private int oldDirectionAxisX=0;
-	private double x;
-	private double y;
+	private int x;
+	private int y;
 	
 	public Lemming(int x, int y)
 	{
@@ -32,30 +22,31 @@ public class Lemming {
 		this.y = y;
 		directionAxisX = 1;
 		directionAxisY = 0;
-		state = LemmingState.NORMAL;
+		state = new Normal();
 	}
 
-	public void move() {
-		x += directionAxisX;
-		if(state == LemmingState.FLOATER && directionAxisY > 0)
-		{
-			y += 0.5;
-		}
-		else
-			y += directionAxisY;
+//	public void move() {
+//		x += directionAxisX;
+//		if(state == LemmingState.FLOATER && directionAxisY > 0)
+//		{
+//			y += 0.5;
+//		}
+//		else
+//			y += directionAxisY;
+//
+//
+//	}
 
-
+	public void setState(State state){
+		this.state=state;
 	}
 
 	public void incFallCount(){
 		fallCount++;
 	}
 
-	public void fellToDeath(){
-		int deathByFallHeight = 5;
-		if(fallCount >= deathByFallHeight && state != LemmingState.FLOATER){
-			kill();
-		}
+	public boolean doAction(){
+		return state.doAction();
 	}
 
 	public void incDigCount(){
@@ -78,10 +69,6 @@ public class Lemming {
 		return busy;
 	}
 
-	public boolean isState(LemmingState state){
-		return this.state==state;
-	}
-
 	public void resetFallCount(){
 		fallCount=0;
 	}
@@ -93,28 +80,30 @@ public class Lemming {
 	public boolean alive(){
 		return alive;
 	}
-	
-	public LemmingState getState() {
-		return state;
-	}
 
-	public void setState(LemmingState state) {
-		this.state = state;
-	}
-
-	public double getX() {
+	public int getX() {
 		return x;
 	}
 
-	public double getY() {
+	public int getY() {
 		return y;
 	}
 
-	public void setX(double x) {
+	@Override
+	public boolean move() {
+		return false;
+	}
+
+	@Override
+	public boolean interfact(Element element) {
+		return false;
+	}
+
+	public void setX(int x) {
 		this.x = x;
 	}
 
-	public void setY(double y) {
+	public void setY(int y) {
 		this.y = y;
 	}
 

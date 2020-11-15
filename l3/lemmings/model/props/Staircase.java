@@ -1,8 +1,32 @@
-package l3.lemmings.model;
+package l3.lemmings.model.props;
+
+import l3.lemmings.model.Element;
+import l3.lemmings.model.lemming.Lemming;
+import l3.lemmings.model.lemming.Normal;
 
 import java.util.ArrayList;
 
-public class Staircase {
+public class Staircase implements Element {
+
+    @Override
+    public int getX() {
+        return 0;
+    }
+
+    @Override
+    public int getY() {
+        return 0;
+    }
+
+    @Override
+    public boolean move() {
+        return false;
+    }
+
+    @Override
+    public boolean interfact(Element element) {
+        return false;
+    }
 
     public class Step {
         private int x, y;
@@ -26,8 +50,8 @@ public class Staircase {
     private boolean done = false;
 
     public Staircase(Lemming lemming){
-        this.x = (int) lemming.getX();
-        this.y = (int) lemming.getY();
+        this.x = lemming.getX();
+        this.y = lemming.getY();
         this.lemming = lemming;
         steps.add(new Step(x,y));
     }
@@ -52,7 +76,7 @@ public class Staircase {
         }else {
             done = true;
             lemming.toggleBusy();
-            lemming.setState(Lemming.LemmingState.NORMAL);
+            lemming.setState(new Normal());
             lemming.resetFallCount();
         }
     }

@@ -1,6 +1,8 @@
-package l3.lemmings.model;
+package l3.lemmings.model.block;
 
-public class Block {
+import l3.lemmings.model.Element;
+
+public class Block implements Element {
 	
 	private int x;
 	private int y;
@@ -22,6 +24,16 @@ public class Block {
 
 	public int getY() {
 		return y;
+	}
+
+	@Override
+	public boolean move() {
+		return false;
+	}
+
+	@Override
+	public boolean interfact(Element element) {
+		return false;
 	}
 
 	public void setY(int y) {

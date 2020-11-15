@@ -1,8 +1,12 @@
-package l3.lemmings.model;
+package l3.lemmings.model.props;
+
+import l3.lemmings.model.Element;
+import l3.lemmings.model.Level;
+import l3.lemmings.model.lemming.Lemming;
 
 import java.util.ArrayList;
 
-public class Escape {
+public class Escape implements Element {
     // ToDo: Make block, escape and entrance inherit from the same abstract class and instantiate a reach method to
     //  define what happens when a lemming reach the block
 
@@ -31,5 +35,15 @@ public class Escape {
 
     public int getY() {
         return y;
+    }
+
+    @Override
+    public boolean move() {
+        return false;
+    }
+
+    @Override
+    public boolean interfact(Element element) {
+        return false;
     }
 }

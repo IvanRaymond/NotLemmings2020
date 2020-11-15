@@ -1,11 +1,13 @@
-package l3.lemmings.model;
+package l3.lemmings.model.props;
 
-import java.util.ArrayList;
+import l3.lemmings.model.Element;
+import l3.lemmings.model.Level;
+import l3.lemmings.model.lemming.Lemming;
 
 /**
  * Represents the point of creation of lemmings
  */
-public class Entrance {
+public class Entrance implements Element {
 
     private int x, y;
     private Level level;
@@ -44,5 +46,15 @@ public class Entrance {
 
     public int getY() {
         return y;
+    }
+
+    @Override
+    public boolean move() {
+        return false;
+    }
+
+    @Override
+    public boolean interfact(Element element) {
+        return false;
     }
 }
