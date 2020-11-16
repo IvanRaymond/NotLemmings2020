@@ -1,29 +1,41 @@
 package l3.lemmings.model.block;
 
 import l3.lemmings.model.Element;
+import l3.lemmings.model.Level;
+import l3.lemmings.model.Type;
+
+import java.awt.*;
 
 public class Block implements Element {
 	
-	private int x;
-	private int y;
-	private boolean destroyed = false;
-	
+	private Point point = new Point();
+
 	public Block(int x, int y)
 	{
-		this.x = x;
-		this.y = y;
+		point.x = x;
+		point.y = y;
 	}
 	
 	public int getX() {
-		return x;
+		return point.x;
 	}
 
 	public void setX(int x) {
-		this.x = x;
+		point.x = x;
 	}
 
 	public int getY() {
-		return y;
+		return point.y;
+	}
+
+	@Override
+	public Point getPosition() {
+		return new Point(point);
+	}
+
+	@Override
+	public Point getSecondPosition() {
+		return null;
 	}
 
 	@Override
@@ -32,12 +44,22 @@ public class Block implements Element {
 	}
 
 	@Override
-	public boolean interfact(Element element) {
+	public boolean interact(Element element, Level level) {
 		return false;
 	}
 
+	@Override
+	public String getType(){
+		return "block";
+	}
+
+	@Override
+	public boolean compare(Type type) {
+		return type == Type.BLOCK;
+	}
+
 	public void setY(int y) {
-		this.y = y;
+		point.y = y;
 	}
 
 }

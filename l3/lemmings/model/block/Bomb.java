@@ -2,28 +2,35 @@ package l3.lemmings.model.block;
 
 import l3.lemmings.model.Element;
 import l3.lemmings.model.Level;
-import l3.lemmings.model.trap.Trap;
+import l3.lemmings.model.Type;
 
-public class Bomb implements Element, Trap  {
-    private int x, y;
+import java.awt.*;
+
+public class Bomb implements Element  {
+
+    private Point point = new Point();
 
     public Bomb(int x, int y){
-        this.x = x;
-        this.y = y;
+        point.x = x;
+        point.y = y;
     }
 
-    @Override
-    public void activate(Level level) {
-    }
-
-    @Override
     public int getX() {
-        return x;
+        return point.x;
+    }
+
+    public int getY() {
+        return point.y;
     }
 
     @Override
-    public int getY() {
-        return y;
+    public Point getPosition() {
+        return new Point(point);
+    }
+
+    @Override
+    public Point getSecondPosition() {
+        return null;
     }
 
     @Override
@@ -31,8 +38,19 @@ public class Bomb implements Element, Trap  {
         return false;
     }
 
+    // Interact as a normal block
     @Override
-    public boolean interfact(Element element) {
+    public boolean interact(Element element, Level level) {
         return false;
+    }
+
+    @Override
+    public String getType() {
+        return "bomb";
+    }
+
+    @Override
+    public boolean compare(Type type) {
+        return type == Type.BOMB;
     }
 }

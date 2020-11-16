@@ -4,35 +4,34 @@ import l3.lemmings.model.Element;
 import l3.lemmings.model.Level;
 import l3.lemmings.model.lemming.Lemming;
 
+import java.awt.*;
 import java.util.ArrayList;
 
-// ToDo Create an abstract class or interface Trap as they will all
-//  behave the same but just look different
-public class Lava implements Trap, Element {
+public class Lava implements Element {
 
-    private int x, y;
+    private Point point = new Point();
 
     public Lava(int x, int y){
-        this.x = x;
-        this.y = y;
-    }
-
-    public void reach(Level level){
-        ArrayList<Lemming> lemmings = level.getLemmings();
-        for (Lemming lemming : lemmings){
-            if (lemming.getX() == x && lemming.getY() == y-1){
-                lemming.kill();
-            }
-        }
-        level.setLemmings(lemmings);
+        point.x = x;
+        point.y = y;
     }
 
     public int getX(){
-        return x;
+        return point.x;
     }
 
     public int getY(){
-        return y;
+        return point.y;
+    }
+
+    @Override
+    public Point getPosition() {
+        return new Point(point);
+    }
+
+    @Override
+    public Point getSecondPosition() {
+        return null;
     }
 
     @Override
@@ -41,12 +40,14 @@ public class Lava implements Trap, Element {
     }
 
     @Override
-    public boolean interfact(Element element) {
-        return false;
+    public boolean interact(Element element, Level level) {
+
+        Lemming l = (Lemming) element;
+
+        if (l.isAt(point) || l.isAt(new Point(point.x, point.y-1))){
+                l.kill();
+            }
+        return true;
     }
 
-    @Override
-    public void activate(Level level) {
-
-    }
 }

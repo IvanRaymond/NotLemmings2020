@@ -1,92 +1,76 @@
 package l3.lemmings.model.lemming;
 
 import l3.lemmings.model.Element;
+import l3.lemmings.model.Level;
+import l3.lemmings.model.Type;
+import l3.lemmings.model.lemming.direction.Direction;
+import l3.lemmings.model.lemming.state.Normal;
+import l3.lemmings.model.lemming.state.State;
+
+import java.awt.*;
+
+import static l3.lemmings.model.lemming.direction.DirHorizontal.RIGHT;
+import static l3.lemmings.model.lemming.direction.DirVertical.STILL;
 
 public class Lemming implements Element {
 
-	private boolean alive = true;
-	private int fallCount = 0;
-	private int digCount = 0;
-	private State state;
-	private boolean busy = false;
 
-	private int directionAxisX;
-	private int directionAxisY;
-	private int oldDirectionAxisX=0;
-	private int x;
-	private int y;
+	private State state;
+
+	Direction direction;
+
+	Stats stats;
+
+	private Point position = new Point();
 	
 	public Lemming(int x, int y)
 	{
-		this.x = x;
-		this.y = y;
-		directionAxisX = 1;
-		directionAxisY = 0;
-		state = new Normal();
+		position.x = x;
+		position.y = y;
+		direction = new Direction(RIGHT, STILL);
+		state = new Normal(this);
+		stats = new Stats();
 	}
-
-//	public void move() {
-//		x += directionAxisX;
-//		if(state == LemmingState.FLOATER && directionAxisY > 0)
-//		{
-//			y += 0.5;
-//		}
-//		else
-//			y += directionAxisY;
-//
-//
-//	}
 
 	public void setState(State state){
 		this.state=state;
 	}
 
-	public void incFallCount(){
-		fallCount++;
-	}
+//	public void incFallCount(){
+//		fallCount++;
+//	}
+//	public void resetFallCount(){
+//		fallCount=0;
+//	}
 
 	public boolean doAction(){
 		return state.doAction();
 	}
 
-	public void incDigCount(){
-		digCount++;
-	}
-
-	public int getDigCount(){
-		return digCount;
-	}
-
-	public void resetDigCount(){
-		digCount=0;
-	}
-
-	public void toggleBusy(){
-		busy = !busy;
-	}
-
-	public boolean getIfBusy(){
-		return busy;
-	}
-
-	public void resetFallCount(){
-		fallCount=0;
-	}
-
-	public void kill(){
-		alive = false;
-	}
-
-	public boolean alive(){
-		return alive;
+	public Stats getStats(){
+		return stats;
 	}
 
 	public int getX() {
-		return x;
+		return position.x;
 	}
 
 	public int getY() {
-		return y;
+		return position.y;
+	}
+
+	public boolean isAt(Point point){
+		return point.equals(point);
+	}
+
+	@Override
+	public Point getPosition() {
+		return new Point(position);
+	}
+
+	@Override
+	public Point getSecondPosition() {
+		return null;
 	}
 
 	@Override
@@ -95,51 +79,32 @@ public class Lemming implements Element {
 	}
 
 	@Override
-	public boolean interfact(Element element) {
+	public boolean interact(Element element, Level level) {
 		return false;
 	}
 
+	@Override
+	public String getType() {
+		return "lemming";
+	}
+
+	@Override
+	public boolean compare(Type type) {
+		return type == Type.LEMMING;
+	}
+
 	public void setX(int x) {
-		this.x = x;
+		position.x = x;
 	}
-
 	public void setY(int y) {
-		this.y = y;
+		position.y = y;
 	}
 
-	public int getDirectionAxisY() {
-		return directionAxisY;
+	public void setPosition(Point position){
+		this.position = new Point(position);
 	}
 
-	public void changeDirectionX(){
-		directionAxisX = -directionAxisX;
-	}
-
-	public void setDirectionAxisY(int directionAxisY) {
-		this.directionAxisY = directionAxisY;
-	}
-
-	public int getDirectionAxisX() {
-		return directionAxisX;
-	}
-
-	public void setDirectionAxisX(int directionAxisX) {
-		this.directionAxisX = directionAxisX;
-	}
-
-	public void restoreDirectionAxisX() {
-		directionAxisX = oldDirectionAxisX;
-	}
-
-	public void saveDirectionX() {
-		oldDirectionAxisX = directionAxisX;
-	}
-
-	public void saveDirectionX(int n){
-		oldDirectionAxisX = n;
-	}
-
-	public void setBusy(boolean busy) {
-		this.busy = busy;
+	public Direction getDirection(){
+		return direction;
 	}
 }

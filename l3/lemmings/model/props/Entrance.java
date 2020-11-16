@@ -2,22 +2,25 @@ package l3.lemmings.model.props;
 
 import l3.lemmings.model.Element;
 import l3.lemmings.model.Level;
+import l3.lemmings.model.Type;
 import l3.lemmings.model.lemming.Lemming;
+
+import java.awt.*;
 
 /**
  * Represents the point of creation of lemmings
  */
 public class Entrance implements Element {
 
-    private int x, y;
+    private Point point = new Point();
     private Level level;
     private int numberOfLemmings;
     private boolean done = false;
     int n;
 
     public Entrance(Level level, int numberOfLemmings, int x, int y){
-        this.x = x;
-        this.y = y;
+        point.x = x;
+        point.y = y;
         this.level = level;
         this.numberOfLemmings = numberOfLemmings;
         n = numberOfLemmings;
@@ -25,7 +28,7 @@ public class Entrance implements Element {
 
     public void addLemming(){
         if (numberOfLemmings>0) {
-            level.addLemmings(new Lemming(x, y));
+            level.addLemmings(new Lemming(point.x, point.y));
             numberOfLemmings--;
         }else{
             done = true;
@@ -41,11 +44,21 @@ public class Entrance implements Element {
     }
 
     public int getX() {
-        return x;
+        return point.x;
     }
 
     public int getY() {
-        return y;
+        return point.y;
+    }
+
+    @Override
+    public Point getPosition() {
+        return new Point(point);
+    }
+
+    @Override
+    public Point getSecondPosition() {
+        return null;
     }
 
     @Override
@@ -54,7 +67,17 @@ public class Entrance implements Element {
     }
 
     @Override
-    public boolean interfact(Element element) {
+    public boolean interact(Element element, Level level) {
         return false;
+    }
+
+    @Override
+    public String getType() {
+        return "entrance";
+    }
+
+    @Override
+    public boolean compare(Type type) {
+        return type == Type.ENTRANCE;
     }
 }

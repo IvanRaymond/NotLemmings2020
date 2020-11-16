@@ -1,4 +1,4 @@
-package l3.lemmings.model.lemming;
+package l3.lemmings.model.lemming.state;
 
 public interface State {
 

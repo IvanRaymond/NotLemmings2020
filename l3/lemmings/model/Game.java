@@ -16,13 +16,10 @@ public class Game {
     private int flowCounter=0;
     private boolean pause = false;
     private Level level;
-    private ArrayList<Lemming> lemmings;
-    private ArrayList<Block> blocks;
 
     public Game(){
         level = new Level();
-        lemmings = level.getLemmings();
-        blocks = level.getBlocks();
+
     }
 
     public void togglePause(){
@@ -411,23 +408,4 @@ public class Game {
 //
 //    }
 
-    public static <T> ArrayList<T> removeDuplicates(ArrayList<T> list)
-    {
-
-        // Create a new LinkedHashSet
-        Set<T> set = new LinkedHashSet<>();
-
-        // Add the elements to set
-        set.addAll(list);
-
-        // Clear the list
-        list.clear();
-
-        // add the elements of set
-        // with no duplicates to the list
-        list.addAll(set);
-
-        // return the list
-        return list;
-    }
 }

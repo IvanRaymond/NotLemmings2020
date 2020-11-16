@@ -15,7 +15,6 @@ import l3.lemmings.model.props.Escape;
 import l3.lemmings.model.props.Staircase;
 import l3.lemmings.model.props.Teleporter;
 import l3.lemmings.model.trap.Lava;
-import l3.lemmings.model.trap.Trap;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -35,7 +34,6 @@ public class Views extends JComponent{
 
 	private ArrayList<Lemming> lemmings;
 	private ArrayList<Block> blocks;
-	private ArrayList<Trap> traps;
 	private ArrayList<Staircase> staircases;
 	private ArrayList<Lava> lava;
 	private ArrayList<Entrance> entrances;
@@ -85,7 +83,6 @@ public class Views extends JComponent{
 		level = game.getLevel();
 		this.lemmings = level.getLemmings();
 		this.blocks = level.getBlocks();
-		this.traps = level.getTraps();
 		this.staircases = level.getStaircases();
 		this.lava = level.getLava();
 		this.teleporters = level.getTeleporters();
@@ -132,8 +129,8 @@ public class Views extends JComponent{
 		for(Lava lava : lava)
 			g.drawImage(spriteLava, (int) lava.getX() * blockWidth, (int) lava.getY() * blockHeight, blockWidth,blockHeight,null);
 
-		for(Teleporter teleporter : teleporters)
-			g.drawImage(spritePortal, (int) teleporter.getPosition1().x * blockWidth, (int) teleporter.getPosition1().y * blockHeight, blockWidth,blockHeight,null);
+//		for(Teleporter teleporter : teleporters)
+//			g.drawImage(spritePortal, (int) teleporter.getPosition1().x * blockWidth, (int) teleporter.getPosition1().y * blockHeight, blockWidth,blockHeight,null);
 
 		for(Staircase staircase : staircases){
 			for(Staircase.Step step : staircase.getSteps())
