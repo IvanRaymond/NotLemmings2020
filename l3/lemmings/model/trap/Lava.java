@@ -2,6 +2,7 @@ package l3.lemmings.model.trap;
 
 import l3.lemmings.model.Element;
 import l3.lemmings.model.Level;
+import l3.lemmings.model.Type;
 import l3.lemmings.model.lemming.Lemming;
 
 import java.awt.*;
@@ -35,7 +36,7 @@ public class Lava implements Element {
     }
 
     @Override
-    public boolean move() {
+    public boolean update() {
         return false;
     }
 
@@ -45,9 +46,19 @@ public class Lava implements Element {
         Lemming l = (Lemming) element;
 
         if (l.isAt(point) || l.isAt(new Point(point.x, point.y-1))){
-                l.kill();
+                l.getStats().kill();
             }
         return true;
+    }
+
+    @Override
+    public String getType() {
+        return null;
+    }
+
+    @Override
+    public boolean compare(Type type) {
+        return type == Type.LAVA;
     }
 
 }

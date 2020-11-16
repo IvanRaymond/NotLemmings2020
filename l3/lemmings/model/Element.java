@@ -16,7 +16,7 @@ public interface Element {
      */
     public Point getSecondPosition();
 
-    public boolean move();
+    public boolean update();
 
     /**
      * Defines the interaction with a non lemming object

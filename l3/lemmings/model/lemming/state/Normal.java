@@ -3,7 +3,7 @@ package l3.lemmings.model.lemming.state;
 import l3.lemmings.model.lemming.direction.Direction;
 import l3.lemmings.model.lemming.Lemming;
 
-public class Normal implements State, Behaviour {
+public class Normal implements State {
 
     Lemming lemming;
     Direction direction;
@@ -33,16 +33,19 @@ public class Normal implements State, Behaviour {
     }
 
     @Override
-    public boolean reachWall() {
-
+    public boolean reachWall(boolean isBlockOnTop) {
         direction.turnAround();
         return true;
     }
 
     @Override
-    public boolean reachBlock() {
-        direction.climb();
-        return false;
+    public boolean reachBlock(boolean isBlockOnTop) {
+        if(isBlockOnTop){
+            direction.turnAround();
+        } else {
+            direction.climb();
+        }
+        return true;
     }
 
     @Override
@@ -57,6 +60,11 @@ public class Normal implements State, Behaviour {
         direction.stop();
         direction.fall();
         kill = true;
-        return false;
+        return true;
+    }
+
+    @Override
+    public boolean isState(Activity state) {
+        return state == Activity.NORMAL;
     }
 }

@@ -1,5 +1,6 @@
 package l3.lemmings.model.lemming.direction;
 
+// ToDo implement an update method to translate direction into movement.
 public class Direction {
     private DirHorizontal x;
     private DirVertical y;

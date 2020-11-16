@@ -1,8 +1,11 @@
 package l3.lemmings.model.lemming;
 
 import l3.lemmings.model.Element;
+import l3.lemmings.model.Game;
 import l3.lemmings.model.Level;
 import l3.lemmings.model.Type;
+import l3.lemmings.model.lemming.direction.DirHorizontal;
+import l3.lemmings.model.lemming.direction.DirVertical;
 import l3.lemmings.model.lemming.direction.Direction;
 import l3.lemmings.model.lemming.state.Normal;
 import l3.lemmings.model.lemming.state.State;
@@ -16,20 +19,20 @@ public class Lemming implements Element {
 
 
 	private State state;
-
-	Direction direction;
-
-	Stats stats;
+	private Direction direction;
+	private Stats stats;
+	private Surrounding surrounding;
 
 	private Point position = new Point();
 	
-	public Lemming(int x, int y)
+	public Lemming(Level level, int x, int y)
 	{
 		position.x = x;
 		position.y = y;
 		direction = new Direction(RIGHT, STILL);
 		state = new Normal(this);
 		stats = new Stats();
+		surrounding = new Surrounding(level.getElements(), this);
 	}
 
 	public void setState(State state){
@@ -42,6 +45,14 @@ public class Lemming implements Element {
 //	public void resetFallCount(){
 //		fallCount=0;
 //	}
+
+	public Surrounding surrounding(){
+		return surrounding;
+	}
+
+	public State state(){
+		return state;
+	}
 
 	public boolean doAction(){
 		return state.doAction();
@@ -74,8 +85,21 @@ public class Lemming implements Element {
 	}
 
 	@Override
-	public boolean move() {
-		return false;
+	public boolean update() {
+
+		if(getDirection().isGoing(DirHorizontal.RIGHT)){
+			setPosition(new Point(getX()+1, getY()));
+		}
+		if(getDirection().isGoing(DirHorizontal.LEFT)){
+			setPosition(new Point(getX()-1, getY()));
+		}
+		if(getDirection().isGoing(DirVertical.UP)){
+			setPosition(new Point(getX(),getY()-1));
+		}
+		if(getDirection().isGoing(DirVertical.DOWN)){
+			setPosition(new Point(getX(),getY()+1));
+		}
+		return true;
 	}
 
 	@Override

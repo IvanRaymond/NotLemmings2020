@@ -28,7 +28,7 @@ public class Entrance implements Element {
 
     public void addLemming(){
         if (numberOfLemmings>0) {
-            level.addLemmings(new Lemming(point.x, point.y));
+            level.addLemmings(new Lemming(level, point.x, point.y));
             numberOfLemmings--;
         }else{
             done = true;
@@ -62,8 +62,11 @@ public class Entrance implements Element {
     }
 
     @Override
-    public boolean move() {
-        return false;
+    public boolean update() {
+//        if(!done){
+//            addLemming();
+//        }
+        return true;
     }
 
     @Override

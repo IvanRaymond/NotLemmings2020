@@ -3,8 +3,10 @@ package l3.lemmings.controller;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import l3.lemmings.controller.UIcontroller.Button;
+import l3.lemmings.model.Element;
 import l3.lemmings.model.Game;
 import l3.lemmings.model.Level;
 import l3.lemmings.view.Views;
@@ -57,6 +59,10 @@ public class Listener extends MouseAdapter {
 
 	public void setActionFlag(){
 		actionFlag = true;
+	}
+
+	public ArrayList<Element> getElements(){
+		return game.getLevel().getElements();
 	}
 	
 }

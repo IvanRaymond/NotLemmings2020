@@ -48,7 +48,9 @@ public class Escape implements Element {
     }
 
     @Override
-    public boolean move() {
+    public boolean update() {
+
+
         return false;
     }
 

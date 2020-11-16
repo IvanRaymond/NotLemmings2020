@@ -5,7 +5,7 @@ import l3.lemmings.model.lemming.Lemming;
 
 import java.lang.reflect.GenericArrayType;
 
-public class Digger implements State, Behaviour {
+public class Digger implements State {
 
     Lemming lemming;
     Game game;
@@ -43,12 +43,12 @@ public class Digger implements State, Behaviour {
     }
 
     @Override
-    public boolean reachWall() {
+    public boolean reachWall(boolean isBlockOnTop) {
         return false;
     }
 
     @Override
-    public boolean reachBlock() {
+    public boolean reachBlock(boolean isBlockOnTop) {
         return false;
     }
 
@@ -62,4 +62,8 @@ public class Digger implements State, Behaviour {
         return false;
     }
 
+    @Override
+    public boolean isState(Activity state) {
+        return state == Activity.DIGGER;
+    }
 }

@@ -3,7 +3,7 @@ package l3.lemmings.model.lemming.state;
 import l3.lemmings.model.Game;
 import l3.lemmings.model.lemming.Lemming;
 
-public class Climber implements State, Behaviour {
+public class Climber implements State {
 
     Lemming lemming;
     Game game;
@@ -24,12 +24,12 @@ public class Climber implements State, Behaviour {
     }
 
     @Override
-    public boolean reachWall() {
+    public boolean reachWall(boolean isBlockOnTop) {
         return false;
     }
 
     @Override
-    public boolean reachBlock() {
+    public boolean reachBlock(boolean isBlockOnTop) {
         return false;
     }
 
@@ -41,5 +41,10 @@ public class Climber implements State, Behaviour {
     @Override
     public boolean fallingHigh() {
         return false;
+    }
+
+    @Override
+    public boolean isState(Activity state) {
+        return state == Activity.CLIMBER;
     }
 }

@@ -4,7 +4,7 @@ import l3.lemmings.model.Game;
 import l3.lemmings.model.lemming.direction.Direction;
 import l3.lemmings.model.lemming.Lemming;
 
-public class Floater implements State, Behaviour {
+public class Floater implements State {
 
     Lemming lemming;
     Game game;
@@ -27,31 +27,35 @@ public class Floater implements State, Behaviour {
         if(direction.isStill()){
             direction.march();
         }
+        lemming.setState(new Normal(lemming));
         return true;
     }
 
     @Override
-    public boolean reachWall() {
-        direction.turnAround();
-        return true;
+    public boolean reachWall(boolean isBlockOnTop) {
+        return new Normal(lemming).reachWall(isBlockOnTop);
     }
 
     @Override
-    public boolean reachBlock() {
-        direction.climb();
-        return true;
+    public boolean reachBlock(boolean isBlockOnTop) {
+        return new Normal(lemming).reachBlock(isBlockOnTop);
     }
 
     @Override
     public boolean fallingLow() {
-        direction.fall();
-        return true;
+        return new Normal(lemming).fallingLow();
     }
 
     @Override
     public boolean fallingHigh() {
+        direction.stop();
         direction.fall();
         lemming.getStats().fallSlow();
         return true;
+    }
+
+    @Override
+    public boolean isState(Activity state) {
+        return state == Activity.FLOATER;
     }
 }

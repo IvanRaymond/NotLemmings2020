@@ -9,5 +9,6 @@ public enum Type {
     ESCAPE,
     STAIRCASE,
     STEP,
+    LAVA,
     TELEPORTER;
 }

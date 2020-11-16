@@ -38,7 +38,7 @@ public class Switch implements Element {
     }
 
     @Override
-    public boolean move() {
+    public boolean update() {
         return false;
     }
 

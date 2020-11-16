@@ -34,7 +34,7 @@ public class Staircase implements Element {
         }
 
         @Override
-        public boolean move() {
+        public boolean update() {
             return false;
         }
 
@@ -109,7 +109,8 @@ public class Staircase implements Element {
     }
 
     @Override
-    public boolean move() {
+    public boolean update() {
+        build();
         return false;
     }
 
