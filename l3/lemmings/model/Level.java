@@ -48,10 +48,12 @@ public class Level {
 //        elements.add(new Block(29, 11));
 //        elements.add(new Block(30,10));
 //        elements.add(new Block(29, 10));
-        elements.add(new Block(28, 2));
+        elements.add(new Block(28, 4));
         for(int i = 11; i>=4; i--){
             elements.add(new Block(29,i));
         }
+
+        elements.add(new Entrance(this, 5,20,11));
 //        elements.add(new Block(28,8));
 //        elements.add(new Block(28,7));
 //        elements.add(new Block(26,8));
@@ -220,8 +222,9 @@ public class Level {
             // Attendre que tous les lemmings soit mort et ensuite afficher un message
             System.out.println("You won");
         }
-        for (Element e : elements) {
-            e.update();
+
+        for(int i=0; i < elements.size(); i++) {
+            elements.get(i).update();
         }
         gamePhysics.update();
 
@@ -239,6 +242,20 @@ public class Level {
         Staircase staircase = new Staircase(lemming);
         elements.add(staircase);
         return staircase;
+    }
+
+    public void killSurrounding(Lemming l){
+        ArrayList<Element> toRemove = new ArrayList<>();
+        for(Element e : elements){
+            if(e.compare(Type.LEMMING)) {
+                Point p = e.getPosition();
+                if (p.getX() <= l.getX() + 5 && p.getX() >= l.getX() - 5 &&
+                        p.getY() >= l.getY() - 5 && p.getY() <= l.getY()) {
+                    toRemove.add(e);
+                }
+            }
+        }
+        elements.remove(toRemove);
     }
 
     public boolean won() {

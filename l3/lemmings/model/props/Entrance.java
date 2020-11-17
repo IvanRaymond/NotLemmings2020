@@ -63,9 +63,9 @@ public class Entrance implements Element {
 
     @Override
     public boolean update() {
-//        if(!done){
-//            addLemming();
-//        }
+        if(!done){
+            addLemming();
+        }
         return true;
     }
 

@@ -85,18 +85,20 @@ public class Lemming implements Element {
     @Override
     public boolean update() {
 
-        if (getDirection().isGoing(DirHorizontal.RIGHT)) {
-            setPosition(new Point(getX() + 1, getY()));
-        }
-        if (getDirection().isGoing(DirHorizontal.LEFT)) {
-            setPosition(new Point(getX() - 1, getY()));
-        }
-        if (getDirection().isGoing(DirVertical.UP)) {
-            setPosition(new Point(getX(), getY() - 1));
-        }
-        if (getDirection().isGoing(DirVertical.DOWN)) {
-            setPosition(new Point(getX(), getY() + 1));
-        }
+        state.doAction();
+
+//        if (getDirection().isGoing(DirHorizontal.RIGHT)) {
+//            setPosition(new Point(getX() + 1, getY()));
+//        }
+//        if (getDirection().isGoing(DirHorizontal.LEFT)) {
+//            setPosition(new Point(getX() - 1, getY()));
+//        }
+//        if (getDirection().isGoing(DirVertical.UP)) {
+//            setPosition(new Point(getX(), getY() - 1));
+//        }
+//        if (getDirection().isGoing(DirVertical.DOWN)) {
+//            setPosition(new Point(getX(), getY() + 1));
+//        }
         return true;
     }
 

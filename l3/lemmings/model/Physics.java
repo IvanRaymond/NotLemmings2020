@@ -19,11 +19,14 @@ public class Physics {
 
     public void update() {
 
-        for (Element e : level.getElements()) {
+        for (int i = 0; i< level.getElements().size(); i++) {
+
+            Element e = level.getElements().get(i);
 
             if (e.compare(Type.LEMMING)) {
                 Lemming l = (Lemming) e;
 
+                move(l);
                 l.surrounding().update();
 //                System.out.println(l.state().toString());
 //                System.out.println("alive = "+l.getStats().alive());
@@ -51,6 +54,10 @@ public class Physics {
 
                 if (l.surrounding().isPitHigh()) {
                     l.state().fallingHigh();
+                }
+
+                if (!l.getStats().alive()){
+                    level.remove(l);
                 }
             }
         }
