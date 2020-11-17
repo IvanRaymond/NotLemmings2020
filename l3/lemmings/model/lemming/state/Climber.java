@@ -2,20 +2,23 @@ package l3.lemmings.model.lemming.state;
 
 import l3.lemmings.model.Game;
 import l3.lemmings.model.lemming.Lemming;
+import l3.lemmings.model.lemming.direction.DirHorizontal;
 
 public class Climber implements State {
 
     Lemming lemming;
     Game game;
+    boolean finished = false;
+    boolean isBlockOnTop;
 
-    public Climber(Lemming lemming, Game context){
+    public Climber(Lemming lemming, Game context) {
         this.lemming = lemming;
         game = context;
     }
 
     @Override
-    public boolean walk() {
-        return false;
+    public String toString() {
+        return "State Climber";
     }
 
     @Override
@@ -24,23 +27,66 @@ public class Climber implements State {
     }
 
     @Override
+    public boolean walk() {
+        if(lemming.getDirection().isClimbing() && finished){
+            lemming.getDirection().level();
+            lemming.setState(new Normal(lemming));
+        }
+        return new Normal(lemming).walk();
+    }
+
+    @Override
     public boolean reachWall(boolean isBlockOnTop) {
-        return false;
+        if(isBlockOnTop){
+            lemming.setState(new Normal(lemming));
+        }
+        lemming.getDirection().stop();
+        lemming.getDirection().climb();
+        this.isBlockOnTop=isBlockOnTop;
+        return true;
     }
 
     @Override
     public boolean reachBlock(boolean isBlockOnTop) {
-        return false;
+
+        if(lemming.getDirection().isClimbing() && !finished){
+            if(isBlockOnTop){
+                lemming.getDirection().fall();
+                lemming.setState(new Normal(lemming));
+            }else {
+                lemming.getDirection().march();
+            }
+            finished = true;
+            return true;
+        }
+
+        return new Normal(lemming).reachBlock(isBlockOnTop);
     }
 
     @Override
     public boolean fallingLow() {
-        return false;
+        if (!lemming.getDirection().isClimbing()) {
+            new Normal(lemming).fallingLow();
+        }else if(lemming.surrounding().isBlockOnTop()){     // Might need to be replace for something less dependent on surrounding
+            lemming.getDirection().fall();
+            lemming.getDirection().march();
+            lemming.getDirection().turnAround();
+            lemming.getDirection().stop();
+            lemming.setState(new Normal(lemming));
+        }
+        return true;
     }
 
     @Override
     public boolean fallingHigh() {
-        return false;
+        if (!lemming.getDirection().isClimbing()) {
+            new Normal(lemming).fallingHigh();
+        } else if(lemming.surrounding().isBlockOnTop()){
+            lemming.getDirection().fall();
+            lemming.getStats().toKill();
+            lemming.setState(new Normal(lemming));
+        }
+        return true;
     }
 
     @Override

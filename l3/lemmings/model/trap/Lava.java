@@ -6,22 +6,21 @@ import l3.lemmings.model.Type;
 import l3.lemmings.model.lemming.Lemming;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 public class Lava implements Element {
 
-    private Point point = new Point();
+    private final Point point = new Point();
 
-    public Lava(int x, int y){
+    public Lava(int x, int y) {
         point.x = x;
         point.y = y;
     }
 
-    public int getX(){
+    public int getX() {
         return point.x;
     }
 
-    public int getY(){
+    public int getY() {
         return point.y;
     }
 
@@ -45,9 +44,9 @@ public class Lava implements Element {
 
         Lemming l = (Lemming) element;
 
-        if (l.isAt(point) || l.isAt(new Point(point.x, point.y-1))){
-                l.getStats().kill();
-            }
+        if (l.isAt(point) || l.isAt(new Point(point.x, point.y - 1))) {
+            l.getStats().kill();
+        }
         return true;
     }
 

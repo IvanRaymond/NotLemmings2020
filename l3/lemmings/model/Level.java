@@ -1,13 +1,9 @@
 package l3.lemmings.model;
 
 import l3.lemmings.model.block.Block;
-import l3.lemmings.model.block.Switch;
 import l3.lemmings.model.lemming.Lemming;
 import l3.lemmings.model.props.Entrance;
-import l3.lemmings.model.props.Escape;
 import l3.lemmings.model.props.Staircase;
-import l3.lemmings.model.props.Teleporter;
-import l3.lemmings.model.trap.Lava;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -22,29 +18,40 @@ import java.util.ArrayList;
  */
 public class Level {
 
-    private boolean levelCompleted = false;
+    private final boolean levelCompleted = false;
 
-    private ArrayList<Element> elements = new ArrayList<>();
+    private final ArrayList<Element> elements = new ArrayList<>();
 
-    private Physics gamePhysics = new Physics(this);
+    private final Physics gamePhysics = new Physics(this);
 
     private int safe = 0;
     private int objective = 0;  // Number of lemmings to save for win
     private int flow = 2;
 
-    public Level(){
+    public Level() {
         objective = 2;
 
-        for(int i = 1; i<21;i++)
-        {
-            elements.add(new Block(i,6));
+        for (int i = 1; i < 23; i++) {
+            elements.add(new Block(i, 6));
         }
-        for(int i = 7; i<17; i++){
-            elements.add(new Block(i,9));
+        for (int i = 7; i < 17; i++) {
+            elements.add(new Block(i, 9));
         }
-        elements.add(new Block(10,8));
+        elements.add(new Block(10, 8));
 
-        elements.add(new Lemming(this, 8,8));
+//        elements.add(new Lemming(this, 10,8));
+        elements.add(new Lemming(this, 20, 11));
+
+        for (int i = 17; i < 30; i++) {
+            elements.add(new Block(i, 12));
+        }
+//        elements.add(new Block(29, 11));
+//        elements.add(new Block(30,10));
+//        elements.add(new Block(29, 10));
+        elements.add(new Block(28, 2));
+        for(int i = 11; i>=4; i--){
+            elements.add(new Block(29,i));
+        }
 //        elements.add(new Block(28,8));
 //        elements.add(new Block(28,7));
 //        elements.add(new Block(26,8));
@@ -163,7 +170,7 @@ public class Level {
 //        //
 
         // Don't remove, entrance bug fix
-        if(elements.size()%2==0){
+        if (elements.size() % 2 == 0) {
             elements.add(new Entrance(this, 0, -1, -1));
         }
     }
@@ -171,7 +178,7 @@ public class Level {
 
     public boolean lemmingPresent(Point cell) {
         Lemming currentLemming;
-        for (int i=0; i<elements.size(); i++) {
+        for (int i = 0; i < elements.size(); i++) {
             if (elements.get(i).compare(Type.LEMMING)) {
                 currentLemming = (Lemming) elements.get(i);
                 if (currentLemming.isAt(cell)) {
@@ -184,7 +191,7 @@ public class Level {
 
     public Lemming getLemming(Point cell) {
         Lemming currentLemming;
-        for (int i=0; i<elements.size(); i++) {
+        for (int i = 0; i < elements.size(); i++) {
             if (elements.get(i).compare(Type.LEMMING)) {
                 currentLemming = (Lemming) elements.get(i);
                 if (currentLemming.isAt(cell)) {
@@ -195,9 +202,9 @@ public class Level {
         return null;
     }
 
-    public void killAll(){
+    public void killAll() {
         Lemming currentLemming;
-        for (int i=0; i<elements.size(); i++) {
+        for (int i = 0; i < elements.size(); i++) {
             if (elements.get(i).compare(Type.LEMMING)) {
                 currentLemming = (Lemming) elements.get(i);
                 currentLemming.getStats().kill();
@@ -208,66 +215,67 @@ public class Level {
     /**
      * Removes destroyed blocks and dead lemmings from lists.
      */
-    public void update(){
+    public void update() {
         if (won()) {
             // Attendre que tous les lemmings soit mort et ensuite afficher un message
             System.out.println("You won");
         }
-        for(Element e : elements){
+        for (Element e : elements) {
             e.update();
         }
         gamePhysics.update();
 
     }
 
-    public ArrayList<Element> getElements(){
+    public ArrayList<Element> getElements() {
         return elements;
     }
 
-    public void incSafe(){
+    public void incSafe() {
         safe++;
     }
 
-    public Staircase buildStaircase(Lemming lemming){
+    public Staircase buildStaircase(Lemming lemming) {
         Staircase staircase = new Staircase(lemming);
         elements.add(staircase);
         return staircase;
     }
 
-    public boolean won(){
-        return objective==safe;
+    public boolean won() {
+        return objective == safe;
     }
 
-    public void addLemmings(Lemming lemming){
+    public void addLemmings(Lemming lemming) {
         elements.add(lemming);
     }
 
 
-    public void increaseFlow(){
-        if (flow > 1){
+    public void increaseFlow() {
+        if (flow > 1) {
             flow--;
         }
     }
 
-    public void decreaseFlow(){
-        if (flow < 5){
+    public void decreaseFlow() {
+        if (flow < 5) {
             flow++;
         }
     }
 
-    public void printFlow(){
-        System.out.println(""+flow);
+    public void printFlow() {
+        System.out.println("" + flow);
     }
 
-    public int getFlow(){
+    public int getFlow() {
         return flow;
     }
 
     /**
      * Remove an element from the list, called by a lemming doing an action.
+     *
      * @param element
      */
-    public void remove(Element element){
+    public void remove(Element element) {
         elements.remove(element);
     }
 }

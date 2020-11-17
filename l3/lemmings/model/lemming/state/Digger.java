@@ -3,8 +3,6 @@ package l3.lemmings.model.lemming.state;
 import l3.lemmings.model.Game;
 import l3.lemmings.model.lemming.Lemming;
 
-import java.lang.reflect.GenericArrayType;
-
 public class Digger implements State {
 
     Lemming lemming;
@@ -12,26 +10,25 @@ public class Digger implements State {
 
     int digCount = 0;
 
-    public Digger(Lemming lemming, Game context){
+    public Digger(Lemming lemming, Game context) {
         this.lemming = lemming;
         game = context;
     }
 
-    public void incDigCount(){
+    public void incDigCount() {
         digCount++;
     }
 
-    public int getDigCount(){
+    public int getDigCount() {
         return digCount;
     }
 
-    public void resetDigCount(){
-        digCount=0;
+    public void resetDigCount() {
+        digCount = 0;
     }
 
     @Override
     public boolean doAction() {
-
 
 
         return true;

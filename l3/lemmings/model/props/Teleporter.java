@@ -12,16 +12,16 @@ public class Teleporter implements Element {
     private Point point1 = new Point();
     private Point point2 = new Point();
 
-    public Teleporter(int x1, int y1, int x2, int y2){
+    public Teleporter(int x1, int y1, int x2, int y2) {
         point1.x = x1;
         point1.y = y1;
         point2.x = x2;
         point2.y = y2;
     }
 
-    public Teleporter(Point point1, Point point2){
-        this.point1=new Point(point1);
-        this.point2=new Point(point2);
+    public Teleporter(Point point1, Point point2) {
+        this.point1 = new Point(point1);
+        this.point2 = new Point(point2);
     }
 
     // délégation de la reconnaissance de terrain
@@ -45,10 +45,9 @@ public class Teleporter implements Element {
     public boolean interact(Element element, Level level) {
         Lemming l = (Lemming) element;
 
-        if (l.isAt(point1)){
+        if (l.isAt(point1)) {
             l.setPosition(point2);
-        }
-        else if (l.isAt(point2)){
+        } else if (l.isAt(point2)) {
             l.setPosition(point1);
         }
         return true;

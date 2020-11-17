@@ -6,13 +6,12 @@ import l3.lemmings.model.Type;
 import l3.lemmings.model.lemming.Lemming;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 public class Escape implements Element {
 
-    private Point point = new Point();
+    private final Point point = new Point();
 
-    public Escape(int x, int y){
+    public Escape(int x, int y) {
         point.x = x;
         point.y = y;
     }
@@ -57,7 +56,7 @@ public class Escape implements Element {
     @Override
     public boolean interact(Element element, Level level) {
         Lemming l = (Lemming) element;
-        if(l.isAt(point)){
+        if (l.isAt(point)) {
             l.getStats().kill();
             level.incSafe();
         }

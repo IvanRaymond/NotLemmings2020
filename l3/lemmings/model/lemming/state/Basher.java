@@ -8,7 +8,7 @@ public class Basher implements State {
     Lemming lemming;
     Game game;
 
-    public Basher(Lemming lemming, Game context){
+    public Basher(Lemming lemming, Game context) {
         this.lemming = lemming;
         game = context;
     }

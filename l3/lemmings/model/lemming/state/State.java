@@ -5,12 +5,20 @@ package l3.lemmings.model.lemming.state;
  */
 public interface State {
 
-    public boolean doAction();
-    public boolean walk();
-    public boolean reachWall(boolean isBlockOnTop);
-    public boolean reachBlock(boolean isBlockOnTop);
-    public boolean fallingLow();
-    public boolean fallingHigh();
-    public boolean isState(Activity state);
+    boolean doAction();
+
+    boolean walk();
+
+    boolean reachWall(boolean isBlockOnTop);
+
+    boolean reachBlock(boolean isBlockOnTop);
+
+    boolean fallingLow();
+
+    boolean fallingHigh();
+
+    boolean isState(Activity state);
+
+//    boolean finishedClimbing();
 
 }

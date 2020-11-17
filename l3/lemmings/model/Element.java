@@ -8,25 +8,27 @@ import java.awt.*;
  */
 public interface Element {
 
-    public Point getPosition();
+    Point getPosition();
 
     /**
      * Getter for second position of an object
+     *
      * @return Position if it exists or null
      */
-    public Point getSecondPosition();
+    Point getSecondPosition();
 
-    public boolean update();
+    boolean update();
 
     /**
      * Defines the interaction with a non lemming object
+     *
      * @param element The caller of the interaction
-     * @param level The context
+     * @param level   The context
      * @return true if the object can be interacted with
      */
-    public boolean interact(Element element, Level level);
+    boolean interact(Element element, Level level);
 
-    public String getType();
+    String getType();
 
-    public boolean compare(Type type);
+    boolean compare(Type type);
 }

@@ -12,13 +12,13 @@ import java.awt.*;
  */
 public class Entrance implements Element {
 
-    private Point point = new Point();
-    private Level level;
+    private final Point point = new Point();
+    private final Level level;
     private int numberOfLemmings;
     private boolean done = false;
     int n;
 
-    public Entrance(Level level, int numberOfLemmings, int x, int y){
+    public Entrance(Level level, int numberOfLemmings, int x, int y) {
         point.x = x;
         point.y = y;
         this.level = level;
@@ -26,20 +26,20 @@ public class Entrance implements Element {
         n = numberOfLemmings;
     }
 
-    public void addLemming(){
-        if (numberOfLemmings>0) {
+    public void addLemming() {
+        if (numberOfLemmings > 0) {
             level.addLemmings(new Lemming(level, point.x, point.y));
             numberOfLemmings--;
-        }else{
+        } else {
             done = true;
         }
     }
 
-    public void printNumberOfLemmings(){
-        System.out.println(""+n);
+    public void printNumberOfLemmings() {
+        System.out.println("" + n);
     }
 
-    public boolean getDone(){
+    public boolean getDone() {
         return done;
     }
 

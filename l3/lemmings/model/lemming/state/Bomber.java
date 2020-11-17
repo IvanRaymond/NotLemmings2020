@@ -8,7 +8,7 @@ public class Bomber implements State {
     Lemming lemming;
     Game game;
 
-    public Bomber(Lemming lemming, Game context){
+    public Bomber(Lemming lemming, Game context) {
         this.lemming = lemming;
         game = context;
     }

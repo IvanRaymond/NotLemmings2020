@@ -5,14 +5,14 @@ public class Direction {
     private DirHorizontal x;
     private DirVertical y;
 
-    private DirHorizontal oldX;
+    private DirHorizontal oldX = DirHorizontal.RIGHT;
 
-    public Direction(DirHorizontal x, DirVertical y){
-        this.x=x;
-        this.y=y;
+    public Direction(DirHorizontal x, DirVertical y) {
+        this.x = x;
+        this.y = y;
     }
 
-    public Direction(Direction direction){
+    public Direction(Direction direction) {
         this.x = direction.getX();
         this.y = direction.getY();
     }
@@ -25,56 +25,63 @@ public class Direction {
         return y;
     }
 
-    public boolean isGoing(DirHorizontal dir){
+    public boolean isGoing(DirHorizontal dir) {
         return x == dir;
     }
 
-    public boolean isGoing(DirVertical dir){
+    public boolean isGoing(DirVertical dir) {
         return y == dir;
     }
 
     /**
      * Checks if lemming is leveled to the ground aka not falling
+     *
      * @return true if y-axis is STILL
      */
-    public boolean isleveled(){
+    public boolean isleveled() {
         return getY() == DirVertical.STILL;
     }
 
-    public boolean isStill(){
+    public boolean isStill() {
         return getX() == DirHorizontal.STILL;
     }
 
-    public boolean isClimbing(){
+    public boolean isClimbing() {
         return getY() == DirVertical.UP;
     }
 
-    public boolean isFalling(){
+    public boolean isFalling() {
         return getY() == DirVertical.DOWN;
     }
 
-    public void turnAround(){
+    public boolean wasGoing(DirHorizontal x){
+        return oldX == x;
+    }
+
+    public void turnAround() {
         x = x.getOppositeDirection();
     }
 
-    public void stop(){
-        oldX = x;
+    public void stop() {
+        if (x != DirHorizontal.STILL) {
+            oldX = x;
+        }
         x = DirHorizontal.STILL;
     }
 
-    public void march(){
+    public void march() {
         x = oldX;
     }
 
-    public void level(){
+    public void level() {
         y = DirVertical.STILL;
     }
 
-    public void fall(){
+    public void fall() {
         y = DirVertical.DOWN;
     }
 
-    public void climb(){
+    public void climb() {
         y = DirVertical.UP;
     }
 }

@@ -1,18 +1,21 @@
 package l3.lemmings.model.lemming.state;
 
-import l3.lemmings.model.lemming.direction.Direction;
 import l3.lemmings.model.lemming.Lemming;
+import l3.lemmings.model.lemming.direction.Direction;
 
 public class Normal implements State {
 
     Lemming lemming;
     Direction direction;
 
-    boolean kill = false;
-
-    public Normal(Lemming lemming){
+    public Normal(Lemming lemming) {
         this.lemming = lemming;
         direction = lemming.getDirection();
+    }
+
+    @Override
+    public String toString() {
+        return "State Normal";
     }
 
     @Override
@@ -22,11 +25,11 @@ public class Normal implements State {
 
     @Override
     public boolean walk() {
-        if(kill){
+        if (lemming.getStats().toKillVal()) {
             lemming.getStats().kill();
         }
         direction.level();
-        if(direction.isStill()){
+        if (direction.isStill()) {
             direction.march();
         }
         return true;
@@ -40,7 +43,7 @@ public class Normal implements State {
 
     @Override
     public boolean reachBlock(boolean isBlockOnTop) {
-        if(isBlockOnTop){
+        if (isBlockOnTop) {
             direction.turnAround();
         } else {
             direction.climb();
@@ -52,6 +55,7 @@ public class Normal implements State {
     public boolean fallingLow() {
         direction.stop();
         direction.fall();
+        lemming.getStats().fallFast();
         return true;
     }
 
@@ -59,7 +63,8 @@ public class Normal implements State {
     public boolean fallingHigh() {
         direction.stop();
         direction.fall();
-        kill = true;
+        lemming.getStats().fallFast();
+        lemming.getStats().toKill();
         return true;
     }
 

@@ -6,11 +6,11 @@ import l3.lemmings.model.Type;
 
 import java.awt.*;
 
-public class Bomb implements Element  {
+public class Bomb implements Element {
 
-    private Point point = new Point();
+    private final Point point = new Point();
 
-    public Bomb(int x, int y){
+    public Bomb(int x, int y) {
         point.x = x;
         point.y = y;
     }

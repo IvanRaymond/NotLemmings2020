@@ -6,25 +6,25 @@ package l3.lemmings.model;
 public class Game {
 
     private boolean pause = false;
-    private Level level;
+    private final Level level;
 
-    public Game(){
+    public Game() {
         level = new Level();
     }
 
-    public void update(){
+    public void update() {
         level.update();
     }
 
-    public void togglePause(){
+    public void togglePause() {
         pause = !pause;
     }
 
-    public boolean pause(){
+    public boolean pause() {
         return pause;
     }
 
-    public Level getLevel(){
+    public Level getLevel() {
         return level;
     }
 

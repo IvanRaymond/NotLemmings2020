@@ -8,7 +8,7 @@ public class BridgeBuilder implements State {
     Lemming lemming;
     Game game;
 
-    public BridgeBuilder(Lemming lemming, Game context){
+    public BridgeBuilder(Lemming lemming, Game context) {
         this.lemming = lemming;
         game = context;
     }

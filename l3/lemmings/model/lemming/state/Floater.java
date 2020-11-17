@@ -1,19 +1,25 @@
 package l3.lemmings.model.lemming.state;
 
 import l3.lemmings.model.Game;
-import l3.lemmings.model.lemming.direction.Direction;
 import l3.lemmings.model.lemming.Lemming;
+import l3.lemmings.model.lemming.direction.Direction;
 
 public class Floater implements State {
 
     Lemming lemming;
     Game game;
     Direction direction;
+    boolean fellHigh = false;
 
-    public Floater(Lemming lemming, Game context){
+    public Floater(Lemming lemming, Game context) {
         this.lemming = lemming;
         direction = lemming.getDirection();
         game = context;
+    }
+
+    @Override
+    public String toString() {
+        return "State Floater";
     }
 
     @Override
@@ -24,10 +30,12 @@ public class Floater implements State {
     @Override
     public boolean walk() {
         direction.level();
-        if(direction.isStill()){
+        if (direction.isStill()) {
             direction.march();
         }
-        lemming.setState(new Normal(lemming));
+        if (fellHigh){
+            lemming.setState(new Normal(lemming));
+        }
         return true;
     }
 
@@ -43,6 +51,7 @@ public class Floater implements State {
 
     @Override
     public boolean fallingLow() {
+        lemming.getStats().fallFast();
         return new Normal(lemming).fallingLow();
     }
 
@@ -50,6 +59,7 @@ public class Floater implements State {
     public boolean fallingHigh() {
         direction.stop();
         direction.fall();
+        fellHigh = true;
         lemming.getStats().fallSlow();
         return true;
     }

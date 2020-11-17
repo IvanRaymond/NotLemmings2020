@@ -1,8 +1,10 @@
 package l3.lemmings.model.props;
 
-import l3.lemmings.model.*;
-import l3.lemmings.model.lemming.direction.DirHorizontal;
+import l3.lemmings.model.Element;
+import l3.lemmings.model.Level;
+import l3.lemmings.model.Type;
 import l3.lemmings.model.lemming.Lemming;
+import l3.lemmings.model.lemming.direction.DirHorizontal;
 import l3.lemmings.model.lemming.state.Normal;
 
 import java.awt.*;
@@ -10,16 +12,19 @@ import java.util.ArrayList;
 
 public class Staircase implements Element {
 
-    public class Step implements Element{
-        private Point point = new Point();
-        public Step(int x, int y){
+    public class Step implements Element {
+        private final Point point = new Point();
+
+        public Step(int x, int y) {
             point.x = x;
             point.y = y;
         }
-        public int getX(){
+
+        public int getX() {
             return point.x;
         }
-        public int getY(){
+
+        public int getY() {
             return point.y;
         }
 
@@ -61,40 +66,40 @@ public class Staircase implements Element {
 
     ArrayList<Step> steps = new ArrayList<>();
 
-    private Point point = new Point();
-    private Lemming lemming;
+    private final Point point = new Point();
+    private final Lemming lemming;
     private int stepCount = 4;
     private boolean done = false;
 
-    public Staircase(Lemming lemming){
+    public Staircase(Lemming lemming) {
         point.x = lemming.getX();
         point.y = lemming.getY();
         this.lemming = lemming;
-        steps.add(new Step(point.x,point.y));
+        steps.add(new Step(point.x, point.y));
     }
 
     // ToDo Prevent building against structure
-    public void build(){
-        if(stepCount>0) {
-            Step lastStep = steps.get(steps.size()-1);
-            if(lemming.getDirection().isGoing(DirHorizontal.RIGHT)){
+    public void build() {
+        if (stepCount > 0) {
+            Step lastStep = steps.get(steps.size() - 1);
+            if (lemming.getDirection().isGoing(DirHorizontal.RIGHT)) {
                 lemming.setX(lastStep.getX());
-                lemming.setY(lastStep.getY()-1);
-                steps.add(new Step(lastStep.getX()+1,lastStep.getY()-1));
-            }else{
+                lemming.setY(lastStep.getY() - 1);
+                steps.add(new Step(lastStep.getX() + 1, lastStep.getY() - 1));
+            } else {
                 lemming.setX(lastStep.getX());
-                lemming.setY(lastStep.getY()-1);
-                steps.add(new Step(lastStep.getX()-1,lastStep.getY()-1));
+                lemming.setY(lastStep.getY() - 1);
+                steps.add(new Step(lastStep.getX() - 1, lastStep.getY() - 1));
             }
             stepCount--;
-        }else {
+        } else {
             done = true;
             lemming.getStats().toggleBusy();
             lemming.setState(new Normal(lemming));
         }
     }
 
-    public ArrayList<Step> getSteps(){
+    public ArrayList<Step> getSteps() {
         return steps;
     }
 

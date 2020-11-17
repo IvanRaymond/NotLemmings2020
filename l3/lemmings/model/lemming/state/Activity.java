@@ -8,5 +8,5 @@ public enum Activity {
     BRIDGE_BUILDER,
     BOMBER,
     BLOCKER,
-    BASHER;
+    BASHER
 }
