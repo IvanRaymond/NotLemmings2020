@@ -1,7 +1,7 @@
 package l3.lemmings;
 
-import l3.lemmings.model.Game;
-import l3.lemmings.view.Views;
+import l3.lemmings.observable.Game;
+import l3.lemmings.observer.Views;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,8 +34,8 @@ public class App {
 
         while (true) {
             if (!game.pause()) {
-                game.update();
-                view.repaint();
+                game.step();
+                view.repaint(); //ToDo replace with observable in view
                 Thread.sleep(700);
             }
             // Necessary to make pause work.

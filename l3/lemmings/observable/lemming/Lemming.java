@@ -1,0 +1,108 @@
+package l3.lemmings.observable.lemming;
+
+import l3.lemmings.observable.Level;
+import l3.lemmings.observable.Type;
+import l3.lemmings.observable.lemming.direction.DirHorizontal;
+import l3.lemmings.observable.lemming.direction.DirVertical;
+import l3.lemmings.observable.lemming.direction.Direction;
+import l3.lemmings.observable.lemming.state.Normal;
+import l3.lemmings.observable.lemming.state.State;
+
+import java.awt.*;
+
+import static l3.lemmings.observable.lemming.direction.DirHorizontal.RIGHT;
+import static l3.lemmings.observable.lemming.direction.DirVertical.STILL;
+
+public class Lemming implements ILemming {
+
+
+    private State state;
+    private final Direction direction;
+    private final Stats stats;
+    private final Surrounding surrounding;
+
+    private Point position = new Point();
+
+    public Lemming(Level level, int x, int y) {
+        position.x = x;
+        position.y = y;
+        direction = new Direction(RIGHT, STILL);
+        stats = new Stats();
+        surrounding = new Surrounding(level.getElements(), this);
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
+
+    public Surrounding surrounding() {
+        return surrounding;
+    }
+
+    public State state() {
+        return state;
+    }
+
+    public Stats getStats() {
+        return stats;
+    }
+
+    public int getX() {
+        return position.x;
+    }
+
+    public int getY() {
+        return position.y;
+    }
+
+    public boolean isAt(Point point) {
+        return position.getX() == point.getX() && position.getY() == point.getY();
+    }
+
+    @Override
+    public Point getPosition() {
+        return new Point(position);
+    }
+
+    public void setX(int x) {
+        position.x = x;
+    }
+
+    public void setY(int y) {
+        position.y = y;
+    }
+
+    public void setPosition(Point position) {
+        this.position = new Point(position);
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    @Override
+    public void move() {
+        if (getDirection().isGoing(DirHorizontal.RIGHT)) {
+            setPosition(new Point(getX() + 1, getY()));
+        }
+        if (getDirection().isGoing(DirHorizontal.LEFT)) {
+            setPosition(new Point(getX() - 1, getY()));
+        }
+        if (getDirection().isGoing(DirVertical.UP)) {
+            setPosition(new Point(getX(), getY() - 1));
+        }
+        if (getDirection().isGoing(DirVertical.DOWN)) {
+            setPosition(new Point(getX(), getY() + 1));
+        }
+    }
+
+    @Override
+    public boolean isAlive() {
+        return getStats().alive();
+    }
+
+    @Override
+    public boolean compare(Type type) {
+        return type == Type.LEMMING;
+    }
+}
