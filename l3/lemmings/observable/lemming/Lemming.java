@@ -23,6 +23,8 @@ public class Lemming implements ILemming {
 
     private Point position = new Point();
 
+    private int count = 0;
+
     public Lemming(Level level, int x, int y) {
         position.x = x;
         position.y = y;
@@ -82,18 +84,26 @@ public class Lemming implements ILemming {
 
     @Override
     public void move() {
-        if (getDirection().isGoing(DirHorizontal.RIGHT)) {
-            setPosition(new Point(getX() + 1, getY()));
+        if(getStats().isFallingFast()) {
+            if (getDirection().isGoing(DirHorizontal.RIGHT)) {
+                setPosition(new Point(getX() + 1, getY()));
+            }
+            if (getDirection().isGoing(DirHorizontal.LEFT)) {
+                setPosition(new Point(getX() - 1, getY()));
+            }
+            if (getDirection().isGoing(DirVertical.UP)) {
+                setPosition(new Point(getX(), getY() - 1));
+            }
+            if (getDirection().isGoing(DirVertical.DOWN)) {
+                setPosition(new Point(getX(), getY() + 1));
+            }
+        }else if(count>2){
+            if (getDirection().isGoing(DirVertical.DOWN)) {
+                setPosition(new Point(getX(), getY() + 1));
+            }
+            count = 0;
         }
-        if (getDirection().isGoing(DirHorizontal.LEFT)) {
-            setPosition(new Point(getX() - 1, getY()));
-        }
-        if (getDirection().isGoing(DirVertical.UP)) {
-            setPosition(new Point(getX(), getY() - 1));
-        }
-        if (getDirection().isGoing(DirVertical.DOWN)) {
-            setPosition(new Point(getX(), getY() + 1));
-        }
+        count++;
     }
 
     @Override

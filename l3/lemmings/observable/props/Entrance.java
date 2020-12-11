@@ -10,7 +10,7 @@ import l3.lemmings.observer.IObserver;
 import java.awt.*;
 
 /**
- * Represents the point of creation of lemmings
+ * Point of creation of lemmings
  */
 public class Entrance implements IElement {
 
@@ -30,7 +30,9 @@ public class Entrance implements IElement {
 
     public void addLemming() {
         if (numberOfLemmings > 0) {
-            level.addLemmings(new LemmingObservable(level, point.x, point.y));
+            LemmingObservable l = new LemmingObservable(level, point.x, point.y);
+            level.addLemmings(l);
+        //Could Pass the listener to Entrance and use it to add view to the lemming's observers but that won't be OO
             numberOfLemmings--;
         } else {
             done = true;

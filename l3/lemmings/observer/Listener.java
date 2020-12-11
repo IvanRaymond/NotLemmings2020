@@ -60,4 +60,8 @@ public class Listener extends MouseAdapter {
         actionFlag = true;
     }
 
+    public void registerView(LemmingObservable l){
+        l.register(view);
+    }
+
 }

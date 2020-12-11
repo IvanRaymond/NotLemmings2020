@@ -87,7 +87,7 @@ public class Views extends JComponent implements IObserver {
         elements = game.getLevel().getElements();
         lemmings = game.getLevel().getLemmings();
 
-        // ToDo Make entrance add view to lemming observer list
+        // ToDo Add view to all lemmings observers list
         for(LemmingObservable l : lemmings){
             l.register(this);
         }
