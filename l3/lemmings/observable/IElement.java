@@ -15,6 +15,8 @@ public interface IElement {
      * @return Position if it exists or null
      */
     Point getSecondPosition();
+
+    // ToDo: replace with comparable interface ???
     boolean compare(Type type);
 
 }

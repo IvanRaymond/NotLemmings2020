@@ -53,7 +53,7 @@ public class Level {
             elements.add(new Block(29,i));
         }
 
-        elements.add(new Entrance(this, 2,8,8));
+        elements.add(new Entrance(this, 5,8,8));
 //        elements.add(new Block(28,8));
 //        elements.add(new Block(28,7));
 //        elements.add(new Block(26,8));
@@ -260,7 +260,6 @@ public class Level {
             if (p.getX() <= l.getPosition().getX() + 5 && p.getX() >= l.getPosition().getX() - 5 &&
                 p.getY() >= l.getPosition().getY() - 5 && p.getY() <= l.getPosition().getY()) {
                 lemmings.get(i).kill();
-                lemmings.get(i).notifyObservers();
             }
         }
     }

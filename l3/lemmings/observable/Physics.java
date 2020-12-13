@@ -22,7 +22,7 @@ public class Physics {
 
         for (int i = 0; i< level.getLemmings().size(); i++) {
 
-            LemmingObservable lemmingObservable = (LemmingObservable) level.getLemmings().get(i);
+            LemmingObservable lemmingObservable = level.getLemmings().get(i);
             Lemming l = lemmingObservable.getLemming();
 
 //            l.move();
@@ -58,22 +58,6 @@ public class Physics {
             if (!l.getStats().alive()){
                 level.remove(l);
             }
-        }
-    }
-
-    // Peut etre utiliser à la place de e.update en cas de prob de perf
-    private void move(Lemming l) {
-        if (l.getDirection().isGoing(DirHorizontal.RIGHT)) {
-            l.setPosition(new Point(l.getX() + 1, l.getY()));
-        }
-        if (l.getDirection().isGoing(DirHorizontal.LEFT)) {
-            l.setPosition(new Point(l.getX() - 1, l.getY()));
-        }
-        if (l.getDirection().isGoing(DirVertical.UP)) {
-            l.setPosition(new Point(l.getX(), l.getY() - 1));
-        }
-        if (l.getDirection().isGoing(DirVertical.DOWN)) {
-            l.setPosition(new Point(l.getX(), l.getY() + 1));
         }
     }
 }

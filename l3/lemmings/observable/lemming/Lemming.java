@@ -97,7 +97,7 @@ public class Lemming implements ILemming {
             if (getDirection().isGoing(DirVertical.DOWN)) {
                 setPosition(new Point(getX(), getY() + 1));
             }
-        }else if(count>2){
+        }else if(count>2){ // Why did i put a counter there...
             if (getDirection().isGoing(DirVertical.DOWN)) {
                 setPosition(new Point(getX(), getY() + 1));
             }

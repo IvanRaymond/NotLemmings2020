@@ -7,6 +7,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
+//ToDo: Implement all states...sike
+//      Remove sprites
+//      Implement special blocks
+
 public class App {
 
     public final static int WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
