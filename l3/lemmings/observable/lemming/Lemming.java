@@ -1,5 +1,6 @@
 package l3.lemmings.observable.lemming;
 
+import l3.lemmings.observable.IElement;
 import l3.lemmings.observable.Level;
 import l3.lemmings.observable.Type;
 import l3.lemmings.observable.lemming.direction.DirHorizontal;
@@ -13,7 +14,7 @@ import java.awt.*;
 import static l3.lemmings.observable.lemming.direction.DirHorizontal.RIGHT;
 import static l3.lemmings.observable.lemming.direction.DirVertical.STILL;
 
-public class Lemming implements ILemming {
+public class Lemming implements ILemming, IElement {
 
 
     private State state;
@@ -66,6 +67,11 @@ public class Lemming implements ILemming {
         return new Point(position);
     }
 
+    @Override
+    public Point getSecondPosition() {
+        return null;
+    }
+
     public void setX(int x) {
         position.x = x;
     }
@@ -114,5 +120,10 @@ public class Lemming implements ILemming {
     @Override
     public boolean compare(Type type) {
         return type == Type.LEMMING;
+    }
+
+    @Override
+    public boolean isBreakable() {
+        return false;
     }
 }

@@ -59,4 +59,9 @@ public class Escape implements IElement, IObserver {
     public boolean compare(Type type) {
         return type == Type.ESCAPE;
     }
+
+    @Override
+    public boolean isBreakable() {
+        return false;
+    }
 }

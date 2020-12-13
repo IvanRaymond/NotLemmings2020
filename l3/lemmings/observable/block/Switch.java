@@ -47,6 +47,11 @@ public class Switch implements IElement, IObserver {
         return type == Type.SWITCH;
     }
 
+    @Override
+    public boolean isBreakable() {
+        return true;
+    }
+
     public ArrayList<Block> getBlocks() {
         return blocks;
     }

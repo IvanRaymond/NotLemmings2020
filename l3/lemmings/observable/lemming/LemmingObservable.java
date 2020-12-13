@@ -1,6 +1,7 @@
 package l3.lemmings.observable.lemming;
 
 import l3.lemmings.observable.Game;
+import l3.lemmings.observable.IElement;
 import l3.lemmings.observable.Level;
 import l3.lemmings.observable.Type;
 import l3.lemmings.observable.lemming.direction.Direction;
@@ -12,7 +13,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LemmingObservable implements ILemming {
+public class LemmingObservable implements ILemming, IElement {
 
     private Lemming lemming;
     private List<IObserver> observers;
@@ -26,6 +27,11 @@ public class LemmingObservable implements ILemming {
     @Override
     public Point getPosition() {
         return lemming.getPosition();
+    }
+
+    @Override
+    public Point getSecondPosition() {
+        return null;
     }
 
     @Override
@@ -55,6 +61,11 @@ public class LemmingObservable implements ILemming {
     @Override
     public boolean compare(Type type) {
         return lemming.compare(type);
+    }
+
+    @Override
+    public boolean isBreakable() {
+        return false;
     }
 
     public void register(IObserver o) {

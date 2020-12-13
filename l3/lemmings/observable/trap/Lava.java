@@ -54,4 +54,9 @@ public class Lava implements IElement, IObserver {
         return type == Type.LAVA;
     }
 
+    @Override
+    public boolean isBreakable() {
+        return false;
+    }
+
 }

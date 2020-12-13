@@ -46,6 +46,11 @@ public class Staircase implements IElement, IObserver {
         }
 
         @Override
+        public boolean isBreakable() {
+            return true;
+        }
+
+        @Override
         public void update() {
 
         }
@@ -108,5 +113,10 @@ public class Staircase implements IElement, IObserver {
     @Override
     public boolean compare(Type type) {
         return type == Type.STAIRCASE;
+    }
+
+    @Override
+    public boolean isBreakable() {
+        return false;
     }
 }

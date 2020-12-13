@@ -48,6 +48,11 @@ public class Block implements IElement, IObserver {
         return type == Type.BLOCK;
     }
 
+    @Override
+    public boolean isBreakable() {
+        return true;
+    }
+
     public void setY(int y) {
         point.y = y;
     }

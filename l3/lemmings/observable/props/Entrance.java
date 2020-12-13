@@ -69,4 +69,9 @@ public class Entrance implements IElement {
     public boolean compare(Type type) {
         return type == Type.ENTRANCE;
     }
+
+    @Override
+    public boolean isBreakable() {
+        return false;
+    }
 }

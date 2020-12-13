@@ -20,11 +20,6 @@ public class Normal implements State {
     }
 
     @Override
-    public boolean doAction() {
-        return false;
-    }
-
-    @Override
     public boolean walk() {
         if (lemming.getStats().toKillVal()) {
             lemming.getStats().kill();

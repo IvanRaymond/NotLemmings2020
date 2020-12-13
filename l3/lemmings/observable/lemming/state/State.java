@@ -5,8 +5,6 @@ package l3.lemmings.observable.lemming.state;
  */
 public interface State {
 
-    boolean doAction();
-
     boolean walk();
 
     boolean reachWall(boolean isBlockOnTop);

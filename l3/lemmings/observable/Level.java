@@ -4,9 +4,11 @@ import l3.lemmings.observable.block.Block;
 import l3.lemmings.observable.lemming.ILemming;
 import l3.lemmings.observable.lemming.Lemming;
 import l3.lemmings.observable.lemming.LemmingObservable;
+import l3.lemmings.observable.lemming.direction.Direction;
 import l3.lemmings.observable.props.Entrance;
 import l3.lemmings.observable.props.Staircase;
 
+import javax.swing.text.Position;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -236,6 +238,16 @@ public class Level {
         }
     }
 
+    public void breakBlock(Point point){
+        for(int i=0; i<elements.size(); i++){
+            if(elements.get(i).getPosition().x == point.x && elements.get(i).getPosition().y == point.y){
+                if(elements.get(i).isBreakable()){
+                    elements.remove(i);
+                }
+            }
+        }
+    }
+
     public ArrayList<IElement> getElements() {
         return elements;
     }
@@ -254,11 +266,11 @@ public class Level {
         return staircase;
     }
 
-    public void killSurrounding(LemmingObservable l){
+    public void killSurrounding(Point point, int range){
         for(int i = 0; i < lemmings.size(); i++){
             Point p = lemmings.get(i).getPosition();
-            if (p.getX() <= l.getPosition().getX() + 5 && p.getX() >= l.getPosition().getX() - 5 &&
-                p.getY() >= l.getPosition().getY() - 5 && p.getY() <= l.getPosition().getY()) {
+            if (p.getX() <= point.getX() + range && p.getX() >= point.getX() - range &&
+                p.getY() >= point.getY() - range && p.getY() <= point.getY() + range) {
                 lemmings.get(i).kill();
             }
         }
@@ -271,7 +283,6 @@ public class Level {
     public void addLemmings(LemmingObservable lemming) {
         lemmings.add(lemming);
     }
-
 
     public void increaseFlow() {
         if (flow > 1) {

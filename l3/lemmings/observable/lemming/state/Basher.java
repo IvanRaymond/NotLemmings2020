@@ -8,15 +8,11 @@ public class Basher implements State {
 
     LemmingObservable lemming;
     Game game;
+    boolean digging = false;
 
     public Basher(LemmingObservable lemming, Game context) {
         this.lemming = lemming;
         game = context;
-    }
-
-    @Override
-    public boolean doAction() {
-        return false;
     }
 
     @Override

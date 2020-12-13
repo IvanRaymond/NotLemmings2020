@@ -24,11 +24,6 @@ public class Floater implements State {
     }
 
     @Override
-    public boolean doAction() {
-        return false;
-    }
-
-    @Override
     public boolean walk() {
         direction.level();
         if (direction.isStill()) {

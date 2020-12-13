@@ -15,11 +15,6 @@ public class BridgeBuilder implements State {
     }
 
     @Override
-    public boolean doAction() {
-        return false;
-    }
-
-    @Override
     public boolean walk() {
         return false;
     }

@@ -7,10 +7,8 @@ import java.awt.*;
 
 public interface ILemming {
 
-    public Point getPosition();
     public Direction getDirection();
     public void move();
     public boolean isAlive();
-    public boolean compare(Type type);
 
 }

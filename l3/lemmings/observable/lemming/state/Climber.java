@@ -22,11 +22,6 @@ public class Climber implements State {
     }
 
     @Override
-    public boolean doAction() {
-        return false;
-    }
-
-    @Override
     public boolean walk() {
         if(lemming.getDirection().isClimbing() && finished){
             lemming.getDirection().level();

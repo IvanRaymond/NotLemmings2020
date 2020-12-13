@@ -15,15 +15,9 @@ public class Bomber implements State {
     }
 
     @Override
-    public boolean doAction() {
-
-        return false;
-    }
-
-    @Override
     public boolean walk() {
         lemming.getDirection().stop();
-        game.getLevel().killSurrounding(lemming);
+        game.getLevel().killSurrounding(lemming.getPosition(), 5);
         lemming.getStats().kill();
         return false;
     }

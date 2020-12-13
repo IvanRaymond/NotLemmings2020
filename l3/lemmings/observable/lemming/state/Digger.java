@@ -4,12 +4,15 @@ import l3.lemmings.observable.Game;
 import l3.lemmings.observable.lemming.Lemming;
 import l3.lemmings.observable.lemming.LemmingObservable;
 
+import java.awt.*;
+
 public class Digger implements State {
 
     LemmingObservable lemming;
     Game game;
 
     int digCount = 0;
+    private static final int DIGCOUNT = 5;
 
     public Digger(LemmingObservable lemming, Game context) {
         this.lemming = lemming;
@@ -29,15 +32,17 @@ public class Digger implements State {
     }
 
     @Override
-    public boolean doAction() {
-
-
-        return true;
-    }
-
-    @Override
     public boolean walk() {
-        return false;
+        if(digCount >= DIGCOUNT){
+            lemming.setState(new Normal(lemming));
+            return true;
+        }else {
+            lemming.getDirection().stop();
+            Point toBreak = new Point(lemming.getPosition().x, lemming.getPosition().y + 1);
+            game.getLevel().breakBlock(toBreak);
+            incDigCount();
+        }
+        return true;
     }
 
     @Override
@@ -52,12 +57,12 @@ public class Digger implements State {
 
     @Override
     public boolean fallingLow() {
-        return false;
+        return new Normal(lemming).fallingLow();
     }
 
     @Override
     public boolean fallingHigh() {
-        return false;
+        return new Normal(lemming).fallingHigh();
     }
 
     @Override
