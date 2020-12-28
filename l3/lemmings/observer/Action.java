@@ -1,67 +1,68 @@
-package l3.lemmings.controller;
+package l3.lemmings.observer;
 
-import l3.lemmings.controller.UIcontroller.Button;
-import l3.lemmings.model.Game;
-import l3.lemmings.model.Lemming.LemmingState;
-import l3.lemmings.model.Lemming;
+import l3.lemmings.observable.lemming.LemmingObservable;
+import l3.lemmings.observer.UIcontroller.Button;
+import l3.lemmings.observable.Game;
+import l3.lemmings.observable.lemming.Lemming;
+import l3.lemmings.observable.lemming.state.*;
 
 public class Action {
 
-    private Button clicked;
-    private Listener l;
-    private Game game;
+    private final Button clicked;
+    private final Listener l;
+    private final Game game;
 
-    public Action(Button clicked, Listener l, Game game){
+    public Action(Button clicked, Listener l, Game game) {
         this.clicked = clicked;
         this.l = l;
         this.game = game;
     }
 
-    public void doAction(){
+    public void doAction() {
         if (!gameAction(clicked)) {
             l.setActionFlag();
         }
     }
 
     // Expects false return to set actionFlag faster (Change to true if want to keep action "armed")
-    public boolean setAction(Lemming lemming){
+    public boolean setAction(LemmingObservable lemming) {
         switch (clicked) {
             case CLIMBER:
-                lemming.setState(LemmingState.CLIMBER);
+                lemming.setState(new Climber(lemming, game));
                 return true;
 
             case FLOATER:
-                lemming.setState(LemmingState.FLOATER);
+                lemming.setState(new Floater(lemming, game));
                 return true;
 
             case BOMB:
-                lemming.setState(LemmingState.BOMB);
+                lemming.setState(new Bomber(lemming, game));
                 return true;
 
             case BLOCKER:
-                lemming.setState(LemmingState.BLOCKER);
+                lemming.setState(new Blocker(lemming, game));
                 return true;
 
             case BRIDGE_BUILDER:
-                lemming.setState(LemmingState.BRIDGE_BUILDER);
+                lemming.setState(new BridgeBuilder(lemming, game));
                 return true;
 
             case BASHER:
-                lemming.setState(LemmingState.BASHER);
+                lemming.setState(new Basher(lemming, game));
                 return true;
 
             case MINER:
-                lemming.setState(LemmingState.MINER);
+                lemming.setState(new Normal(lemming));
                 return true;
 
             case DIGGER:
-                lemming.setState(LemmingState.DIGGER);
+                lemming.setState(new Digger(lemming, game));
                 return true;
         }
         return false;
     }
 
-    private boolean gameAction(Button clicked){
+    private boolean gameAction(Button clicked) {
         switch (clicked) {
             case DECREASE:
                 return decrease();
@@ -78,24 +79,24 @@ public class Action {
         return false;
     }
 
-    private boolean decrease(){
+    private boolean decrease() {
         game.getLevel().decreaseFlow();
         game.getLevel().printFlow();
         return true;
     }
 
-    private boolean increase(){
+    private boolean increase() {
         game.getLevel().increaseFlow();
         game.getLevel().printFlow();
         return true;
     }
 
-    private boolean pause(){
+    private boolean pause() {
         game.togglePause();
         return true;
     }
 
-    private boolean nuke(){
+    private boolean nuke() {
         game.getLevel().killAll();
         return true;
     }
