@@ -312,15 +312,6 @@ public class Level {
         return flow;
     }
 
-    /**
-     * Remove an element from the list, called by a lemming doing an action.
-     *
-     * @param element
-     */
-    public void removeElement(IElement element) {
-        elements.remove(element);
-    }
-
     public void removeLemming(ILemming entity){
         lemmings.remove(entity);
     }
