@@ -1,14 +1,12 @@
 package l3.lemmings.observable;
 
 import l3.lemmings.observable.block.Block;
+import l3.lemmings.observable.block.Bomb;
 import l3.lemmings.observable.lemming.ILemming;
-import l3.lemmings.observable.lemming.Lemming;
 import l3.lemmings.observable.lemming.LemmingObservable;
-import l3.lemmings.observable.lemming.direction.Direction;
 import l3.lemmings.observable.props.Entrance;
 import l3.lemmings.observable.props.Staircase;
 
-import javax.swing.text.Position;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -35,24 +33,24 @@ public class Level {
         objective = 2;
 
         for (int i = 1; i < 23; i++) {
-            elements.add(new Block(i, 6));
+            elements.add(new Block(i, 6, this));
         }
         for (int i = 7; i < 17; i++) {
-            elements.add(new Block(i, 9));
+            elements.add(new Block(i, 9, this));
         }
-        elements.add(new Block(10, 8));
+        elements.add(new Block(10, 8, this));
 
 //        elements.add(new Lemming(this, 10,8));
 
         for (int i = 17; i < 30; i++) {
-            elements.add(new Block(i, 12));
+            elements.add(new Bomb(i, 12, this));
         }
 //        elements.add(new Block(29, 11));
 //        elements.add(new Block(30,10));
 //        elements.add(new Block(29, 10));
-        elements.add(new Block(28, 4));
+        elements.add(new Bomb(28, 4, this));
         for(int i = 11; i>=4; i--){
-            elements.add(new Block(29,i));
+            elements.add(new Block(29,i, this));
         }
 
         elements.add(new Entrance(this, 5,8,8));
@@ -242,12 +240,10 @@ public class Level {
      * Block breaker method
      * @param point Position of block to break
      */
-    public void breakBlock(Point point){
+    public void removeElement(Point point){
         for(int i=0; i<elements.size(); i++){
             if(elements.get(i).getPosition().x == point.x && elements.get(i).getPosition().y == point.y){
-                if(elements.get(i).isBreakable()){
-                    elements.remove(i);
-                }
+                elements.remove(i);
             }
         }
     }
@@ -268,6 +264,16 @@ public class Level {
         Staircase staircase = new Staircase(lemming);
         elements.add(staircase);
         return staircase;
+    }
+
+    public void destroySurrounding(Point point, int range){
+        for(int i = 0; i < elements.size(); i++){
+            Point p = elements.get(i).getPosition();
+            if (p.getX() <= point.getX() + range && p.getX() >= point.getX() - range &&
+                    p.getY() >= point.getY() - range && p.getY() <= point.getY() + range) {
+                removeElement(elements.get(i).getPosition());
+            }
+        }
     }
 
     public void killSurrounding(Point point, int range){

@@ -6,7 +6,6 @@ import l3.lemmings.observable.Type;
 import l3.lemmings.observable.lemming.direction.DirHorizontal;
 import l3.lemmings.observable.lemming.direction.DirVertical;
 import l3.lemmings.observable.lemming.direction.Direction;
-import l3.lemmings.observable.lemming.state.Normal;
 import l3.lemmings.observable.lemming.state.State;
 
 import java.awt.*;
@@ -123,7 +122,7 @@ public class Lemming implements ILemming, IElement {
     }
 
     @Override
-    public boolean isBreakable() {
+    public boolean destroy() {
         return false;
     }
 }

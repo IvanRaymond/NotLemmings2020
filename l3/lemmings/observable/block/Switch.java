@@ -1,7 +1,6 @@
 package l3.lemmings.observable.block;
 
 import l3.lemmings.observable.IElement;
-import l3.lemmings.observable.Level;
 import l3.lemmings.observable.Type;
 import l3.lemmings.observer.IObserver;
 
@@ -48,7 +47,7 @@ public class Switch implements IElement, IObserver {
     }
 
     @Override
-    public boolean isBreakable() {
+    public boolean destroy() {
         return true;
     }
 

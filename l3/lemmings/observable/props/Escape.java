@@ -4,7 +4,6 @@ import l3.lemmings.observable.IElement;
 import l3.lemmings.observable.Level;
 import l3.lemmings.observable.Type;
 import l3.lemmings.observable.lemming.ILemming;
-import l3.lemmings.observable.lemming.Lemming;
 import l3.lemmings.observable.lemming.LemmingObservable;
 import l3.lemmings.observer.IObserver;
 
@@ -61,7 +60,7 @@ public class Escape implements IElement, IObserver {
     }
 
     @Override
-    public boolean isBreakable() {
+    public boolean destroy() {
         return false;
     }
 }

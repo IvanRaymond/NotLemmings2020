@@ -47,7 +47,6 @@ public class Floater implements State {
 
     @Override
     public boolean fallingLow() {
-        lemming.getStats().fallFast();
         return new Normal(lemming).fallingLow();
     }
 

@@ -14,31 +14,39 @@ public class Bomber implements State {
         game = context;
     }
 
+    private void bomb() {
+        lemming.getDirection().stop();
+        game.getLevel().destroySurrounding(lemming.getPosition(), 2);
+        lemming.getStats().kill();
+    }
+
     @Override
     public boolean walk() {
-        lemming.getDirection().stop();
-        game.getLevel().killSurrounding(lemming.getPosition(), 5);
-        lemming.getStats().kill();
+        bomb();
         return false;
     }
 
     @Override
     public boolean reachWall(boolean isBlockOnTop) {
+        bomb();
         return false;
     }
 
     @Override
     public boolean reachBlock(boolean isBlockOnTop) {
+        bomb();
         return false;
     }
 
     @Override
     public boolean fallingLow() {
+        bomb();
         return false;
     }
 
     @Override
     public boolean fallingHigh() {
+        bomb();
         return false;
     }
 
