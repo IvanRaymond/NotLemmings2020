@@ -56,7 +56,7 @@ public class Physics {
             }
 
             if (!l.getStats().alive()){
-                level.remove(l);
+                level.removeLemming(l);
             }
         }
     }
