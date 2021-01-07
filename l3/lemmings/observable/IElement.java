@@ -21,4 +21,5 @@ public interface IElement {
 
     boolean destroy();
 
+    Color getColor();
 }

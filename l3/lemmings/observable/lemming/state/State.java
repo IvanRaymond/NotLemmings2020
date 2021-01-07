@@ -1,5 +1,7 @@
 package l3.lemmings.observable.lemming.state;
 
+import java.awt.*;
+
 /**
  * Defines the Lemming behaviour when the game physics detects a surrounding change
  */
@@ -16,5 +18,7 @@ public interface State {
     boolean fallingHigh();
 
     boolean isState(Activity state);
+
+    Color getColor();
 
 }

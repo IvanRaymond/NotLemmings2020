@@ -48,6 +48,7 @@ public class Staircase implements IElement, IObserver {
             return true;
         }
 
+
         @Override
         public void update() {
 

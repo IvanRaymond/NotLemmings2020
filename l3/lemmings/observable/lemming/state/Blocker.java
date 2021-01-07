@@ -58,6 +58,11 @@ public class Blocker implements State, IObserver {
     }
 
     @Override
+    public Color getColor() {
+        return Color.BLACK;
+    }
+
+    @Override
     public void update() {
         for(int i=0; i<game.getLevel().getLemmings().size(); i++){
             if(game.getLevel().getLemmings().get(i).isAt(
