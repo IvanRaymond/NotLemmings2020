@@ -1,24 +1,20 @@
-package l3.lemmings.observable.block;
+package l3.lemmings.observable.props;
 
 import l3.lemmings.observable.IElement;
-import l3.lemmings.observable.Level;
 import l3.lemmings.observable.Type;
-import l3.lemmings.observer.IObserver;
 
 import java.awt.*;
-import java.util.ArrayList;
 
-public class Switch implements IElement {
+public class Step implements IElement {
+    private Point point = new Point();
 
-    private final Point point = new Point();
-    ArrayList<Block> blocks;
-    Level level;
-
-    public Switch(int x, int y, ArrayList<Block> b, Level level) {
+    public Step(int x, int y) {
         point.x = x;
         point.y = y;
-        blocks = b;
-        this.level = level;
+    }
+
+    public Step(Point point){
+        this.point = point;
     }
 
     public int getX() {
@@ -46,16 +42,12 @@ public class Switch implements IElement {
 
     @Override
     public boolean destroy() {
-        level.removeElement(point);
         return true;
     }
 
     @Override
     public Color getColor() {
-        return Color.BLUE;
+        return Color.yellow;
     }
 
-    public ArrayList<Block> getBlocks() {
-        return blocks;
-    }
 }
