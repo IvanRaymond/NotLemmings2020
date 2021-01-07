@@ -279,11 +279,11 @@ public class Level {
     }
 
     public void killSurrounding(Point point, int range){
-        for(int i = 0; i < lemmings.size(); i++){
-            Point p = lemmings.get(i).getPosition();
+        for(LemmingObservable current : new ArrayList<LemmingObservable>(lemmings)){
+            Point p = current.getPosition();
             if (p.getX() <= point.getX() + range && p.getX() >= point.getX() - range &&
-                p.getY() >= point.getY() - range && p.getY() <= point.getY() + range) {
-                lemmings.get(i).kill();
+                    p.getY() >= point.getY() - range && p.getY() <= point.getY() + range) {
+                current.kill();
             }
         }
     }
