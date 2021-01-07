@@ -1,5 +1,6 @@
 package l3.lemmings.observable.block;
 
+import l3.lemmings.observable.IDrawable;
 import l3.lemmings.observable.IElement;
 import l3.lemmings.observable.Level;
 import l3.lemmings.observable.Type;
@@ -58,5 +59,4 @@ public class Block implements IElement {
     public void setY(int y) {
         point.y = y;
     }
-
 }

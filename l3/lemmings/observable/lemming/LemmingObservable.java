@@ -1,5 +1,6 @@
 package l3.lemmings.observable.lemming;
 
+import l3.lemmings.observable.IDrawable;
 import l3.lemmings.observable.IElement;
 import l3.lemmings.observable.Level;
 import l3.lemmings.observable.Type;
@@ -12,7 +13,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LemmingObservable implements ILemming, IElement {
+public class LemmingObservable implements ILemming, IElement, IDrawable {
 
     private Lemming lemming;
     private List<IObserver> observers;
@@ -114,4 +115,12 @@ public class LemmingObservable implements ILemming, IElement {
     }
 
     public Color getColor() {return lemming.getColor();}
+
+    @Override
+    public void draw(Graphics g) {
+        g.setColor(getColor());
+        g.fillRect( (int) getPosition().getX() * 30, (int) getPosition().getY() * 30, 30, 30);
+        g.setColor(getColor());
+        g.fillRect( (int) getPosition().getX() * 30 + 4, (int) getPosition().getY() * 30 + 4, 30 - 8, 30 - 8);
+    }
 }
