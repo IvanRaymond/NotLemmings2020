@@ -16,6 +16,12 @@ public class Direction {
         this.y = direction.getY();
     }
 
+    public int getIntX(){
+        if (x == DirHorizontal.RIGHT) return 1;
+        else if (x == DirHorizontal.LEFT) return -1;
+        else return 0;
+    }
+
     public DirHorizontal getX() {
         return x;
     }

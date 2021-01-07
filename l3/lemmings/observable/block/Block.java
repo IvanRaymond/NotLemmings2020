@@ -41,7 +41,7 @@ public class Block implements IElement {
 
     @Override
     public boolean compare(Type type) {
-        return type == Type.BLOCK;
+        return type == Type.CLIMBABLE;
     }
 
     @Override

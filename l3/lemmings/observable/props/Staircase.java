@@ -40,7 +40,7 @@ public class Staircase implements IElement, IObserver {
 
         @Override
         public boolean compare(Type type) {
-            return type == Type.STEP;
+            return type == Type.CLIMBABLE;
         }
 
         @Override
@@ -116,7 +116,7 @@ public class Staircase implements IElement, IObserver {
 
     @Override
     public boolean compare(Type type) {
-        return type == Type.STAIRCASE;
+        return type == Type.CLIMBABLE;
     }
 
     @Override

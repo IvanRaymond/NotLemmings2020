@@ -19,27 +19,38 @@ public class Basher implements State {
 
     @Override
     public boolean walk() {
-        return false;
+        if(!lemming.surrounding().isBlockAhead() && digging == true){
+            lemming.setState(new Normal(lemming));
+        }
+        return true;
     }
 
     @Override
     public boolean reachWall(boolean isBlockOnTop) {
-        return false;
+        Point toBreak = new Point(lemming.getPosition().x + lemming.getDirection().getIntX() , lemming.getPosition().y);
+        game.getLevel().getElement(toBreak).destroy();
+        digging = true;
+        return true;
     }
 
     @Override
     public boolean reachBlock(boolean isBlockOnTop) {
-        return false;
+        Point toBreak = new Point(lemming.getPosition().x + lemming.getDirection().getIntX() , lemming.getPosition().y);
+        game.getLevel().getElement(toBreak).destroy();
+        digging = true;
+        return true;
     }
 
     @Override
     public boolean fallingLow() {
-        return false;
+        lemming.setState(new Normal(lemming));
+        return new Normal(lemming).fallingLow();
     }
 
     @Override
     public boolean fallingHigh() {
-        return false;
+        lemming.setState(new Normal(lemming));
+        return new Normal(lemming).fallingHigh();
     }
 
     @Override

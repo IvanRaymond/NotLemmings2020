@@ -38,7 +38,7 @@ public class Bomb implements IElement {
 
     @Override
     public boolean compare(Type type) {
-        return type == Type.BOMB;
+        return type == Type.CLIMBABLE;
     }
 
     @Override
