@@ -39,7 +39,9 @@ public class Digger implements State {
         }else {
             lemming.getDirection().stop();
             Point toBreak = new Point(lemming.getPosition().x, lemming.getPosition().y + 1);
-            game.getLevel().removeElement(toBreak);
+            //ToDo: Call destroy method rather than remove
+//            game.getLevel().removeElement(toBreak);
+            game.getLevel().getElement(toBreak).destroy();
             incDigCount();
         }
         return true;

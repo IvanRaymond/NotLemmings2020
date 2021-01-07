@@ -237,8 +237,8 @@ public class Level {
     }
 
     /**
-     * Block breaker method
-     * @param point Position of block to break
+     * Element removal method
+     * @param point Position of element to remove
      */
     public void removeElement(Point point){
         for(int i=0; i<elements.size(); i++){
@@ -320,5 +320,16 @@ public class Level {
 
     public void removeLemming(ILemming entity){
         lemmings.remove(entity);
+    }
+
+    public IElement getElement(Point position){
+
+        for(int i=0; i<elements.size(); i++){
+            if(elements.get(i).getPosition().x == position.x && elements.get(i).getPosition().y == position.y){
+                return elements.get(i);
+            }
+        }
+
+        return new Block(-1,-1, this);
     }
 }

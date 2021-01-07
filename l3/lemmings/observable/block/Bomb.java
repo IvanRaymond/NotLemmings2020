@@ -7,7 +7,7 @@ import l3.lemmings.observer.IObserver;
 
 import java.awt.*;
 
-public class Bomb implements IElement, IObserver {
+public class Bomb implements IElement {
 
     private final Point point = new Point();
     private Level level;
@@ -34,11 +34,6 @@ public class Bomb implements IElement, IObserver {
     @Override
     public Point getSecondPosition() {
         return null;
-    }
-
-    @Override
-    public void update() {
-
     }
 
     @Override
