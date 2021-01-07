@@ -1,14 +1,10 @@
 package l3.lemmings.observable;
 
 public enum Type {
-    BLOCK,
-    BOMB,
-    SWITCH,
+    CLIMBABLE,
     LEMMING,
     ENTRANCE,
     ESCAPE,
-    STAIRCASE,
-    STEP,
     LAVA,
     TELEPORTER
 }

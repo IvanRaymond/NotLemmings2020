@@ -5,7 +5,7 @@ import l3.lemmings.observable.block.Bomb;
 import l3.lemmings.observable.lemming.ILemming;
 import l3.lemmings.observable.lemming.LemmingObservable;
 import l3.lemmings.observable.props.Entrance;
-import l3.lemmings.observable.props.Staircase;
+import l3.lemmings.observable.props.Step;
 
 import java.awt.*;
 import java.lang.annotation.ElementType;
@@ -262,10 +262,8 @@ public class Level {
         safe++;
     }
 
-    public Staircase buildStaircase(LemmingObservable lemming) {
-        Staircase staircase = new Staircase(lemming);
-        elements.add(staircase);
-        return staircase;
+    public void buildStep(Point point) {
+        elements.add(new Step(point));
     }
 
     public void destroySurrounding(Point point, int range){

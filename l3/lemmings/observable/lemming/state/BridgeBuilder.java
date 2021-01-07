@@ -8,37 +8,59 @@ import java.awt.*;
 
 public class BridgeBuilder implements State {
 
-    LemmingObservable lemming;
-    Game game;
+    private LemmingObservable lemming;
+    private Game game;
+    static final int STEPCOUNT = 5;
+    private int count = 0;
 
     public BridgeBuilder(LemmingObservable lemming, Game context) {
         this.lemming = lemming;
         game = context;
     }
 
+
+    private void build(){
+        if(count == STEPCOUNT){
+            lemming.getDirection().level();
+            lemming.setState(new Normal(lemming));
+        }
+        else {
+            game.getLevel().buildStep(new Point(lemming.getPosition().x+lemming.getDirection().getIntX(), lemming.getPosition().y));
+            count++;
+            lemming.getDirection().climb();
+        }
+
+    }
+
     @Override
     public boolean walk() {
-        return false;
+        build();
+        return true;
     }
 
     @Override
     public boolean reachWall(boolean isBlockOnTop) {
-        return false;
+        return new Normal(lemming).reachWall(isBlockOnTop);
     }
 
     @Override
     public boolean reachBlock(boolean isBlockOnTop) {
-        return false;
+        if(new Normal(lemming).reachBlock(isBlockOnTop)){
+            build();
+        }
+        return true;
     }
 
     @Override
     public boolean fallingLow() {
-        return false;
+        build();
+        return true;
     }
 
     @Override
     public boolean fallingHigh() {
-        return false;
+        build();
+        return true;
     }
 
     @Override

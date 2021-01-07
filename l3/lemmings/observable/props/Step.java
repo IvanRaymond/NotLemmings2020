@@ -1,21 +1,20 @@
-package l3.lemmings.observable.block;
+package l3.lemmings.observable.props;
 
 import l3.lemmings.observable.IElement;
-import l3.lemmings.observable.Level;
 import l3.lemmings.observable.Type;
-import l3.lemmings.observer.IObserver;
 
 import java.awt.*;
 
-public class Bomb implements IElement {
+public class Step implements IElement {
+    private Point point = new Point();
 
-    private final Point point = new Point();
-    private Level level;
-
-    public Bomb(int x, int y, Level level) {
+    public Step(int x, int y) {
         point.x = x;
         point.y = y;
-        this.level = level;
+    }
+
+    public Step(Point point){
+        this.point = point;
     }
 
     public int getX() {
@@ -43,13 +42,12 @@ public class Bomb implements IElement {
 
     @Override
     public boolean destroy() {
-        level.killSurrounding(point, 2);
-        level.removeElement(point);
         return true;
     }
 
     @Override
     public Color getColor() {
-        return Color.RED;
+        return Color.yellow;
     }
+
 }

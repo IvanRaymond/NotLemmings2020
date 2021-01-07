@@ -41,12 +41,11 @@ public class Switch implements IElement {
 
     @Override
     public boolean compare(Type type) {
-        return type == Type.SWITCH;
+        return type == Type.CLIMBABLE;
     }
 
     @Override
     public boolean destroy() {
-        //Add new blocks to element
         level.removeElement(point);
         return true;
     }

@@ -43,10 +43,11 @@ public class Normal implements State {
     public boolean reachBlock(boolean isBlockOnTop) {
         if (isBlockOnTop) {
             direction.turnAround();
+            return false;
         } else {
             direction.climb();
+            return true;
         }
-        return true;
     }
 
     private void fall(){

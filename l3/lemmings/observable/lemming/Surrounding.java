@@ -26,8 +26,6 @@ public class Surrounding {
     ArrayList<IElement> elements;
     Lemming l;
 
-    private boolean stairAhead;
-
     public Surrounding(ArrayList<IElement> elements, Lemming l) {
         this.elements = elements;
         this.l = l;
@@ -41,7 +39,7 @@ public class Surrounding {
         Point lP = l.getPosition();
 
         for (IElement b : elements) {
-            if (b.compare(Type.BLOCK) || b.compare(Type.SWITCH) || b.compare(Type.BOMB)) {
+            if (b.compare(Type.CLIMBABLE)) {
                 Point bP = b.getPosition();
 
                 // Block on Top
@@ -104,6 +102,14 @@ public class Surrounding {
             blockUnderRight = true;
             blockUnderLeft = true;
         }
+    }
+
+    /**
+     * Count the number of blocks before a
+     * @return The number of blocks to break
+     */
+    public int scanAhead(Lemming lemming){
+        return 3;
     }
 
     public void update() {
