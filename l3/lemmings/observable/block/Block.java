@@ -11,11 +11,14 @@ public class Block implements IElement {
 
     private final Point point = new Point();
     private Level level;
+    private IDrawable drawable;
 
     public Block(int x, int y, Level level) {
         point.x = x;
         point.y = y;
         this.level = level;
+        drawable = new BlockDrawable(this);
+
     }
 
     public int getX() {
@@ -54,6 +57,11 @@ public class Block implements IElement {
     @Override
     public Color getColor() {
         return Color.DARK_GRAY;
+    }
+
+    @Override
+    public IDrawable view() {
+        return drawable;
     }
 
     public void setY(int y) {

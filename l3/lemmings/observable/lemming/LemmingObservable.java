@@ -17,13 +17,11 @@ public class LemmingObservable implements ILemming, IElement {
 
     private Lemming lemming;
     private List<IObserver> observers;
-    private LemmingDrawable drawable;
 
     public LemmingObservable(Level level, int x, int y){
         lemming = new Lemming(level, x, y);
         lemming.setState(new Normal(this));
         observers = new ArrayList<IObserver>();
-        drawable = new LemmingDrawable(this);
     }
 
     @Override
@@ -119,7 +117,7 @@ public class LemmingObservable implements ILemming, IElement {
     public Color getColor() {return lemming.getColor();}
 
     public IDrawable view(){
-        return drawable;
+        return lemming.view();
     }
 
 }

@@ -1,5 +1,6 @@
 package l3.lemmings.observable.trap;
 
+import l3.lemmings.observable.IDrawable;
 import l3.lemmings.observable.IElement;
 import l3.lemmings.observable.Level;
 import l3.lemmings.observable.Type;
@@ -12,11 +13,13 @@ public class Lava implements IElement, IObserver {
 
     private final Point point = new Point();
     private Level level;
+    private LavaDrawable drawable;
 
     public Lava(int x, int y) {
         point.x = x;
         point.y = y;
         this.level = level;
+        drawable = new LavaDrawable(this);
     }
 
     public int getX() {
@@ -61,6 +64,11 @@ public class Lava implements IElement, IObserver {
     @Override
     public Color getColor() {
         return Color.YELLOW;
+    }
+
+    @Override
+    public IDrawable view() {
+        return drawable;
     }
 
 }

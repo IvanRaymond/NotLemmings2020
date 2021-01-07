@@ -1,5 +1,6 @@
 package l3.lemmings.observable.props;
 
+import l3.lemmings.observable.IDrawable;
 import l3.lemmings.observable.IElement;
 import l3.lemmings.observable.Level;
 import l3.lemmings.observable.Type;
@@ -16,7 +17,8 @@ public class Entrance implements IElement {
     private final Level level;
     private int numberOfLemmings;
     private boolean done = false;
-    int n;
+    private int n;
+    private EntranceDrawable drawable;
 
     public Entrance(Level level, int numberOfLemmings, int x, int y) {
         point.x = x;
@@ -24,6 +26,7 @@ public class Entrance implements IElement {
         this.level = level;
         this.numberOfLemmings = numberOfLemmings;
         n = numberOfLemmings;
+        drawable = new EntranceDrawable(this);
     }
 
     public void addLemming() {
@@ -76,5 +79,10 @@ public class Entrance implements IElement {
     @Override
     public Color getColor() {
         return Color.pink;
+    }
+
+    @Override
+    public IDrawable view() {
+        return drawable;
     }
 }

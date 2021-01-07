@@ -1,5 +1,6 @@
 package l3.lemmings.observable.props;
 
+import l3.lemmings.observable.IDrawable;
 import l3.lemmings.observable.IElement;
 import l3.lemmings.observable.Level;
 import l3.lemmings.observable.Type;
@@ -13,6 +14,7 @@ public class Escape implements IElement, IObserver {
 
     private final Point point = new Point();
     private Level level;
+    private EscapeDrawable drawable;
 
     public Escape(Level level, int x, int y) {
         point.x = x;
@@ -22,6 +24,7 @@ public class Escape implements IElement, IObserver {
             LemmingObservable lemmingObservable = (LemmingObservable) l;
             lemmingObservable.register(this);
         }
+        drawable = new EscapeDrawable(this);
     }
 
     public int getX() {
@@ -67,5 +70,10 @@ public class Escape implements IElement, IObserver {
     @Override
     public Color getColor() {
         return Color.green;
+    }
+
+    @Override
+    public IDrawable view() {
+        return drawable;
     }
 }

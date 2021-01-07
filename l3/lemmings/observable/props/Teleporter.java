@@ -1,5 +1,6 @@
 package l3.lemmings.observable.props;
 
+import l3.lemmings.observable.IDrawable;
 import l3.lemmings.observable.IElement;
 import l3.lemmings.observable.Level;
 import l3.lemmings.observable.Type;
@@ -13,6 +14,7 @@ public class Teleporter implements IElement, IObserver {
     private Point point1 = new Point();
     private Point point2 = new Point();
     private Level level;
+    private TeleporterDrawable drawable;
 
     public Teleporter(Level level, int x1, int y1, int x2, int y2) {
         point1.x = x1;
@@ -20,6 +22,7 @@ public class Teleporter implements IElement, IObserver {
         point2.x = x2;
         point2.y = y2;
         this.level = level;
+        drawable = new TeleporterDrawable(this);
     }
 
     public Teleporter(Point point1, Point point2) {
@@ -65,5 +68,10 @@ public class Teleporter implements IElement, IObserver {
     @Override
     public Color getColor() {
         return Color.white;
+    }
+
+    @Override
+    public IDrawable view() {
+        return drawable;
     }
 }

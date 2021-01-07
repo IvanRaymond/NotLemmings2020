@@ -1,5 +1,6 @@
 package l3.lemmings.observable.lemming;
 
+import l3.lemmings.observable.IDrawable;
 import l3.lemmings.observable.IElement;
 import l3.lemmings.observable.Level;
 import l3.lemmings.observable.Type;
@@ -32,6 +33,7 @@ public class Lemming implements ILemming, IElement {
         direction = new Direction(RIGHT, STILL);
         stats = new Stats();
         surrounding = new Surrounding(level.getElements(), this);
+        drawable = new LemmingDrawable(this);
     }
 
     public void setState(State state) {
@@ -130,5 +132,10 @@ public class Lemming implements ILemming, IElement {
     @Override
     public Color getColor() {
         return state.getColor();
+    }
+
+    @Override
+    public IDrawable view() {
+        return drawable;
     }
 }

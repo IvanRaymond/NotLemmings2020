@@ -1,5 +1,6 @@
 package l3.lemmings.observable.block;
 
+import l3.lemmings.observable.IDrawable;
 import l3.lemmings.observable.IElement;
 import l3.lemmings.observable.Level;
 import l3.lemmings.observable.Type;
@@ -12,14 +13,16 @@ import java.util.ArrayList;
 public class Switch implements IElement {
 
     private final Point point = new Point();
-    ArrayList<IElement> blocks;
-    Level level;
+    private ArrayList<IElement> blocks;
+    private Level level;
+    private IDrawable drawable;
 
     public Switch(int x, int y, ArrayList<IElement> b, Level level) {
         point.x = x;
         point.y = y;
         blocks = b;
         this.level = level;
+        drawable = new SwitchDrawable(this);
     }
 
     public int getX() {
@@ -55,6 +58,11 @@ public class Switch implements IElement {
     @Override
     public Color getColor() {
         return Color.PINK;
+    }
+
+    @Override
+    public IDrawable view() {
+        return drawable;
     }
 
 }
