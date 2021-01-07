@@ -26,7 +26,11 @@ public class Action {
         }
     }
 
-    // Expects false return to set actionFlag faster (Change to true if want to keep action "armed")
+    /**
+     *
+     * @param lemming
+     * @return True to keep action selected
+     */
     public boolean setAction(LemmingObservable lemming) {
         switch (clicked) {
             case CLIMBER:

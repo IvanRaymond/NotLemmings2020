@@ -1,6 +1,5 @@
 package l3.lemmings.observable.lemming;
 
-import l3.lemmings.observable.Game;
 import l3.lemmings.observable.IElement;
 import l3.lemmings.observable.Level;
 import l3.lemmings.observable.Type;
@@ -64,7 +63,7 @@ public class LemmingObservable implements ILemming, IElement {
     }
 
     @Override
-    public boolean isBreakable() {
+    public boolean destroy() {
         return false;
     }
 
