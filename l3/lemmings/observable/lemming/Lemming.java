@@ -20,6 +20,7 @@ public class Lemming implements ILemming, IElement {
     private final Direction direction;
     private final Stats stats;
     private final Surrounding surrounding;
+    private LemmingDrawable drawable;
 
     private Point position = new Point();
 

@@ -94,7 +94,7 @@ public class Views extends JComponent implements IObserver {
             g.fillRect( (int) e.getPosition().getX() * blockWidth + 4, (int) e.getPosition().getY() * blockHeight + 4, blockWidth - 8, blockHeight - 8);
         }
         for(LemmingObservable l : lemmings){
-            l.draw(g);
+            l.view().draw(g);
         }
     }
 

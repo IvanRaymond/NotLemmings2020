@@ -12,6 +12,11 @@ public class App {
     public final static int WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
     public final static int HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
     private final static int MAX_FPS = 50;
+    public final static int numCaseX = 40;
+    public final static int numCaseY = 24;
+    public final static int blockWidth =  (WIDTH-200) / numCaseX;
+    public final static int blockHeight = (HEIGHT-100) / numCaseY;
+
     // maximum number of frames to be skipped
     private final static int MAX_FRAME_SKIPS = 5;
     // the frame period
@@ -19,8 +24,8 @@ public class App {
 
     public static void main(String[] args) throws InterruptedException, IOException {
 
-        int numCaseX = 40;
-        int numCaseY = 24;
+
+
         Game game = new Game();
 
         Views view = new Views(game, WIDTH - 200, HEIGHT - 100, numCaseX, numCaseY);

@@ -13,15 +13,17 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LemmingObservable implements ILemming, IElement, IDrawable {
+public class LemmingObservable implements ILemming, IElement {
 
     private Lemming lemming;
     private List<IObserver> observers;
+    private LemmingDrawable drawable;
 
     public LemmingObservable(Level level, int x, int y){
         lemming = new Lemming(level, x, y);
         lemming.setState(new Normal(this));
         observers = new ArrayList<IObserver>();
+        drawable = new LemmingDrawable(this);
     }
 
     @Override
@@ -116,11 +118,8 @@ public class LemmingObservable implements ILemming, IElement, IDrawable {
 
     public Color getColor() {return lemming.getColor();}
 
-    @Override
-    public void draw(Graphics g) {
-        g.setColor(getColor());
-        g.fillRect( (int) getPosition().getX() * 30, (int) getPosition().getY() * 30, 30, 30);
-        g.setColor(getColor());
-        g.fillRect( (int) getPosition().getX() * 30 + 4, (int) getPosition().getY() * 30 + 4, 30 - 8, 30 - 8);
+    public IDrawable view(){
+        return drawable;
     }
+
 }
