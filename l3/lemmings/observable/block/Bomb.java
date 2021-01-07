@@ -47,4 +47,9 @@ public class Bomb implements IElement {
         level.removeElement(point);
         return true;
     }
+
+    @Override
+    public Color getColor() {
+        return Color.lightGray;
+    }
 }

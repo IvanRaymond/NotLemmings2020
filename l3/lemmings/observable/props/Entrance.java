@@ -72,4 +72,9 @@ public class Entrance implements IElement {
     public boolean destroy() {
         return false;
     }
+
+    @Override
+    public Color getColor() {
+        return Color.pink;
+    }
 }

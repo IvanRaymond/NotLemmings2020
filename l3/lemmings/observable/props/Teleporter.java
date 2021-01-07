@@ -61,4 +61,9 @@ public class Teleporter implements IElement, IObserver {
     public boolean destroy() {
         return false;
     }
+
+    @Override
+    public Color getColor() {
+        return Color.white;
+    }
 }

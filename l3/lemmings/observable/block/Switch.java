@@ -51,6 +51,11 @@ public class Switch implements IElement {
         return true;
     }
 
+    @Override
+    public Color getColor() {
+        return Color.BLUE;
+    }
+
     public ArrayList<Block> getBlocks() {
         return blocks;
     }

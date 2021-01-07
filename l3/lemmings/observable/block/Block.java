@@ -50,6 +50,11 @@ public class Block implements IElement {
         return true;
     }
 
+    @Override
+    public Color getColor() {
+        return Color.RED;
+    }
+
     public void setY(int y) {
         point.y = y;
     }

@@ -58,4 +58,9 @@ public class Lava implements IElement, IObserver {
         return false;
     }
 
+    @Override
+    public Color getColor() {
+        return Color.YELLOW;
+    }
+
 }

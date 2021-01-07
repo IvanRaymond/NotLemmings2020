@@ -48,6 +48,11 @@ public class Staircase implements IElement, IObserver {
             return true;
         }
 
+        @Override
+        public Color getColor() {
+            return Color.yellow;
+        }
+
 
         @Override
         public void update() {
@@ -117,5 +122,10 @@ public class Staircase implements IElement, IObserver {
     @Override
     public boolean destroy() {
         return false;
+    }
+
+    @Override
+    public Color getColor() {
+        return Color.lightGray;
     }
 }
