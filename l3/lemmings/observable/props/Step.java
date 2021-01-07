@@ -18,6 +18,7 @@ public class Step implements IElement {
 
     public Step(Point point){
         this.point = point;
+        drawable = new StepDrawable(this);
     }
 
     public int getX() {

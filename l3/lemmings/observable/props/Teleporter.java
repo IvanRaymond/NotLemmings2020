@@ -23,11 +23,15 @@ public class Teleporter implements IElement, IObserver {
         point2.y = y2;
         this.level = level;
         drawable = new TeleporterDrawable(this);
+        level.getToRegister().add(this);
     }
 
-    public Teleporter(Point point1, Point point2) {
+    public Teleporter(Level level, Point point1, Point point2) {
         this.point1 = new Point(point1);
         this.point2 = new Point(point2);
+        this.level = level;
+        drawable = new TeleporterDrawable(this);
+        level.getToRegister().add(this);
     }
 
     @Override
@@ -47,10 +51,8 @@ public class Teleporter implements IElement, IObserver {
 
             if (l.isAt(point1)) {
                 l.setPosition(point2);
-                l.notifyObservers();
             } else if (l.isAt(point2)) {
                 l.setPosition(point1);
-                l.notifyObservers();
             }
         }
     }

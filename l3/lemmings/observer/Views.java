@@ -87,6 +87,7 @@ public class Views extends JComponent implements IObserver {
         drawButtons(g);
 
         g.setColor(new Color(112, 72, 60));
+
         for (IElement e : elements) {
             e.view().draw(g);
         }

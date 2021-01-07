@@ -20,10 +20,7 @@ public class Escape implements IElement, IObserver {
         point.x = x;
         point.y = y;
         this.level = level;
-        for(ILemming l : level.getLemmings()){
-            LemmingObservable lemmingObservable = (LemmingObservable) l;
-            lemmingObservable.register(this);
-        }
+        level.getToRegister().add(this);
         drawable = new EscapeDrawable(this);
     }
 
@@ -51,7 +48,6 @@ public class Escape implements IElement, IObserver {
             LemmingObservable l = (LemmingObservable) level.getLemmings().get(i);
             if (l.isAt(point)) {
                 l.getStats().kill();
-                l.notifyObservers();
                 level.incSafe();
             }
         }
