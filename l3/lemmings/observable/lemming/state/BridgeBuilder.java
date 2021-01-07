@@ -10,35 +10,52 @@ public class BridgeBuilder implements State {
 
     LemmingObservable lemming;
     Game game;
+    static final int STEPCOUNT = 5;
 
     public BridgeBuilder(LemmingObservable lemming, Game context) {
         this.lemming = lemming;
         game = context;
     }
 
+    int count = 0;
+    boolean building = false;
+    private void build(){
+        if(count == STEPCOUNT){
+            lemming.getDirection().level();
+            lemming.setState(new Normal(lemming));
+        }
+        else if (!building) {
+            game.getLevel().buildStaircase(lemming);
+        }
+    }
+
     @Override
     public boolean walk() {
-        return false;
+        build();
+        return true;
     }
 
     @Override
     public boolean reachWall(boolean isBlockOnTop) {
-        return false;
+        return new Normal(lemming).reachWall(isBlockOnTop);
     }
 
     @Override
     public boolean reachBlock(boolean isBlockOnTop) {
-        return false;
+        if(new Normal(lemming).reachBlock(isBlockOnTop)){
+            build();
+        }
+        return true;
     }
 
     @Override
     public boolean fallingLow() {
-        return false;
+        return new Normal(lemming).fallingLow();
     }
 
     @Override
     public boolean fallingHigh() {
-        return false;
+        return new Normal(lemming).fallingHigh();
     }
 
     @Override
