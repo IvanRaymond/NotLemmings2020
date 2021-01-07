@@ -57,7 +57,6 @@ public class Views extends JComponent implements IObserver {
         elements = game.getLevel().getElements();
         lemmings = game.getLevel().getLemmings();
 
-        // ToDo Add view to all lemmings observers list
         for(LemmingObservable l : lemmings){
             l.register(this);
         }
@@ -76,7 +75,6 @@ public class Views extends JComponent implements IObserver {
 
     @Override
     public void update() {
-        System.out.println("Is stepping");
         repaint();
     }
 

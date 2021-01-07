@@ -9,6 +9,7 @@ import java.awt.*;
 public interface IElement {
 
     Point getPosition();
+
     /**
      * Getter for second position of an object
      *
@@ -16,7 +17,6 @@ public interface IElement {
      */
     Point getSecondPosition();
 
-    // ToDo: replace with comparable interface ???
     boolean compare(Type type);
 
     boolean destroy();

@@ -7,10 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
-//ToDo: Implement all states...sike
-//      Remove sprites
-//      Implement special blocks
-
 public class App {
 
     public final static int WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -39,7 +35,7 @@ public class App {
         while (true) {
             if (!game.pause()) {
                 game.step();
-                view.repaint(); //ToDo replace with observable in view
+                view.repaint();
                 Thread.sleep(700);
             }
             // Necessary to make pause work.

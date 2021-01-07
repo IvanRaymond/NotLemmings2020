@@ -5,16 +5,17 @@ import l3.lemmings.observable.Level;
 import l3.lemmings.observable.Type;
 import l3.lemmings.observer.IObserver;
 
+import javax.swing.text.Element;
 import java.awt.*;
 import java.util.ArrayList;
 
 public class Switch implements IElement {
 
     private final Point point = new Point();
-    ArrayList<Block> blocks;
+    ArrayList<IElement> blocks;
     Level level;
 
-    public Switch(int x, int y, ArrayList<Block> b, Level level) {
+    public Switch(int x, int y, ArrayList<IElement> b, Level level) {
         point.x = x;
         point.y = y;
         blocks = b;
@@ -46,6 +47,7 @@ public class Switch implements IElement {
 
     @Override
     public boolean destroy() {
+        level.getElements().addAll(blocks);
         level.removeElement(point);
         return true;
     }
@@ -55,7 +57,4 @@ public class Switch implements IElement {
         return Color.PINK;
     }
 
-    public ArrayList<Block> getBlocks() {
-        return blocks;
-    }
 }
