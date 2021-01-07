@@ -124,8 +124,8 @@ public class Views extends JComponent implements IObserver {
             g.fillRect( (int) e.getPosition().getX(), (int) e.getPosition().getY(), blockWidth, blockHeight);
         }
         for(LemmingObservable l : lemmings){
-                g.setColor(l.getColor());
-                g.fillRect( (int) l.getPosition().getX(), (int) l.getPosition().getY(), blockWidth, blockHeight);
+            g.setColor(l.getColor());
+            g.fillRect( (int) l.getPosition().getX(), (int) l.getPosition().getY(), blockWidth, blockHeight);
         }
     }
 
@@ -166,26 +166,26 @@ public class Views extends JComponent implements IObserver {
         } else if (l.state().isState(Activity.CLIMBER)) {
             return spriteClimber;
         } else if (l.state().isState(Activity.FLOATER)) {
-			return spriteFloater;
-		}
-		else if (l.state().isState(Activity.BOMBER)) {
-			return spriteBomb;
-		}
-		else if (l.state().isState(Activity.BLOCKER)) {
-			return spriteBlocker;
-		}
-		else if (l.state().isState(Activity.BRIDGE_BUILDER)) {
-			return spriteNormal;
-		}
-		else if (l.state().isState(Activity.DIGGER)) {
-			return spriteDigger;
-		}
-		else if (l.state().isState(Activity.BASHER)) {
-			return spriteBasher;
-		}
-		else if (l.state().isState(Activity.MINER)) {
-			return spriteMiner;
-		}
+            return spriteFloater;
+        }
+        else if (l.state().isState(Activity.BOMBER)) {
+            return spriteBomb;
+        }
+        else if (l.state().isState(Activity.BLOCKER)) {
+            return spriteBlocker;
+        }
+        else if (l.state().isState(Activity.BRIDGE_BUILDER)) {
+            return spriteNormal;
+        }
+        else if (l.state().isState(Activity.DIGGER)) {
+            return spriteDigger;
+        }
+        else if (l.state().isState(Activity.BASHER)) {
+            return spriteBasher;
+        }
+        else if (l.state().isState(Activity.MINER)) {
+            return spriteMiner;
+        }
         return spriteNormal;
     }
 
