@@ -42,36 +42,6 @@ public class Views extends JComponent implements IObserver {
     private final int blockWidth;
     private final int blockHeight;
 
-// 	// Comment out if breaks code, can't test without it
-// 	final BufferedImage spriteNormal = ImageIO.read(this.getClass().getResource("/images/spriteNormal.jpg"));
-// 	final BufferedImage spriteClimber = ImageIO.read(this.getClass().getResource("/images/spriteClimber.jpg"));
-// 	final BufferedImage spriteFloater = ImageIO.read(this.getClass().getResource("/images/spriteFloater.jpg"));
-// 	final BufferedImage spriteBomb = ImageIO.read(this.getClass().getResource("/images/spriteBomb.jpg"));
-// 	final BufferedImage spriteBlocker = ImageIO.read(this.getClass().getResource("/images/spriteBlocker.jpg"));
-// 	final BufferedImage spriteBuilder = ImageIO.read(this.getClass().getResource("/images/spriteBuilder.jpg"));
-// 	final BufferedImage spriteBasher = ImageIO.read(this.getClass().getResource("/images/spriteBasher.jpg"));
-// 	final BufferedImage spriteMiner = ImageIO.read(this.getClass().getResource("/images/spriteMiner.jpg"));
-// 	final BufferedImage spriteDigger = ImageIO.read(this.getClass().getResource("/images/spriteDigger.jpg"));
-
-    final BufferedImage spriteNormal = ImageIO.read(new File("resource/images/spriteNormal.jpg"));
-    final BufferedImage spriteClimber = ImageIO.read(new File("resource/images/spriteClimber.jpg"));
-    final BufferedImage spriteFloater = ImageIO.read(new File("resource/images/spriteFloater.jpg"));
-    final BufferedImage spriteBomb = ImageIO.read(new File("resource/images/spriteBomb.jpg"));
-    final BufferedImage spriteBlocker = ImageIO.read(new File("resource/images/spriteBlocker.jpg"));
-    final BufferedImage spriteBuilder = ImageIO.read(new File("resource/images/spriteBuilder.jpg"));
-    final BufferedImage spriteBasher = ImageIO.read(new File("resource/images/spriteBasher.jpg"));
-    final BufferedImage spriteMiner = ImageIO.read(new File("resource/images/spriteMiner.jpg"));
-    final BufferedImage spriteDigger = ImageIO.read(new File("resource/images/spriteDigger.jpg"));
-    final BufferedImage spriteBlock = ImageIO.read(new File("resource/images/spriteBlock.jpg"));
-    final BufferedImage spriteEntrance = ImageIO.read(new File("resource/images/spriteEntrance.jpg"));
-    final BufferedImage spriteExit = ImageIO.read(new File("resource/images/spriteExit.jpg"));
-    final BufferedImage spritePortal = ImageIO.read(new File("resource/images/spritePortal.jpg"));
-    final BufferedImage spriteStair = ImageIO.read(new File("resource/images/spriteStair.jpg"));
-    final BufferedImage spriteLava = ImageIO.read(new File("resource/images/spriteLava.jpg"));
-    final BufferedImage spriteTrap = ImageIO.read(new File("resource/images/spriteTrap.jpg"));
-    final BufferedImage spriteSwitch = ImageIO.read(new File("resource/images/spriteSwitch.jpg"));
-
-
     // View should access controller and not games.
     public Views(Game game, int w, int h, int x, int y) throws IOException {
         numCaseX = x;
@@ -148,45 +118,14 @@ public class Views extends JComponent implements IObserver {
             p2.x = p1.x;
         }
         g.drawLine(0, h - (singleButtonSize * blockHeight), w, h - (singleButtonSize * blockHeight));
-        g.drawImage(spriteClimber, 4 * blockWidth + 3, h - (singleButtonSize * blockHeight) + 3, blockWidth, blockHeight, null);
-        g.drawImage(spriteFloater, 6 * blockWidth + 3, h - (singleButtonSize * blockHeight) + 3, blockWidth, blockHeight, null);
-        g.drawImage(spriteBomb, 8 * blockWidth + 3, h - (singleButtonSize * blockHeight) + 3, blockWidth, blockHeight, null);
-        g.drawImage(spriteBlocker, 10 * blockWidth + 3, h - (singleButtonSize * blockHeight) + 3, blockWidth, blockHeight, null);
-        g.drawImage(spriteBuilder, 12 * blockWidth + 3, h - (singleButtonSize * blockHeight) + 3, blockWidth, blockHeight, null);
-        g.drawImage(spriteBasher, 14 * blockWidth + 3, h - (singleButtonSize * blockHeight) + 3, blockWidth, blockHeight, null);
-        g.drawImage(spriteMiner, 16 * blockWidth + 3, h - (singleButtonSize * blockHeight) + 3, blockWidth, blockHeight, null);
-        g.drawImage(spriteDigger, 18 * blockWidth + 3, h - (singleButtonSize * blockHeight) + 3, blockWidth, blockHeight, null);
-    }
-
-    // ToDo replace with something more OOP
-    private BufferedImage lemmingSprite(LemmingObservable l) {
-
-        if (l.state().isState(Activity.NORMAL)) {
-            return spriteNormal;
-        } else if (l.state().isState(Activity.CLIMBER)) {
-            return spriteClimber;
-        } else if (l.state().isState(Activity.FLOATER)) {
-            return spriteFloater;
-        }
-        else if (l.state().isState(Activity.BOMBER)) {
-            return spriteBomb;
-        }
-        else if (l.state().isState(Activity.BLOCKER)) {
-            return spriteBlocker;
-        }
-        else if (l.state().isState(Activity.BRIDGE_BUILDER)) {
-            return spriteNormal;
-        }
-        else if (l.state().isState(Activity.DIGGER)) {
-            return spriteDigger;
-        }
-        else if (l.state().isState(Activity.BASHER)) {
-            return spriteBasher;
-        }
-        else if (l.state().isState(Activity.MINER)) {
-            return spriteMiner;
-        }
-        return spriteNormal;
+        g.drawString("Climber", 4 * blockWidth + 3, h - (singleButtonSize * blockHeight) + 15);
+        g.drawString("Floater", 6 * blockWidth + 3, h - (singleButtonSize * blockHeight) + 15);
+        g.drawString("Bomb", 8 * blockWidth + 3, h - (singleButtonSize * blockHeight) + 15);
+        g.drawString("Blocker", 10 * blockWidth + 3, h - (singleButtonSize * blockHeight) + 15);
+        g.drawString("Builder", 12 * blockWidth + 3, h - (singleButtonSize * blockHeight) + 15);
+        g.drawString("Basher", 14 * blockWidth + 3, h - (singleButtonSize * blockHeight) + 15);
+        g.drawString("Miner", 16 * blockWidth + 3, h - (singleButtonSize * blockHeight) + 15);
+        g.drawString("Digger", 18 * blockWidth + 3, h - (singleButtonSize * blockHeight) + 15);
     }
 
     public int getSingleButtonSize() {
