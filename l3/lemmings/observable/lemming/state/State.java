@@ -1,7 +1,7 @@
 package l3.lemmings.observable.lemming.state;
 
 /**
- * State Interface that redefines the Lemming behaviour by his state
+ * Defines the Lemming behaviour when the game physics detects a surrounding change
  */
 public interface State {
 
@@ -16,7 +16,5 @@ public interface State {
     boolean fallingHigh();
 
     boolean isState(Activity state);
-
-//    boolean finishedClimbing();
 
 }

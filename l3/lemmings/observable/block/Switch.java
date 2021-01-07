@@ -8,15 +8,17 @@ import l3.lemmings.observer.IObserver;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Switch implements IElement, IObserver {
+public class Switch implements IElement {
 
     private final Point point = new Point();
     ArrayList<Block> blocks;
+    Level level;
 
-    public Switch(int x, int y, ArrayList<Block> b) {
+    public Switch(int x, int y, ArrayList<Block> b, Level level) {
         point.x = x;
         point.y = y;
         blocks = b;
+        this.level = level;
     }
 
     public int getX() {
@@ -38,17 +40,14 @@ public class Switch implements IElement, IObserver {
     }
 
     @Override
-    public void update() {
-
-    }
-
-    @Override
     public boolean compare(Type type) {
         return type == Type.SWITCH;
     }
 
     @Override
-    public boolean isBreakable() {
+    public boolean destroy() {
+        //Add new blocks to element
+        level.removeElement(point);
         return true;
     }
 

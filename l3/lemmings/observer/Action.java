@@ -6,6 +6,8 @@ import l3.lemmings.observable.Game;
 import l3.lemmings.observable.lemming.Lemming;
 import l3.lemmings.observable.lemming.state.*;
 
+import java.util.ArrayList;
+
 public class Action {
 
     private final Button clicked;
@@ -24,7 +26,11 @@ public class Action {
         }
     }
 
-    // Expects false return to set actionFlag faster (Change to true if want to keep action "armed")
+    /**
+     *
+     * @param lemming
+     * @return True to keep action selected
+     */
     public boolean setAction(LemmingObservable lemming) {
         switch (clicked) {
             case CLIMBER:
@@ -40,7 +46,12 @@ public class Action {
                 return true;
 
             case BLOCKER:
-                lemming.setState(new Blocker(lemming, game));
+                State state = new Blocker(lemming, game);
+                ArrayList<LemmingObservable> lemmings = game.getLevel().getLemmings();
+                for(LemmingObservable l : lemmings){
+                    l.register((Blocker) state);
+                }
+                lemming.setState(state);
                 return true;
 
             case BRIDGE_BUILDER:

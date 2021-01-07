@@ -19,6 +19,6 @@ public interface IElement {
     // ToDo: replace with comparable interface ???
     boolean compare(Type type);
 
-    boolean isBreakable();
+    boolean destroy();
 
 }

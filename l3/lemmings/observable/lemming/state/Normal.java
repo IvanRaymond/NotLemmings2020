@@ -47,19 +47,21 @@ public class Normal implements State {
         return true;
     }
 
-    @Override
-    public boolean fallingLow() {
+    private void fall(){
         direction.stop();
         direction.fall();
         lemming.getStats().fallFast();
+    }
+
+    @Override
+    public boolean fallingLow() {
+        fall();
         return true;
     }
 
     @Override
     public boolean fallingHigh() {
-        direction.stop();
-        direction.fall();
-        lemming.getStats().fallFast();
+        fall();
         lemming.getStats().toKill();
         return true;
     }
