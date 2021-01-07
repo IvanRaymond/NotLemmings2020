@@ -125,4 +125,9 @@ public class Lemming implements ILemming, IElement {
     public boolean destroy() {
         return false;
     }
+
+    @Override
+    public Color getColor() {
+        return state.getColor();
+    }
 }

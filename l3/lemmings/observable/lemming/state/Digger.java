@@ -71,4 +71,9 @@ public class Digger implements State {
     public boolean isState(Activity state) {
         return state == Activity.DIGGER;
     }
+
+    @Override
+    public Color getColor() {
+        return Color.MAGENTA;
+    }
 }

@@ -4,6 +4,8 @@ import l3.lemmings.observable.Game;
 import l3.lemmings.observable.lemming.Lemming;
 import l3.lemmings.observable.lemming.LemmingObservable;
 
+import java.awt.*;
+
 public class Climber implements State {
 
     LemmingObservable lemming;
@@ -87,5 +89,10 @@ public class Climber implements State {
     @Override
     public boolean isState(Activity state) {
         return state == Activity.CLIMBER;
+    }
+
+    @Override
+    public Color getColor() {
+        return Color.CYAN;
     }
 }

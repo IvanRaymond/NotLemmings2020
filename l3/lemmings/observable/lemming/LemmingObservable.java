@@ -112,4 +112,6 @@ public class LemmingObservable implements ILemming, IElement {
     public void setY(int y){
         lemming.setY(y);
     }
+
+    public Color getColor() {return lemming.getColor();}
 }

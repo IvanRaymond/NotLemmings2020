@@ -120,30 +120,12 @@ public class Views extends JComponent implements IObserver {
 
         g.setColor(new Color(112, 72, 60));
         for (IElement e : elements) {
-            if (e.compare(Type.BLOCK)) {
-                g.drawImage(spriteBlock, (int) e.getPosition().getX() * blockWidth, (int) e.getPosition().getY() * blockHeight, blockWidth, blockHeight, null);
-            }
-            if(e.compare(Type.BOMB))
-                g.drawImage(spriteTrap, (int) e.getPosition().getX() * blockWidth, (int) e.getPosition().getY() * blockHeight, blockWidth,blockHeight,null);
-            if (e.compare(Type.LAVA))
-                g.drawImage(spriteLava, (int) e.getPosition().getX() * blockWidth, (int) e.getPosition().getY() * blockHeight, blockWidth, blockHeight, null);
-            if(e.compare(Type.TELEPORTER))
-            {
-                g.drawImage(spritePortal, (int) e.getPosition().getX() * blockWidth, (int) e.getPosition().getY() * blockHeight, blockWidth, blockHeight, null);
-                g.drawImage(spritePortal, (int) e.getSecondPosition().getX() * blockWidth, (int) e.getSecondPosition().getY() * blockHeight, blockWidth, blockHeight, null);
-            }
-            if (e.compare(Type.STEP))
-                g.drawImage(spriteStair, (int) e.getPosition().getX() * blockWidth, (int) e.getPosition().getY() * blockHeight, blockWidth, blockHeight, null);
-            if (e.compare(Type.ENTRANCE))
-                g.drawImage(spriteEntrance, (int) e.getPosition().getX() * blockWidth, (int) e.getPosition().getY() * blockHeight, blockWidth, blockHeight, null);
-            if (e.compare(Type.ESCAPE))
-                g.drawImage(spriteExit, (int) e.getPosition().getX() * blockWidth, (int) e.getPosition().getY() * blockHeight, blockWidth, blockHeight, null);
-            if (e.compare(Type.SWITCH))
-                g.drawImage(spriteSwitch, (int) e.getPosition().getX() * blockWidth, (int) e.getPosition().getY() * blockHeight, blockWidth, blockHeight, null);
+            g.setColor(e.getColor());
+            g.fillRect( (int) e.getPosition().getX() * blockWidth, (int) e.getPosition().getY() * blockHeight, blockWidth, blockHeight);
         }
         for(LemmingObservable l : lemmings){
-            if (l.compare(Type.LEMMING))
-                g.drawImage(lemmingSprite(l), (int) l.getPosition().getX() * blockWidth, (int) l.getPosition().getY() * blockHeight, blockWidth, blockHeight, null);
+            g.setColor(l.getColor());
+            g.fillRect( (int) l.getPosition().getX() * blockWidth, (int) l.getPosition().getY() * blockHeight, blockWidth, blockHeight);
         }
     }
 
@@ -184,26 +166,26 @@ public class Views extends JComponent implements IObserver {
         } else if (l.state().isState(Activity.CLIMBER)) {
             return spriteClimber;
         } else if (l.state().isState(Activity.FLOATER)) {
-			return spriteFloater;
-		}
-		else if (l.state().isState(Activity.BOMBER)) {
-			return spriteBomb;
-		}
-		else if (l.state().isState(Activity.BLOCKER)) {
-			return spriteBlocker;
-		}
-		else if (l.state().isState(Activity.BRIDGE_BUILDER)) {
-			return spriteNormal;
-		}
-		else if (l.state().isState(Activity.DIGGER)) {
-			return spriteDigger;
-		}
-		else if (l.state().isState(Activity.BASHER)) {
-			return spriteBasher;
-		}
-		else if (l.state().isState(Activity.MINER)) {
-			return spriteMiner;
-		}
+            return spriteFloater;
+        }
+        else if (l.state().isState(Activity.BOMBER)) {
+            return spriteBomb;
+        }
+        else if (l.state().isState(Activity.BLOCKER)) {
+            return spriteBlocker;
+        }
+        else if (l.state().isState(Activity.BRIDGE_BUILDER)) {
+            return spriteNormal;
+        }
+        else if (l.state().isState(Activity.DIGGER)) {
+            return spriteDigger;
+        }
+        else if (l.state().isState(Activity.BASHER)) {
+            return spriteBasher;
+        }
+        else if (l.state().isState(Activity.MINER)) {
+            return spriteMiner;
+        }
         return spriteNormal;
     }
 
