@@ -59,7 +59,7 @@ public class Blocker implements State, IObserver {
 
     @Override
     public Color getColor() {
-        return Color.BLACK;
+        return Color.ORANGE;
     }
 
     @Override
