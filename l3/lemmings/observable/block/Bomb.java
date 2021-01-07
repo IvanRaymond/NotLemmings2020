@@ -50,6 +50,6 @@ public class Bomb implements IElement {
 
     @Override
     public Color getColor() {
-        return Color.lightGray;
+        return Color.RED;
     }
 }

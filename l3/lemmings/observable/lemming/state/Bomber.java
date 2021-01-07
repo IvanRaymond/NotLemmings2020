@@ -59,6 +59,6 @@ public class Bomber implements State {
 
     @Override
     public Color getColor() {
-        return Color.GRAY;
+        return Color.RED;
     }
 }

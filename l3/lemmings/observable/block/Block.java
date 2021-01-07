@@ -52,7 +52,7 @@ public class Block implements IElement {
 
     @Override
     public Color getColor() {
-        return Color.RED;
+        return Color.DARK_GRAY;
     }
 
     public void setY(int y) {

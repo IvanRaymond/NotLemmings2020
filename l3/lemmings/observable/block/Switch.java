@@ -52,7 +52,7 @@ public class Switch implements IElement {
 
     @Override
     public Color getColor() {
-        return Color.BLUE;
+        return Color.PINK;
     }
 
     public ArrayList<Block> getBlocks() {

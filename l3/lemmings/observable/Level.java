@@ -8,6 +8,8 @@ import l3.lemmings.observable.props.Entrance;
 import l3.lemmings.observable.props.Step;
 
 import java.awt.*;
+import java.lang.annotation.ElementType;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 //import org.json.simple.JSONArray;
@@ -265,21 +267,21 @@ public class Level {
     }
 
     public void destroySurrounding(Point point, int range){
-        for(int i = 0; i < elements.size(); i++){
-            Point p = elements.get(i).getPosition();
+        for(IElement current : new ArrayList<IElement>(elements)){
+            Point p = current.getPosition();
             if (p.getX() <= point.getX() + range && p.getX() >= point.getX() - range &&
                     p.getY() >= point.getY() - range && p.getY() <= point.getY() + range) {
-                removeElement(elements.get(i).getPosition());
+            removeElement(current.getPosition());
             }
         }
     }
 
     public void killSurrounding(Point point, int range){
-        for(int i = 0; i < lemmings.size(); i++){
-            Point p = lemmings.get(i).getPosition();
+        for(LemmingObservable current : new ArrayList<LemmingObservable>(lemmings)){
+            Point p = current.getPosition();
             if (p.getX() <= point.getX() + range && p.getX() >= point.getX() - range &&
-                p.getY() >= point.getY() - range && p.getY() <= point.getY() + range) {
-                lemmings.get(i).kill();
+                    p.getY() >= point.getY() - range && p.getY() <= point.getY() + range) {
+                current.kill();
             }
         }
     }
