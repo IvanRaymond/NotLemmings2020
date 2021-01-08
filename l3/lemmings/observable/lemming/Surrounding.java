@@ -34,6 +34,11 @@ public class Surrounding {
         scan(l);
     }
 
+    /**
+     * Initialize the array surrounding with position of climbable surrounding blocks
+     * @param elements Array of game elements
+     * @param l
+     */
     private void init(ArrayList<IElement> elements, Lemming l) {
 
         surrounding = new boolean[7][5];
@@ -72,6 +77,10 @@ public class Surrounding {
         }
     }
 
+    /**
+     * Scan the lemming's surrounding to detect cases
+     * @param l
+     */
     private void scan(Lemming l) {
 
         blockOnTop = false;

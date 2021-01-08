@@ -4,7 +4,6 @@ import java.awt.*;
 
 /**
  * Controller methods for UI interactions.
- *
  * @author Ivan
  */
 public class UIcontroller {
@@ -46,6 +45,11 @@ public class UIcontroller {
         singleButtonSize = view.getSingleButtonSize();
     }
 
+    /**
+     * Convert raw input to game's matrix position
+     * @param p
+     * @return
+     */
     public Point pointToMatrix(Point p) {
 
         for (int y = 0; y < matrixLengthY; y++) {
@@ -61,17 +65,31 @@ public class UIcontroller {
     }
 
 
+    /**
+     * Verify if the cell clicked is playable
+     * @param matrix
+     * @return
+     */
     public boolean isCellPlayable(Point matrix) {
         return matrix.x >= 0 && matrix.x <= matrixLengthX && matrix.y >= 0 && matrix.y < matrixLengthY - singleButtonSize;
     }
 
 
+    /**
+     * Verify if cell clicked is a button
+     * @param matrix
+     * @return
+     */
     public boolean isButton(Point matrix) {
-
         return matrix.x >= 0 && matrix.x <= singleButtonSize * numberOfButtons && matrix.y <= matrixLengthY && matrix.y >= matrixLengthY - singleButtonSize;
     }
 
 
+    /**
+     * Return the button at a given cell
+     * @param matrix
+     * @return The button clicked
+     */
     public Button getButton(Point matrix) {
 
         Button button = Button.DECREASE;

@@ -3,7 +3,7 @@ package l3.lemmings.observable.lemming.state;
 import java.awt.*;
 
 /**
- * Defines the Lemming behaviour when the game physics detects a surrounding change
+ * Defines the Lemming's behaviour
  */
 public interface State {
 

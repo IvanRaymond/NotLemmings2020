@@ -194,6 +194,11 @@ public class Level {
     }
 
 
+    /**
+     * Verify if the given game's matrix cell contains a lemming
+     * @param cell
+     * @return True if cell contains a lemming
+     */
     public boolean lemmingPresent(Point cell) {
         LemmingObservable currentLemming;
         for (int i = 0; i < lemmings.size(); i++) {
@@ -207,6 +212,11 @@ public class Level {
         return false;
     }
 
+    /**
+     * Return a lemming at a given cell
+     * @param cell
+     * @return The lemming present in the cell given
+     */
     public LemmingObservable getLemming(Point cell) {
         LemmingObservable currentLemming;
         for (int i = 0; i < lemmings.size(); i++) {
@@ -220,6 +230,9 @@ public class Level {
         return null;
     }
 
+    /**
+     * Kill all lemmings present
+     */
     public void killAll() {
         LemmingObservable currentLemming;
         for (int i = 0; i < lemmings.size(); i++) {
@@ -239,10 +252,11 @@ public class Level {
         }
         for(int i = 0; i < lemmings.size(); i++) {
             for(int j=0; j < toRegister.size(); j++){
-//                if(!lemmings.contains(toRegister.get(j))){
+                if(!lemmings.contains(toRegister.get(j))){
                     lemmings.get(i).register(toRegister.get(j));
-//                }
+                }
             }
+            toRegister = new ArrayList<>();
 
             if(!lemmings.get(i).isAlive()){
                 lemmings.remove(i);
@@ -282,10 +296,19 @@ public class Level {
         safe++;
     }
 
+    /**
+     * Add a staircase step at the point given
+     * @param point
+     */
     public void buildStep(Point point) {
         elements.add(new Step(point));
     }
 
+    /**
+     * Destroy blocks in the surrounding of a given point
+     * @param point
+     * @param range Number of blocks to destroy around the point
+     */
     public void destroySurrounding(Point point, int range){
         for(IElement current : new ArrayList<IElement>(elements)){
             Point p = current.getPosition();
@@ -296,6 +319,11 @@ public class Level {
         }
     }
 
+    /**
+     * Kill the lemmings surrounding a point
+     * @param point
+     * @param range Distance surrounding the point where the lemmings will be killed
+     */
     public void killSurrounding(Point point, int range){
         for(LemmingObservable current : new ArrayList<LemmingObservable>(lemmings)){
             Point p = current.getPosition();
@@ -314,6 +342,9 @@ public class Level {
         lemmings.add(lemming);
     }
 
+    /**
+     * Increase the rate at which lemmings are spawned
+     */
     public void increaseFlow() {
         if (flow > 1) {
             flow--;
@@ -324,6 +355,9 @@ public class Level {
         return levelCompleted;
     }
 
+    /**
+     * Decrease the rate at which lemmings are spawned
+     */
     public void decreaseFlow() {
         if (flow < 5) {
             flow++;
@@ -342,6 +376,11 @@ public class Level {
         lemmings.remove(entity);
     }
 
+    /**
+     *
+     * @param position
+     * @return The element at a given position
+     */
     public IElement getElement(Point position){
 
         for(int i=0; i<elements.size(); i++){

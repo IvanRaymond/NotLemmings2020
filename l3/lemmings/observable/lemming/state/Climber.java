@@ -64,7 +64,7 @@ public class Climber implements State {
     public boolean fallingLow() {
         if (!lemming.getDirection().isClimbing()) {
             new Normal(lemming).fallingLow();
-        }else if(lemming.surrounding().isBlockOnTop()){     // Might need to be replace for something less dependent on surrounding
+        }else if(lemming.surrounding().isBlockOnTop()){
             lemming.getDirection().fall();
             lemming.getDirection().march();
             lemming.getDirection().turnAround();

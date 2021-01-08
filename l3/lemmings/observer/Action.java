@@ -27,7 +27,7 @@ public class Action {
     }
 
     /**
-     *
+     * Set the selected state to the given lemming
      * @param lemming
      * @return True to keep action selected
      */

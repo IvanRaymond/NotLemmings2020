@@ -8,7 +8,7 @@ import l3.lemmings.observable.lemming.direction.DirVertical;
 import java.awt.*;
 
 /**
- * Uses the lemming's Surrounding and State methods to apply game physics
+ * Use the surrounding of a lemming to call methods of behaviour defined in the lemming's state
  */
 public class Physics {
 
