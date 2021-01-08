@@ -12,7 +12,7 @@ import java.awt.*;
  */
 public class Physics {
 
-    Level level;
+    private Level level;
 
     public Physics(Level level) {
         this.level = level;

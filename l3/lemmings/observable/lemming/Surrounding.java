@@ -21,10 +21,11 @@ public class Surrounding {
     private boolean pitLow;
     private boolean pitHigh;
     private boolean blockSides;
+    private boolean twoBlocksAhead;
 
     private boolean[][] surrounding;
-    ArrayList<IElement> elements;
-    Lemming l;
+    private ArrayList<IElement> elements;
+    private Lemming l;
 
     public Surrounding(ArrayList<IElement> elements, Lemming l) {
         this.elements = elements;
@@ -35,7 +36,7 @@ public class Surrounding {
 
     private void init(ArrayList<IElement> elements, Lemming l) {
 
-        surrounding = new boolean[7][3];
+        surrounding = new boolean[7][5];
         Point lP = l.getPosition();
 
         for (IElement b : elements) {
@@ -44,18 +45,24 @@ public class Surrounding {
 
                 // Block on Top
                 if (bP.getX() == lP.getX() && bP.getY() == lP.getY() - 1) {
-                    surrounding[0][1] = true;
+                    surrounding[0][2] = true;
                 }
 
                 // Blocks under
                 if (bP.getX() == lP.getX() && bP.getY() <= lP.getY() + 5 && bP.getY() >= lP.getY() + 1) {
-                    surrounding[(int) (bP.getY() - lP.getY()) + 1][1] = true;
+                    surrounding[(int) (bP.getY() - lP.getY()) + 1][2] = true;
                 }
 
                 // Blocks Ahead
                 if ((bP.getX() == lP.getX() + 1 || bP.getX() == lP.getX() - 1)
                         && (bP.getY() == lP.getY() || bP.getY() == lP.getY() - 1)) {
-                    surrounding[(int) (bP.getY() - lP.getY()) + 1][(int) (bP.getX() - lP.getX()) + 1] = true;
+                    surrounding[(int) (bP.getY() - lP.getY()) + 1][(int) (bP.getX() - lP.getX()) + 2] = true;
+                }
+
+                // Two Blocks Ahead
+                if ((bP.getX() == lP.getX() + 2 || bP.getX() == lP.getX() - 2)
+                        && (bP.getY() == lP.getY() || bP.getY() == lP.getY() - 1)) {
+                    surrounding[(int) (bP.getY() - lP.getY()) + 1][(int) (bP.getX() - lP.getX()) + 2] = true;
                 }
 
                 if (((bP.getX() == lP.getX()-1 || bP.getX() == lP.getX()+1)) && bP.getY() == lP.getY()){
@@ -76,40 +83,37 @@ public class Surrounding {
         blockUnderRight = false;
         blockUnderLeft = false;
         blockSides = false;
+        twoBlocksAhead = false;
 
-        if (surrounding[0][1]) {
+        if (surrounding[0][2]) {
             blockOnTop = true;
         }
-        if (surrounding[2][1]) {
+        if (surrounding[2][2]) {
             floor = true;
-        } else if (surrounding[3][1] || surrounding[4][1] || surrounding[5][1]) {
+        } else if (surrounding[3][2] || surrounding[4][2] || surrounding[5][2]) {
             pitLow = true;
         } else {
             pitHigh = true;
         }
-        if (surrounding[1][2] && !surrounding[0][2] || surrounding[1][0] && !surrounding[0][0]) {
+        if (surrounding[1][3] && !surrounding[0][3] || surrounding[1][1] && !surrounding[0][1]) {
             blockSides = true;
         }
-        if ((surrounding[1][2] && !surrounding[0][2] && l.getDirection().isGoing(DirHorizontal.RIGHT))
-                || (surrounding[1][0] && !surrounding[0][0] && l.getDirection().isGoing(DirHorizontal.LEFT))) {
+        if ((surrounding[1][3] && !surrounding[0][3] && l.getDirection().isGoing(DirHorizontal.RIGHT))
+                || (surrounding[1][1] && !surrounding[0][1] && l.getDirection().isGoing(DirHorizontal.LEFT))) {
             blockAhead = true;
         }
-        if ((surrounding[1][2] && surrounding[0][2] && l.getDirection().isGoing(DirHorizontal.RIGHT))
-                || (surrounding[1][0] && surrounding[0][0] && l.getDirection().isGoing(DirHorizontal.LEFT))) {
+        if ((surrounding[1][3] && surrounding[0][3] && l.getDirection().isGoing(DirHorizontal.RIGHT))
+                || (surrounding[1][1] && surrounding[0][1] && l.getDirection().isGoing(DirHorizontal.LEFT))) {
             wallAhead = true;
         }
-        if (surrounding[2][0] || surrounding[2][2]){
+        if((surrounding[1][4] && l.getDirection().isGoing(DirHorizontal.RIGHT))
+                || surrounding[1][0] && l.getDirection().isGoing(DirHorizontal.LEFT)){
+            twoBlocksAhead = true;
+        }
+        if (surrounding[2][1] || surrounding[2][3]){
             blockUnderRight = true;
             blockUnderLeft = true;
         }
-    }
-
-    /**
-     * Count the number of blocks before a
-     * @return The number of blocks to break
-     */
-    public int scanAhead(Lemming lemming){
-        return 3;
     }
 
     public void update() {
@@ -143,6 +147,10 @@ public class Surrounding {
 
     public boolean isBlockSides(){
         return blockSides;
+    }
+
+    public boolean isTwoBlocksAhead(){
+        return twoBlocksAhead;
     }
 
     public boolean isBlockUnderRight(){

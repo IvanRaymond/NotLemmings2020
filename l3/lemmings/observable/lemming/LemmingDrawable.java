@@ -8,7 +8,7 @@ import l3.lemmings.App;
 
 public class LemmingDrawable implements IDrawable {
 
-    Lemming lemming;
+    private Lemming lemming;
 
     public LemmingDrawable(Lemming lemming){
         this.lemming = lemming;

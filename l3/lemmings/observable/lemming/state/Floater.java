@@ -9,10 +9,10 @@ import java.awt.*;
 
 public class Floater implements State {
 
-    LemmingObservable lemming;
-    Game game;
-    Direction direction;
-    boolean fellHigh = false;
+    private LemmingObservable lemming;
+    private Game game;
+    private Direction direction;
+    private boolean fellHigh = false;
 
     public Floater(LemmingObservable lemming, Game context) {
         this.lemming = lemming;

@@ -9,8 +9,8 @@ import java.awt.*;
 
 public class Blocker implements State, IObserver {
 
-    LemmingObservable lemming;
-    Game game;
+    private LemmingObservable lemming;
+    private Game game;
 
     public Blocker(LemmingObservable lemming, Game context) {
         this.lemming = lemming;

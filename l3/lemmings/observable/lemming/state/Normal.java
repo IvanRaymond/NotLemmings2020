@@ -8,8 +8,8 @@ import java.awt.*;
 
 public class Normal implements State {
 
-    LemmingObservable lemming;
-    Direction direction;
+    private LemmingObservable lemming;
+    private Direction direction;
 
     public Normal(LemmingObservable lemming) {
         this.lemming = lemming;

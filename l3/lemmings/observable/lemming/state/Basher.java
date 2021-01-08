@@ -8,9 +8,9 @@ import java.awt.*;
 
 public class Basher implements State {
 
-    LemmingObservable lemming;
-    Game game;
-    boolean digging = false;
+    private LemmingObservable lemming;
+    private Game game;
+    private boolean digging = false;
 
     public Basher(LemmingObservable lemming, Game context) {
         this.lemming = lemming;
@@ -19,10 +19,11 @@ public class Basher implements State {
 
     @Override
     public boolean walk() {
-        //ToDo: Find a way to detect no blocks ahead
-//        if(!lemming.surrounding().isBlockAhead() && digging == true){
-//            lemming.setState(new Normal(lemming));
-//        }
+        if(!lemming.surrounding().isTwoBlocksAhead() && digging == true){
+            breakAux();
+            lemming.setState(new Normal(lemming));
+            lemming.getDirection().turnAround();
+        }
         return true;
     }
 

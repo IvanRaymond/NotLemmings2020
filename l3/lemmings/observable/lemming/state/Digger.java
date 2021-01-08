@@ -8,8 +8,8 @@ import java.awt.*;
 
 public class Digger implements State {
 
-    LemmingObservable lemming;
-    Game game;
+    private LemmingObservable lemming;
+    private Game game;
 
     int digCount = 0;
     private static final int DIGCOUNT = 5;

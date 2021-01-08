@@ -8,10 +8,10 @@ import java.awt.*;
 
 public class Climber implements State {
 
-    LemmingObservable lemming;
-    Game game;
-    boolean finished = false;
-    boolean isBlockOnTop;
+    private LemmingObservable lemming;
+    private Game game;
+    private boolean finished = false;
+    private boolean isBlockOnTop;
 
     public Climber(LemmingObservable lemming, Game context) {
         this.lemming = lemming;

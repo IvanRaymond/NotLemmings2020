@@ -8,8 +8,8 @@ import java.awt.*;
 
 public class Bomber implements State {
 
-    LemmingObservable lemming;
-    Game game;
+    private LemmingObservable lemming;
+    private Game game;
 
     public Bomber(LemmingObservable lemming, Game context) {
         this.lemming = lemming;
