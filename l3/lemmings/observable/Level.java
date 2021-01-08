@@ -185,7 +185,7 @@ public class Level {
         elements.add(new Block(39,14, this));
         elements.add(new Block(39,13, this));
         elements.add(new Bomb(36,15, this));
-        elements.add(new Entrance(this, 2, 36, 10));
+        elements.add(new Entrance(this, 2, 36, 11));
 
         // Don't remove, entrance bug fix
         if (elements.size() % 2 == 0) {
