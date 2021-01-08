@@ -13,7 +13,7 @@ public class Lava implements IElement, IObserver {
     private final Point point = new Point();
     private Level level;
 
-    public Lava(int x, int y) {
+    public Lava(int x, int y, Level level) {
         point.x = x;
         point.y = y;
         this.level = level;
