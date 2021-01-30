@@ -43,16 +43,6 @@ public class Views extends JComponent{
 	private Level level;
 
 
-// 	// Comment out if breaks code, can't test without it
-// 	final BufferedImage spriteNormal = ImageIO.read(this.getClass().getResource("/images/spriteNormal.jpg"));
-// 	final BufferedImage spriteClimber = ImageIO.read(this.getClass().getResource("/images/spriteClimber.jpg"));
-// 	final BufferedImage spriteFloater = ImageIO.read(this.getClass().getResource("/images/spriteFloater.jpg"));
-// 	final BufferedImage spriteBomb = ImageIO.read(this.getClass().getResource("/images/spriteBomb.jpg"));
-// 	final BufferedImage spriteBlocker = ImageIO.read(this.getClass().getResource("/images/spriteBlocker.jpg"));
-// 	final BufferedImage spriteBuilder = ImageIO.read(this.getClass().getResource("/images/spriteBuilder.jpg"));
-// 	final BufferedImage spriteBasher = ImageIO.read(this.getClass().getResource("/images/spriteBasher.jpg"));
-// 	final BufferedImage spriteMiner = ImageIO.read(this.getClass().getResource("/images/spriteMiner.jpg"));
-// 	final BufferedImage spriteDigger = ImageIO.read(this.getClass().getResource("/images/spriteDigger.jpg"));
 
 	final BufferedImage spriteNormal = ImageIO.read(new File("resource/images/spriteNormal.jpg"));
 	final BufferedImage spriteClimber = ImageIO.read(new File("resource/images/spriteClimber.jpg"));
@@ -113,37 +103,81 @@ public class Views extends JComponent{
 				drawMatrix(g,i,j);
 
 		drawButtons(g);
-		
-		g.setColor(new Color(112, 72, 60));
-		for(Block b : blocks)
-			g.drawImage(spriteBlock, (int) b.getX() * blockWidth, (int) b.getY() * blockHeight, blockWidth,blockHeight,null);
 
+		for(Block b : blocks)
+		{
+			g.setColor(new Color(47,79,79).darker());
+			g.fillRect( (int) b.getX() * blockWidth, (int) b.getY() * blockHeight, blockWidth, blockHeight);
+			g.setColor(new Color(47,79,79));
+			g.fillRect( (int) b.getX() * blockWidth + 4, (int) b.getY() * blockHeight + 4, blockWidth - 8, blockHeight - 8);
+		}
 		for(Trap trap : traps)
-			g.drawImage(spriteTrap, (int) trap.getX() * blockWidth, (int) trap.getY() * blockHeight, blockWidth,blockHeight,null);
+		{
+			g.setColor(Color.getHSBColor(136,100,49).darker());
+			g.fillRect( (int) trap.getX() * blockWidth, (int) trap.getY() * blockHeight, blockWidth, blockHeight);
+			g.setColor(Color.getHSBColor(136,100,49));
+			g.fillRect( (int) trap.getX() * blockWidth + 4, (int) trap.getY() * blockHeight + 4, blockWidth - 8, blockHeight - 8);
+		}
 
 		for(Lava lava : lava)
-			g.drawImage(spriteLava, (int) lava.getX() * blockWidth, (int) lava.getY() * blockHeight, blockWidth,blockHeight,null);
+		{
+			g.setColor(Color.red.darker());
+			g.fillRect( (int) lava.getX() * blockWidth, (int) lava.getY() * blockHeight, blockWidth, blockHeight);
+			g.setColor(Color.red);
+			g.fillRect( (int) lava.getX() * blockWidth + 4, (int) lava.getY() * blockHeight + 4, blockWidth - 8, blockHeight - 8);
+		}
 
 		for(Teleporter teleporter : teleporters)
-			g.drawImage(spritePortal, (int) teleporter.getPosition1().x * blockWidth, (int) teleporter.getPosition1().y * blockHeight, blockWidth,blockHeight,null);
+		{
+			g.setColor(Color.getHSBColor(264,100,88).darker());
+			g.fillRect( (int) teleporter.getPosition1().x * blockWidth, (int) teleporter.getPosition1().y * blockHeight, blockWidth, blockHeight);
+			g.setColor(Color.getHSBColor(264,100,88));
+			g.fillRect( (int) teleporter.getPosition1().x * blockWidth + 4, (int) teleporter.getPosition1().y * blockHeight + 4, blockWidth - 8, blockHeight - 8);
+		}
 
 		for(Staircase staircase : staircases){
+			Color c = Color.getHSBColor(193,100,100);
 			for(Staircase.Step step : staircase.getSteps())
-				g.drawImage(spriteStair, (int) step.getX() * blockWidth, (int) step.getY() * blockHeight, blockWidth,blockHeight,null);
+			{
+				Color c2 = c.darker();
+				g.setColor(c2);
+				g.fillRect( (int) step.getX() * blockWidth, (int) step.getY() * blockHeight, blockWidth, blockHeight);
+				g.setColor(c);
+				g.fillRect( (int) step.getX() * blockWidth + 4, (int) step.getY() * blockHeight + 4, blockWidth - 8, blockHeight - 8);
+				c= c.darker();
+			}
 		}
 
 		for(Entrance entrance : entrances)
-			g.drawImage(spriteEntrance, (int) entrance.getX() * blockWidth, (int) entrance.getY() * blockHeight, blockWidth,blockHeight,null);
+		{
+			g.setColor(Color.BLACK);
+			g.fillRect( (int) entrance.getX() * blockWidth, (int) entrance.getY() * blockHeight, blockWidth, blockHeight);
+			g.setColor(Color.WHITE);
+			g.fillRect( (int) entrance.getX() * blockWidth + 4, (int) entrance.getY() * blockHeight + 4, blockWidth - 8, blockHeight - 8);
+		}
 
 		for(Escape escape : escapes)
-			g.drawImage(spriteExit, (int) escape.getX() * blockWidth, (int) escape.getY() * blockHeight, blockWidth,blockHeight,null);
-
+		{
+			g.setColor(Color.GREEN.darker());
+			g.fillRect( (int) escape.getX() * blockWidth, (int) escape.getY() * blockHeight, blockWidth, blockHeight);
+			g.setColor(Color.GREEN);
+			g.fillRect( (int) escape.getX() * blockWidth + 4, (int) escape.getY() * blockHeight + 4, blockWidth - 8, blockHeight - 8);
+		}
 		for(Switch currentSwitch : switches)
-			g.drawImage(spriteSwitch, (int) currentSwitch.getX() * blockWidth, (int) currentSwitch.getY() * blockHeight, blockWidth,blockHeight,null);
-
+		{
+			g.setColor(Color.getHSBColor(156,100,88).darker());
+			g.fillRect( (int) currentSwitch.getX() * blockWidth, (int) currentSwitch.getY() * blockHeight, blockWidth, blockHeight);
+			g.setColor(Color.getHSBColor(156,100,100));
+			g.fillRect( (int) currentSwitch.getX() * blockWidth + 4, (int) currentSwitch.getY() * blockHeight + 4, blockWidth - 8, blockHeight - 8);
+		}
 
 		for(Lemming l : lemmings)
-			g.drawImage(lemmingSprite(l), (int) l.getX() * blockWidth, (int) l.getY() * blockHeight, blockWidth,blockHeight,null);
+		{
+			g.setColor(lemmingSprite(l).darker());
+			g.fillRect( (int) l.getX() * blockWidth, (int) l.getY() * blockHeight, blockWidth, blockHeight);
+			g.setColor(lemmingSprite(l));
+			g.fillRect( (int) l.getX() * blockWidth + 4, (int) l.getY() * blockHeight + 4, blockWidth - 8, blockHeight - 8);
+		}
 
 	}
 
@@ -166,46 +200,46 @@ public class Views extends JComponent{
 			p2.x = p1.x;
 		}
 		g.drawLine(0,h-(singleButtonSize*blockHeight),w, h-(singleButtonSize*blockHeight));
-		g.drawImage(spriteClimber, 4 * blockWidth+3, 	h-(singleButtonSize*blockHeight)+3, blockWidth,blockHeight,null);
-		g.drawImage(spriteFloater, 6 * blockWidth+3, h-(singleButtonSize*blockHeight)+3, blockWidth,blockHeight,null);
-		g.drawImage(spriteBomb, 8 * blockWidth+3, h-(singleButtonSize*blockHeight)+3, blockWidth,blockHeight,null);
-		g.drawImage(spriteBlocker, 10 * blockWidth+3, h-(singleButtonSize*blockHeight)+3, blockWidth,blockHeight,null);
-		g.drawImage(spriteBuilder, 12 * blockWidth+3, h-(singleButtonSize*blockHeight)+3, blockWidth,blockHeight,null);
-		g.drawImage(spriteBasher, 14 * blockWidth+3, h-(singleButtonSize*blockHeight)+3, blockWidth,blockHeight,null);
-		g.drawImage(spriteMiner, 16 * blockWidth+3, h-(singleButtonSize*blockHeight)+3, blockWidth,blockHeight,null);
-		g.drawImage(spriteDigger, 18 * blockWidth+3, h-(singleButtonSize*blockHeight)+3, blockWidth,blockHeight,null);
+		g.drawString("Climber", 4 * blockWidth + 3, h - (singleButtonSize * blockHeight) + 15);
+		g.drawString("Floater", 6 * blockWidth + 3, h - (singleButtonSize * blockHeight) + 15);
+		g.drawString("Bomb", 8 * blockWidth + 3, h - (singleButtonSize * blockHeight) + 15);
+		g.drawString("Blocker", 10 * blockWidth + 3, h - (singleButtonSize * blockHeight) + 15);
+		g.drawString("Builder", 12 * blockWidth + 3, h - (singleButtonSize * blockHeight) + 15);
+		g.drawString("Basher", 14 * blockWidth + 3, h - (singleButtonSize * blockHeight) + 15);
+		g.drawString("Miner", 16 * blockWidth + 3, h - (singleButtonSize * blockHeight) + 15);
+		g.drawString("Digger", 18 * blockWidth + 3, h - (singleButtonSize * blockHeight) + 15);
 	}
 
-	private BufferedImage lemmingSprite(Lemming l) {
+	private Color lemmingSprite(Lemming l) {
 		
 		if (l.getState()==LemmingState.NORMAL) {
-			return spriteNormal;
+			return Color.GRAY;
 		}
 		else if (l.getState()==LemmingState.CLIMBER) {
-			return spriteClimber;
+			return Color.YELLOW;
 		}
 		else if (l.getState()==LemmingState.FLOATER) {
-			return spriteFloater;
+			return Color.CYAN;
 		}
 		else if (l.getState()==LemmingState.BOMB) {
-			return spriteBomb;
+			return new Color(109, 14, 14);
 		}
 		else if (l.getState()==LemmingState.BLOCKER) {
-			return spriteBlocker;
+			return Color.BLUE;
 		}
 		else if (l.getState()==LemmingState.BRIDGE_BUILDER) {
-			return spriteNormal;
+			return Color.YELLOW;
 		}
 		else if (l.getState()==LemmingState.DIGGER) {
-			return spriteDigger;
+			return Color.getHSBColor(13,100,43);
 		}
 		else if (l.getState()==LemmingState.BASHER) {
-			return spriteBasher;
+			return Color.getHSBColor(258,100,43);
 		}
 		else if (l.getState()==LemmingState.MINER) {
-			return spriteMiner;
+			return Color.getHSBColor(342,100,43);
 		}
-		return spriteNormal;
+		return Color.darkGray;
 	}
 
 	public int getSingleButtonSize(){
