@@ -25,6 +25,7 @@ public class Blocker implements State, IObserver {
     @Override
     public boolean walk() {
         stop();
+        update();
         return false;
     }
 

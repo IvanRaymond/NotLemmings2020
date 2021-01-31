@@ -77,8 +77,8 @@ public class LemmingObservable implements ILemming, IElement {
     }
 
     public void notifyObservers() {
-        for (IObserver observer : observers) {
-            observer.update();
+        for (int i=0; i< observers.size(); i++) {
+            observers.get(i).update();
         }
     }
 

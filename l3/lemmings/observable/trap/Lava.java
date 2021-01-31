@@ -47,6 +47,7 @@ public class Lava implements IElement, IObserver {
             LemmingObservable l = (LemmingObservable) level.getLemmings().get(i);
             if (l.isAt(point) || l.isAt(new Point(point.x, point.y - 1))) {
                 l.getStats().kill();
+                l.notifyObservers();
             }
         }
     }
